@@ -1,0 +1,43 @@
+p.divider {
+    border-top: 1px solid rgb(221, 221, 221);
+}
+
+h3 {
+    font-size: 24px;
+    margin-bottom: 3px;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
+h3 > a.title-link {
+    color: #2a6496;
+    text-decoration: none;
+    border-top: 1px solid #fcfcfc;
+}
+
+h3 > a.title-link:hover {
+    text-decoration: underline;
+}
+
+p.publish-on {
+    font-family: 'Open Sans', Roboto, 'Helvetica Neue', sans-serif;
+    color: #808080;
+    font-size: 14px;
+}
+
+p {
+    font-family: 'Open Sans', Roboto, 'Helvetica Neue', sans-serif;
+    line-height: 1.5em;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+/*------------------------------------------------
+     Mobile
+------------------------------------------------*/
+
+@media only screen and (max-width: 991px) {
+    .press-release-item {
+        margin: 0 10px;
+    }
+
+}

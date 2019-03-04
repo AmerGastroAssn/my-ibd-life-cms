@@ -1,0 +1,223 @@
+<!-- * PAGES-CARD-NEW * -->
+
+<!-- * Image Uploader * -->
+<div class="mb-2 mt-5">
+    <app-image-uploader-item></app-image-uploader-item>
+</div>
+
+
+<div class="row mb-4">
+    <div class="container">
+        <div class="offset-md-10">
+            <a [routerLink]="['/blog-posts']"
+               class="btn btn-default">&nbsp; <i class="fa fa-rss-square"></i>
+                All Posts
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container mb-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card bg-lighter inner-card">
+                        <div class="card-body">
+                            <div class="card-header-title">
+                                <h4 class="pb-2">New Blog Post
+                                    <small class="text-secondary"></small>
+                                </h4>
+                                <hr class="inset-hr mb-3">
+                            </div>
+                            <form [formGroup]="newBlogPostForm"
+                                  (ngSubmit)="onCreateBlogPost(newBlogPostForm.value)">
+                                <div class="form-group">
+
+                                    <div class="form-group">
+                                        <div class="input-group flex-nowrap">
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"
+                                                  id="photoURL">
+                                                <i class="fa fa-image"></i>
+                                            </span>
+                                            </div>
+                                            <input type="url"
+                                                   class="form-control"
+                                                   placeholder="Image URL eg: https://"
+                                                   aria-label="photoURL"
+                                                   aria-describedby="addon-wrapping"
+                                                   [class.invalid]="!f.photoURL.valid && f.photoURL.touched"
+                                                   [(ngModel)]="blogPost.photoURL"
+                                                   formControlName="photoURL">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!--<div class="form-group">-->
+                                <!--<div class="input-group flex-nowrap">-->
+                                <!--<div class="input-group-prepend">-->
+                                <!--<span class="input-group-text"-->
+                                <!--id="title">-->
+                                <!--<i class="fa fa-h1"></i>-->
+                                <!--</span>-->
+                                <!--</div>-->
+                                <!--<input type="text"-->
+                                <!--class="form-control"-->
+                                <!--placeholder="Blog Post Title Text"-->
+                                <!--aria-label="title"-->
+                                <!--aria-describedby="addon-wrapping"-->
+                                <!--[class.invalid]="!f.title.valid && f.title.touched"-->
+                                <!--[(ngModel)]="blogPost.title"-->
+                                <!--formControlName="title">-->
+                                <!--</div>-->
+                                <!--</div>-->
+
+                                <div class="form-group">
+                                    <div class="input-group flex-nowrap">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"
+                                                  id="buttonString">
+                                                <i class="fa fa-font"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text"
+                                               class="form-control"
+                                               placeholder="Link Text Here"
+                                               aria-label="buttonString"
+                                               aria-describedby="buttonString"
+                                               [class.invalid]="!f.buttonString.valid && f.buttonString.touched"
+                                               [(ngModel)]="blogPost.buttonString"
+                                               formControlName="buttonString">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="input-group flex-nowrap">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"
+                                                  id="url">
+                                                <i class="fa fa-link"></i>
+                                            </span>
+                                        </div>
+                                        <input type="url"
+                                               class="form-control"
+                                               placeholder="https://"
+                                               aria-label="url"
+                                               aria-describedby="url"
+                                               [class.invalid]="!f.url.valid && f.url.touched"
+                                               [(ngModel)]="blogPost.url"
+                                               formControlName="url">
+                                    </div>
+                                </div>
+
+
+                                <!-- * ExtURL  * -->
+                                <div class="form-group mt-3">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox"
+                                               class="custom-control-input ext-url"
+                                               id="isExtURL"
+                                               [(ngModel)]="blogPost.isExtURL"
+                                               formControlName="isExtURL">
+                                        <label class="custom-control-label ext-url"
+                                               for="isExtURL">External URL?
+                                        </label>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <textarea type="text"
+                                              rows="5"
+                                              placeholder="Body copy here..."
+                                              class="form-control"
+                                              [class.invalid]="!f.body.valid && f.body.touched"
+                                              [(ngModel)]="blogPost.body"
+                                              formControlName="body">
+                                </textarea>
+                                </div>
+
+
+                                <button type="submit"
+                                        [disabled]="!newBlogPostForm.valid"
+                                        class="btn btn-secondary full-width mb-3 mt-2">
+                                    <i class="fa fa-window-restore"></i>&nbsp;Create
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <!-- * Page BlogPost Item * -->
+            <div class="card card-inner bg-lighter">
+                <div class="card-body">
+                    <h6 class="alert alert-dark-dark text-center"
+                        *ngIf="blogPost && blogPost.isExtURL">
+                        <i class="fa fa-check-square"></i> &nbsp;External URL
+                    </h6>
+                    <h6 class="alert alert-dark text-center"
+                        *ngIf="blogPost && !blogPost.isExtURL">
+                        <i class="fa fa-times"></i> &nbsp;External URL
+                    </h6>
+                    <h4 class="card-header-title">Post Preview</h4>
+                    <hr class="inset-hr">
+                </div>
+                <ng-template #blogPostPreview>
+                    <div class="text-center p-4">
+                        <img src="https://s3.amazonaws.com/DDW/ddw-org/images/gifs/ajax-loader-transp.gif"
+                             alt="Waiting">
+                        <!--<i class="fal fa-spinner-third fa-spin"></i>-->
+                        <p class="card-preview">
+                            Blog Post will appear here...
+                        </p>
+                    </div>
+                </ng-template>
+                <div class="card inner-card ml-4 mr-4 mb-4 mt-0"
+                     *ngIf="blogPost.title || blogPost.body || blogPost.photoURL; else blogPostPreview">
+                    <div class="card-body">
+                        <div class="card text-center ml-3 mr-3">
+                            <div class="row">
+                                <div class="col-sm-10 offset-sm-1">
+                                    <img class="card-img-top rounded-circle img-fluid text-center"
+                                         [src]="blogPost.photoURL">
+                                </div>
+                            </div>
+                            <p class="text-center pt-3">
+                                <a [href]="blogPost.url"
+                                   class="link-text">
+                                    {{ blogPost.buttonString }}
+                                </a>
+                            </p>
+                            <div class="card-body">
+                                <p class="card-text">{{ blogPost.body }}</p>
+                            </div>
+                        </div>
+                        <!--<img class="card-img-top"-->
+                        <!--[src]="blogPost.photoURL"-->
+                        <!--[alt]="blogPost.title"-->
+                        <!--*ngIf="blogPost.photoURL">-->
+                        <!--<div class="card-body text-center">-->
+                        <!--<h5 class="card-title"-->
+                        <!--*ngIf="blogPost.title">{{ blogPost.title }}</h5>-->
+                        <!--<p class="card-text"-->
+                        <!--*ngIf="blogPost.body">{{ blogPost.body }}</p>-->
+                        <!--<p class="text-center"-->
+                        <!--*ngIf="blogPost.url && blogPost.buttonString">-->
+                        <!--<a [href]="blogPost.url"-->
+                        <!--class="btn btn-warning btn-lg">-->
+                        <!--{{ blogPost.buttonString }}-->
+                        <!--</a>-->
+                        <!--</p>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

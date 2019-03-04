@@ -1,0 +1,87 @@
+<!-- * FILE-UPLOADER * -->
+<div class="row">
+    <div class="container">
+        <div class="form-group">
+            <div class="card image-uploader">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="container">
+                            <h4 class="card-title mt-0">
+                                File Uploader
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="container">
+                            <p>
+                                <i class="fa fa-info-circle"></i> Make sure file is named to something you'll easily
+                                search
+                            </p>
+                            <p class="text-secondary">
+                                <small>
+                                    Permitted File Types: .pdf, .xls, .xlsx, .doc, .docx, .pptx, .ppt
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="custom-file">
+                                <label class="custom-file-label" *ngIf="!downloadURL">
+                                    Click To Select
+                                </label>
+                                <label class="custom-file-label text-truncate" *ngIf="downloadURL">
+                                    {{ downloadURL | async }}
+                                </label>
+                                <input type="file"
+                                       ddwDropZone
+                                       class="custom-file-input mt-3"
+                                       accept=".pdf, .xls, .xlsx, .doc, .docx, .pptx, .ppt"
+                                       (change)="uploadFile($event)">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div *ngIf="downloadURL | async as url; else loadingURL">
+                                <p class="pb-2">
+                                    <b>Copy and paste url into the File URL input below:</b>
+                                </p>
+                                <p>
+                                    <a [href]="url">
+                                        {{ url }}
+                                    </a>
+                                </p>
+                                <br>
+                                <br>
+                                <i class="fa fa-file-pdf"
+                                   *ngIf="fileType === 'pdf'"></i>
+
+                                <i class="fa fa-file-excel"
+                                   *ngIf="fileType === 'xls' || fileType === 'xlsx'"></i>
+
+                                <i class="fa fa-file-powerpoint"
+                                   *ngIf="fileType === 'pptx' || fileType === 'ppt'"></i>
+
+                                <i class="fa fa-file-word"
+                                   *ngIf="fileType === 'doc' || fileType === 'docx'"></i>
+                            </div>
+                            <ng-template #loadingURL>
+                                <p class="text-center text-light">
+                                    Upload File, Then a URL will appear here. Copy and paste that link
+                                    into any File URL input to use.
+                                </p>
+                            </ng-template>
+                        </div>
+                    </div>
+
+
+                    <div class="mt-4 mb-3" *ngIf="percentage | async as pct">
+                        <progressbar class="progress-striped active"
+                                     [value]="pct"
+                                     type="primary"><i>File Upload {{ pct | number }}%</i>
+                        </progressbar>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

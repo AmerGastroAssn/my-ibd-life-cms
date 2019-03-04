@@ -1,0 +1,14 @@
+li.nav-item {
+    font-family: var(--cms-font) !important;
+    font-weight: 500;
+    margin: 0 1em;
+    font-size: 1rem;
+}
+
+.btn.cta {
+    margin-bottom: 0;
+}
+
+.btn {
+    border-radius: 0;
+}

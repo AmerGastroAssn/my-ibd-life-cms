@@ -1,0 +1,15 @@
+hr.inset-hr {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid #fff;
+    margin: 0;
+}
+
+.inner-card {
+    border-radius: 0;
+}
+
+.ext-url {
+    cursor: pointer;
+}

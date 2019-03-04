@@ -1,0 +1,134 @@
+<!-- * IMAGES * -->
+<app-logo-watermark [favicon]="favicon" [sectionName]="sectionName"></app-logo-watermark>
+
+<!-- * Nav buttons * -->
+<div class="row m-4">
+    <div class="container">
+        <div class="text-center">
+            <div class="btn-group btn-group-md"
+                 role="group"
+                 aria-label="Basic example">
+                <a [routerLink]="['uploader']" class="btn btn-default">
+                    <i class="fa fa-cloud-upload-alt"></i>&nbsp;Upload Image
+                </a>
+                <a [routerLink]="['/files']"
+                   class="btn btn-default">
+                    <i class="fa fa-file"></i>&nbsp;Files
+                </a>
+                <a [routerLink]="['/files/uploader']"
+                   class="btn btn-default">
+                    <i class="fa fa-cloud-upload-alt"></i>&nbsp;Upload File
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="container">
+        <div class="col-md-8 offset-md-2">
+            <div class="card mb-4">
+                <h6 class="card-header">
+                    Search Images
+                </h6>
+                <div class="card-body demo-vertical-spacing-sm">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text"
+                                           class="form-control"
+                                           placeholder="Search image names..."
+                                           [(ngModel)]="searchTerm"
+                                           (keydown)="search($event)">
+                                    <span class="input-group-append">
+                                  <button class="btn btn-default search" type="button">
+                                      <i class="fa fa-search"></i>&nbsp;Search
+                                  </button>
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row mb-5">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <div class="offset-md-9">
+                    <mat-form-field>
+                        <mat-select [(ngModel)]="selectedViewNumber"
+                                    placeholder="View Amount">
+                            <mat-option *ngFor="let amt of viewNumber"
+                                        [value]="amt.value"
+                                        (click)="sortBy(selectedViewNumber)">
+                                {{ amt.type }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <p class="p-1 tip"><i class="fa fa-info-circle"></i> You can click any image to copy it's URL</p>
+                <div class="card inner-card bg-lighter">
+                    <div class="card-body">
+                        <ng-template #loading>
+                            <div class="row">
+                                <div class="container text-center">
+                                    <div class="text-center text-dark p-5">
+                                        <i class="far fa-spinner fa-pulse"></i>
+                                        <br><br>
+                                        loading...
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                        <div class="row image-gallery" *ngIf="images; else loading">
+                            <div *ngFor="let image of images; let i = index">
+                                <div class="card image-card mt-1">
+                                    <img class="card-img-top img-fluid"
+                                         [src]="image.url"
+                                         [alt]="image.imageName"
+                                         [matTooltip]="image.imageName"
+                                         aria-label="Image URL"
+                                         (click)="onToggleCopy(image.url)">
+                                    <div class="card-body text-center pt-1 pb-1">
+                                        <button type="button"
+                                                class="btn btn-default btn-xs"
+                                                (click)="onToggleDetails(i)">
+                                            <span *ngIf="!showDetailsToggle[i]">
+                                                <i class="fa fa-caret-circle-down"></i>&nbsp;Details
+                                            </span>
+                                            <span *ngIf="showDetailsToggle[i]">
+                                                <i class="fa fa-caret-circle-up"></i>&nbsp;Details
+                                            </span>
+                                        </button>
+                                        <button type="button"
+                                                class="btn btn-default btn-xs"
+                                                (click)="onToggleCopy(image.url)">
+                                            <i class="fa fa-clipboard"></i>&nbsp;Copy URL
+                                        </button>
+                                    </div>
+                                    <div class="card-body pt-2 details"
+                                         *ngIf="showDetailsToggle[i]">
+                                        <code class="pb-2">{{ image.url }}</code>
+                                        <hr>
+                                        <div class="footer">
+                                            <i class="fa fa-file"></i> {{ image.imageName }} <br>
+                                            <i class="fa fa-user"></i> {{ image.author }} <br>
+                                            <i class="fa fa-calendar"></i> {{ image.createdAt | date:'medium' }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

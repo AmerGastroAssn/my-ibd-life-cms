@@ -1,0 +1,99 @@
+<!-- * ADMIN-CALENDAR-LIST * -->
+<app-logo-watermark [favicon]="favicon" [sectionName]="sectionName"></app-logo-watermark>
+
+<!-- * button nav group * -->
+<div class="row m-4 pl-5" [@simpleFadeAnimation]="'in'">
+    <div class="container">
+        <div class="text-right mr-5">
+            <div class="btn-group btn-group-md float-right"
+                 role="group"
+                 aria-label="Basic example">
+                <a [routerLink]="['/settings']"
+                   class="btn btn-default">
+                    <i class="fa fa-wrench"></i>&nbsp;Settings
+                </a>
+                <a [routerLink]="['/calendar/new']"
+                   class="btn btn-default">
+                    <i class="fa fa-calendar-plus"></i>&nbsp;
+                    New Calendar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Layout content -->
+<div class="layout-content mb-5" [@simpleFadeAnimation]="'in'">
+    <!-- Content -->
+    <div class="container-fluid flex-grow-1 container-p-y">
+        <div class="card p-3">
+            <h4 class="font-weight-bold py-3 mb-4 pl-2">
+                Calendar Events
+            </h4>
+            <div class="card-datatable table-responsive">
+                <table id="user-list" class="table table-striped table-bordered table-hover">
+                    <thead>
+                    <tr>
+
+                        <th scope="col" style="vertical-align: top;">Title</th>
+                        <th scope="col" style="vertical-align: top;">Display Name</th>
+                        <th scope="col" style="vertical-align: top;">Dates</th>
+                        <th scope="col" style="vertical-align: top;">Bodies</th>
+                        <th scope="col" style="vertical-align: top;">Edit</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let event of calendarEvents$">
+                        <td scope="col">
+                            <a routerLink="/calendar/{{event.$key}}/edit"
+                               class="text-dark">
+                                {{ event.title }}
+                            </a>
+                        </td>
+                        <td scope="col">
+                            <a routerLink="/calendar/{{event.$key}}/edit"
+                               class="text-dark">
+                                {{ event.displayName }}
+                            </a>
+                        </td>
+                        <td scope="col">
+                            <a routerLink="/calendar/{{event.$key}}/edit"
+                               class="text-dark dates">
+                                <span *ngIf="event.date1">
+                                    <i class="fa fa-calendar-check"></i> {{ event.date1.toDate() | date }}
+                                </span> <br>
+                                <span *ngIf="event.date2">
+                                    <i class="fa fa-calendar-check"></i> {{ event.date2.toDate() | date }}
+                                </span> <br>
+                                <span *ngIf="event.date3">
+                                    <i class="fa fa-calendar-check"></i> {{ event.date3.toDate() | date }}
+                                </span><br>
+                                <span *ngIf="event.date4">
+                                    <i class="fa fa-calendar-check"></i> {{ event.date4.toDate() | date }}
+                                </span><br>
+                            </a>
+                        </td>
+                        <td scope="col">
+                            <a routerLink="/calendar/{{event.$key}}/edit"
+                               class="text-dark dates text-truncate">
+                                <i class="fa fa-align-justify"></i> {{ event.body1 | slice:0:70 }}... <br>
+                                <i class="fa fa-align-justify"></i> {{ event.body2 | slice:0:70 }}... <br>
+                                <i class="fa fa-align-justify"></i> {{ event.body3 | slice:0:70 }}... <br>
+                                <i class="fa fa-align-justify"></i> {{ event.body4 | slice:0:70 }}... <br>
+                            </a>
+                        </td>
+                        <td scope="col">
+                            <a routerLink="/calendar/{{event.$key}}/edit"
+                               class="btn btn-default icon-btn md-btn-flat user-tooltip">
+                                <i class="fa fa-pencil"></i>&nbsp;
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- / Content -->
+</div>
+<!-- Layout content -->

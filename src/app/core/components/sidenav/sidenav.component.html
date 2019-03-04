@@ -1,0 +1,378 @@
+<!-- Brand demo (see assets/css/demo/demo.css) -->
+<div class="app-brand demo pt-4 pb-3">
+              <span class="app-brand-logo demo">
+              <a [routerLink]="['/dashboard']">
+                      <img src="https://s3.amazonaws.com/DDW/ddw-org/images/logos/gray-ddw-150.png"
+                           alt="ddw logo" class="ddw-logo img-fluid p-1">
+              </a>
+          </span>
+
+    <!--<a [routerLink]="['/admin']"-->
+    <!--class="app-brand-text demo sidenav-text font-weight-normal ml-2">-->
+    <!--</a>-->
+
+    <!--<a class="layout-sidenav-toggle sidenav-link text-large ml-auto">-->
+    <!--<i class="ion ion-md-menu align-middle"></i>-->
+    <!--</a>-->
+</div>
+
+<div class="sidenav-divider mt-0"></div>
+
+<!-- Links -->
+<ul class="sidenav-inner py-1 pb-5">
+
+    <!-- * Pages * -->
+    <li class="sidenav-item"
+        [ngClass]="{'active open':showPagesToggle, '':!showPagesToggle}"
+        *ngIf="isLoggedIn">
+        <a class="sidenav-link sidenav-toggle" (click)="onShowPagesToggle()">
+            <i class="sidenav-icon ion ion-ios-albums"></i>
+            <div><i class="fal fa-layer-group"></i>&nbsp;<span class="helv">Pages</span></div>
+        </a>
+
+        <ul class="sidenav-menu">
+            <li class="sidenav-item sub-item">
+                <a [routerLink]="['/pages']" class="sidenav-link">
+                    <div><i class="fal fa-layer-group"></i>&nbsp;<span class="helv">All Pages</span></div>
+                </a>
+            </li>
+            <li class="sidenav-item sub-item">
+                <a [routerLink]="['/pages/register']" class="sidenav-link">
+                    <div><i class="fal fa-pen-nib"></i>&nbsp;<span class="helv">Register</span></div>
+                </a>
+            </li>
+            <li class="sidenav-item sub-item">
+                <a [routerLink]="['/pages/attendee-planning']" class="sidenav-link">
+                    <div><i class="fal fa-book-reader"></i>&nbsp;<span class="helv">Attendee Planning</span></div>
+                </a>
+            </li>
+            <li class="sidenav-item sub-item">
+                <a [routerLink]="['/pages/education']" class="sidenav-link">
+                    <div><i class="fal fa-graduation-cap"></i>&nbsp;<span class="helv">Education</span></div>
+                </a>
+            </li>
+            <li class="sidenav-item sub-item">
+                <a [routerLink]="['/pages/exhibitor-information']" class="sidenav-link">
+                    <div><i class="fal fa-info"></i>&nbsp;<span class="helv">Exhibitor Info</span></div>
+                </a>
+            </li>
+            <li class="sidenav-item sub-item">
+                <a [routerLink]="['/pages/news']" class="sidenav-link">
+                    <div><i class="fal fa-newspaper"></i>&nbsp;<span class="helv">News & Media</span></div>
+                </a>
+            </li>
+            <li class="sidenav-item sub-item">
+                <a [routerLink]="['/pages/presenters']" class="sidenav-link">
+                    <div><i class="fal fa-mouse-pointer"></i>&nbsp;<span class="helv">Presenters</span></div>
+                </a>
+            </li>
+            <li class="sidenav-item sub-item">
+                <a [routerLink]="['/pages/new']" class="sidenav-link">
+                    <div><i class="fal fa-layer-plus"></i>&nbsp;<span class="helv">New Page</span></div>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+
+    <!-- * Content Sections * -->
+    <li class="sidenav-item"
+        [ngClass]="{'active open':showContentSectionToggle, '':!showContentSectionToggle}"
+        *ngIf="isLoggedIn">
+        <a class="sidenav-link sidenav-toggle" (click)="onShowContentSectionToggle()">
+            <i class="sidenav-icon ion ion-md-speedometer"></i>
+            <div><i class="fal fa-align-justify"></i>&nbsp;<span class="helv">Page Content Sections</span></div>
+        </a>
+
+        <ul class="sidenav-menu">
+            <li class="sidenav-item sub-item">
+                <a [routerLink]="['/text-section']" class="sidenav-link">
+                    <div><i class="fal fa-align-justify"></i>&nbsp;<span class="helv">Text Sections</span></div>
+                </a>
+            </li>
+            <li class="sidenav-item sub-item">
+                <a [routerLink]="['/call-to-action']" class="sidenav-link">
+                    <div><i class="fal fa-text-width"></i>&nbsp;<span class="helv">CTA's Sections</span></div>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+
+    <!-- * Press Releases * -->
+    <li class="sidenav-item"
+        [ngClass]="{'active open':showPressReleaseToggle, '':!showPressReleaseToggle}"
+        *ngIf="isLoggedIn">
+        <a class="sidenav-link sidenav-toggle" (click)="onShowPressReleaseToggle()">
+            <i class="sidenav-icon ion ion-md-speedometer"></i>
+            <div><i class="fal fa-newspaper"></i>&nbsp;<span class="helv">Press Releases</span></div>
+        </a>
+
+        <ul class="sidenav-menu">
+            <li class="sidenav-item sub-item">
+                <a [routerLink]="['/press-releases']" class="sidenav-link">
+                    <div><i class="fal fa-newspaper"></i>&nbsp;<span class="helv">All PR</span></div>
+                </a>
+            </li>
+            <li class="sidenav-item sub-item">
+                <a [routerLink]="['/press-releases/new']" class="sidenav-link">
+                    <div><i class="fal fa-newspaper"></i>&nbsp;<span class="helv">New PR</span></div>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <!-- * Calendar * -->
+    <li class="sidenav-item"
+        [ngClass]="{'active open':showCalendarToggle, '':!showCalendarToggle}"
+        *ngIf="isLoggedIn">
+        <a class="sidenav-link sidenav-toggle" (click)="onShowCalendarToggle()">
+            <i class="sidenav-icon ion ion-md-speedometer"></i>
+            <div><i class="fal fa-calendar"></i>&nbsp;<span class="helv">Calendar</span></div>
+        </a>
+
+        <ul class="sidenav-menu">
+            <li class="sidenav-item sub-item">
+                <a [routerLink]="['/calendar']" class="sidenav-link">
+                    <div><i class="fal fa-calendar-check"></i>&nbsp;<span class="helv">All Calendars</span></div>
+                </a>
+            </li>
+            <li class="sidenav-item sub-item">
+                <a [routerLink]="['/calendar/new']" class="sidenav-link">
+                    <div><i class="fal fa-calendar-plus"></i>&nbsp;<span class="helv">New Calendar</span></div>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+
+    <!-- * Page Cards * -->
+    <li class="sidenav-item"
+        [ngClass]="{'active open':showPageCardToggle, '':!showPageCardToggle}"
+        *ngIf="isLoggedIn">
+        <a class="sidenav-link sidenav-toggle" (click)="onShowPageCardToggle()">
+            <i class="sidenav-icon ion ion-md-speedometer"></i>
+            <div><i class="fal fa-window-restore"></i>&nbsp;<span class="helv">Cards</span></div>
+        </a>
+
+        <ul class="sidenav-menu">
+            <li class="sidenav-item sub-item">
+                <a [routerLink]="['/cards']" class="sidenav-link">
+                    <div><i class="fal fa-window-restore"></i>&nbsp;<span class="helv">All Cards</span></div>
+                </a>
+            </li>
+            <li class="sidenav-item sub-item">
+                <a [routerLink]="['/cards/new']" class="sidenav-link">
+                    <div><i class="fal fa-window-restore"></i>&nbsp;<span class="helv">New Card</span></div>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <!-- * Blog Posts * -->
+    <li class="sidenav-item"
+        [ngClass]="{'active open':showBlogPostToggle, '':!showBlogPostToggle}"
+        *ngIf="isLoggedIn">
+        <a class="sidenav-link sidenav-toggle" (click)="onShowBlogPostToggle()">
+            <i class="sidenav-icon ion ion-md-speedometer"></i>
+            <div><i class="fal fa-rss"></i>&nbsp;<span class="helv">Blog Posts</span></div>
+        </a>
+
+        <ul class="sidenav-menu">
+            <li class="sidenav-item sub-item">
+                <a [routerLink]="['/blog-posts']" class="sidenav-link">
+                    <div><i class="fal fa-rss-square"></i>&nbsp;<span class="helv">All Posts</span></div>
+                </a>
+            </li>
+            <li class="sidenav-item sub-item">
+                <a [routerLink]="['/blog-posts/new']" class="sidenav-link">
+                    <div><i class="fal fa-rss-square"></i>&nbsp;<span class="helv">New Post</span></div>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <!-- * Home Page * -->
+    <li class="sidenav-item" *ngIf="isLoggedIn">
+        <a [routerLink]="['/homepage']" class="sidenav-link">
+            <i class="sidenav-icon ion ion-md-quote"></i>
+            <div><i class="fal fa-home"></i>&nbsp;<span class="helv">Home Page</span></div>
+        </a>
+    </li>
+
+    <!-- * Contacts * -->
+    <li class="sidenav-item" *ngIf="isLoggedIn">
+        <a [routerLink]="['/contacts']" class="sidenav-link">
+            <i class="sidenav-icon ion ion-md-quote"></i>
+            <div><i class="fal fa-address-book"></i>&nbsp;<span class="helv">Contacts</span></div>
+        </a>
+    </li>
+
+    <!-- * Custom Links * -->
+    <li class="sidenav-item" *ngIf="isLoggedIn">
+        <a [routerLink]="['/custom-nav-links']" class="sidenav-link">
+            <i class="sidenav-icon ion ion-md-quote"></i>
+            <div><i class="fal fa-link"></i>&nbsp;<span class="helv">Navbar Links</span></div>
+        </a>
+    </li>
+
+    <!-- * Cards * -->
+    <!--<li class="sidenav-item" *ngIf="isLoggedIn">-->
+    <!--<a [routerLink]="['/cards']" class="sidenav-link">-->
+    <!--<i class="sidenav-icon ion ion-md-quote"></i>-->
+    <!--<div><i class="fal fa-passport"></i>&nbsp;Cards</div>-->
+    <!--</a>-->
+    <!--</li>-->
+
+    <!-- * Featured Posts * -->
+    <!--<li class="sidenav-item" *ngIf="isLoggedIn">-->
+    <!--<a [routerLink]="['/featured-posts']" class="sidenav-link">-->
+    <!--<i class="sidenav-icon ion ion-md-quote"></i>-->
+    <!--<div><i class="fal fa-passport"></i>&nbsp;Featured Posts</div>-->
+    <!--</a>-->
+    <!--</li>-->
+
+
+    <!-- * Users * -->
+    <li class="sidenav-item"
+        [ngClass]="{'active open':showUsersToggle, '':!showUsersToggle}"
+        *ngIf="isLoggedIn">
+        <a class="sidenav-link sidenav-toggle" (click)="onShowUsersToggle()">
+            <i class="sidenav-icon ion ion-md-speedometer"></i>
+            <div><i class="fal fa-users"></i>&nbsp;<span class="helv">Users</span></div>
+        </a>
+
+        <ul class="sidenav-menu">
+            <li class="sidenav-item sub-item">
+                <a [routerLink]="['/users']" class="sidenav-link">
+                    <div><i class="fal fa-users"></i>&nbsp;<span class="helv">All Users</span></div>
+                </a>
+            </li>
+            <li class="sidenav-item sub-item" *ngIf="isAdmin">
+                <a [routerLink]="['/users/new']" class="sidenav-link">
+                    <div><i class="fal fa-user-plus"></i>&nbsp;<span class="helv">New User</span></div>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <!-- * Divider * -->
+    <li class="sidenav-divider mb-1" *ngIf="isLoggedIn"></li>
+
+    <!-- * Extras * -->
+    <li class="sidenav-header small font-weight-semibold"><span class="helv">Extras</span></li>
+
+    <li class="sidenav-item" *ngIf="isLoggedIn && isAdmin">
+        <a [routerLink]="['/settings']" class="sidenav-link">
+            <i class="sidenav-icon ion ion-md-quote"></i>
+            <div><i class="fal fa-wrench"></i>&nbsp;<span class="helv">Settings</span></div>
+        </a>
+    </li>
+
+    <!-- * Images * -->
+    <li class="sidenav-item"
+        [ngClass]="{'active open':showImagesToggle, '':!showImagesToggle}"
+        *ngIf="isLoggedIn">
+        <a class="sidenav-link sidenav-toggle" (click)="onShowImagesToggle()">
+            <i class="sidenav-icon ion ion-md-speedometer"></i>
+            <div><i class="fal fa-images"></i>&nbsp;<span class="helv">Images</span></div>
+        </a>
+
+        <ul class="sidenav-menu">
+            <li class="sidenav-item sub-item">
+                <a [routerLink]="['/images']" class="sidenav-link">
+                    <div><i class="fal fa-grip-horizontal"></i>&nbsp;<span class="helv">Image Gallery</span></div>
+                </a>
+            </li>
+            <li class="sidenav-item sub-item">
+                <a [routerLink]="['/images/uploader']" class="sidenav-link">
+                    <div><i class="fal fa-cloud-upload-alt"></i>&nbsp;<span class="helv">Upload Image</span></div>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+
+    <!-- * Files * -->
+    <li class="sidenav-item"
+        [ngClass]="{'active open':showFilesToggle, '':!showFilesToggle}"
+        *ngIf="isLoggedIn">
+        <a class="sidenav-link sidenav-toggle" (click)="onShowFilesToggle()">
+            <i class="sidenav-icon ion ion-md-speedometer"></i>
+            <div><i class="fal fa-file-alt"></i>&nbsp;<span class="helv">Files</span></div>
+        </a>
+
+        <ul class="sidenav-menu">
+            <li class="sidenav-item sub-item">
+                <a [routerLink]="['/files']" class="sidenav-link">
+                    <div><i class="fal fa-th"></i>&nbsp;<span class="helv">File Gallery</span></div>
+                </a>
+            </li>
+            <li class="sidenav-item sub-item">
+                <a [routerLink]="['/files/uploader']" class="sidenav-link">
+                    <div><i class="fal fa-cloud-upload"></i>&nbsp;<span class="helv">Upload File</span></div>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="sidenav-item" *ngIf="isLoggedIn">
+        <a [routerLink]="['/dashboard']" class="sidenav-link">
+            <i class="sidenav-icon ion ion-md-quote"></i>
+            <div><i class="fal fa-chart-pie"></i>&nbsp;<span class="helv">Analytics</span></div>
+        </a>
+    </li>
+
+    <li class="sidenav-item" *ngIf="isLoggedIn && isAdmin">
+        <a [routerLink]="['/meta']" class="sidenav-link">
+            <i class="sidenav-icon ion ion-md-quote"></i>
+            <div><i class="fal fa-chart-line"></i>&nbsp;<span class="helv">Meta</span></div>
+        </a>
+    </li>
+
+    <li class="sidenav-item" *ngIf="isLoggedIn && isAdmin">
+        <a [routerLink]="['/ads']" class="sidenav-link">
+            <i class="sidenav-icon ion ion-md-quote"></i>
+            <div><i class="fal fa-money-bill-wave"></i>&nbsp;<span class="helv">Advertising</span></div>
+        </a>
+    </li>
+
+    <li class="sidenav-item" *ngIf="isLoggedIn">
+        <a [routerLink]="['/privacy-policy']" class="sidenav-link">
+            <i class="sidenav-icon ion ion-md-quote"></i>
+            <div><i class="fal fa-file-signature"></i>&nbsp;<span class="helv">Privacy Policy</span></div>
+        </a>
+    </li>
+
+    <li class="sidenav-item" *ngIf="isLoggedIn">
+        <a [routerLink]="['/modal']" class="sidenav-link">
+            <i class="sidenav-icon ion ion-md-quote"></i>
+            <div><i class="fal fa-window-alt"></i>&nbsp;<span class="helv">Homepage Modal</span></div>
+        </a>
+    </li>
+
+    <li class="sidenav-item">
+        <a class="sidenav-link" href="https://ddw.org" target="_blank">
+            <i class="sidenav-icon ion ion-md-quote"></i>
+            <div><i class="fal fa-laptop"></i>&nbsp;<span class="helv">Live Site</span></div>
+        </a>
+    </li>
+
+    <div class="sidenav-divider mt-0"></div>
+
+    <li class="sidenav-item" *ngIf="isLoggedIn">
+        <a class="sidenav-link"
+           (click)="onLogout()">
+            <i class="sidenav-icon ion ion-md-quote"></i>
+            <div><i class="fal fa-sign-out-alt"></i>&nbsp;<span class="helv">Logout</span></div>
+        </a>
+    </li>
+
+    <li class="sidenav-item" *ngIf="!isLoggedIn">
+        <a [routerLink]="['/auth/login']" class="sidenav-link">
+            <i class="sidenav-icon ion ion-md-quote"></i>
+            <div><i class="fal fa-sign-in-alt"></i>&nbsp;<span class="helv">Log In</span></div>
+        </a>
+    </li>
+</ul>
+

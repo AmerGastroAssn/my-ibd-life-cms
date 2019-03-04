@@ -1,0 +1,238 @@
+<!-- * MOBILE-FOOTERNAV * -->
+<nav class="navbar navbar-footer fixed-bottom navbar-inverse bg-dark text-center">
+
+
+    <button mat-button
+            *ngIf="!isLoggedIn"
+            class="menu-icon"
+            routerLinkActive="active"
+            [routerLink]="['/auth/login']">
+        <i class="fa fa-sign-in-alt"></i>
+        <br>
+        <small class="text-theme-gray">Login</small>
+    </button>
+
+    <button mat-button
+            class="menu-icon"
+            routerLinkActive="active"
+            *ngIf="allowSignup && !isLoggedIn"
+            [routerLink]="['/auth/signup']">
+        <i class="fa fa-address-card"></i>
+        <br>
+        <small class="text-theme-gray">Signup</small>
+    </button>
+
+    <button mat-button
+            class="menu-icon"
+            routerLinkActive="active"
+            *ngIf="!isLoggedIn"
+            target="_blank"
+            [routerLink]="['/']">
+        <i class="fa fa-laptop"></i>&nbsp;
+        <br>
+        <small class="text-theme-gray">Live Site</small>
+    </button>
+
+
+    <span *ngIf="isLoggedIn">
+        <!-- * IF logged in * -->
+        <button mat-button
+                class="menu-icon"
+                routerLinkActive="active"
+                *ngIf="user$"
+                [routerLink]="['/pages']">
+            <i class="fa fa-copy fa-lg"></i>
+            <br>
+            <small class="footernav-txt">Pages</small>
+        </button>
+
+        <button mat-button
+                class="menu-icon"
+                routerLinkActive="active"
+                *ngIf="user$"
+                [routerLinkActiveOptions]="{exact:true}"
+                [routerLink]="['/pages/new']">
+            <i class="fa fa-file-plus fa-lg"></i>
+            <br>
+            <small class="footernav-txt">New Page</small>
+        </button>
+
+        <button mat-button
+                class="menu-icon"
+                routerLinkActive="active"
+                *ngIf="user$"
+                [routerLink]="['/users']">
+            <i class="fa fa-users fa-lg"></i>
+            <br>
+            <small class="footernav-txt">Users</small>
+        </button>
+
+        <button mat-button
+                [matMenuTriggerFor]="appMenu"
+                class="menu-icon"
+                *ngIf="user$">
+                <i class="fa fa-ellipsis-h fa-lg"></i>
+                <br>
+                <small class="footernav-txt">More</small>
+        </button>
+
+        <!-- * Pop-up Menu * -->
+        <!-- * Trigger * -->
+
+        <mat-menu #appMenu="matMenu" class="bg-dark">
+            <span *ngIf="user && isLoggedIn">
+                <button mat-menu-item
+                        class="menu-icon"
+                        routerLinkActive="active"
+                        *ngIf="isLoggedIn"
+                        [routerLink]="['/users/', user.uid ]">
+                 <img [src]="user.photoURL"
+                      class="user-image rounded-circle"> &nbsp;
+                <small>My Profile</small>
+            </button>
+            </span>
+
+            <div class="divider"></div>
+
+            <button mat-menu-item
+                    class="menu-icon"
+                    routerLinkActive="active"
+                    *ngIf="isLoggedIn && allowSettings && isAdmin"
+                    [routerLink]="['/meta']">
+                <i class="fa fa-chart-line"></i>&nbsp;
+                <small>Meta</small>
+            </button>
+
+            <button mat-menu-item
+                    class="menu-icon"
+                    routerLinkActive="active"
+                    *ngIf="isLoggedIn && isAdmin"
+                    [routerLink]="['/ads']">
+                <i class="fa fa-money-bill-wave"></i>&nbsp;
+                <small>Advertising</small>
+            </button>
+
+            <button mat-menu-item
+                    class="menu-icon"
+                    routerLinkActive="active"
+                    *ngIf="isLoggedIn && allowSettings && isAdmin"
+                    [routerLink]="['/settings']">
+                <i class="fa fa-wrench"></i>&nbsp;
+                <small>Settings</small>
+            </button>
+
+            <button mat-menu-item
+                    class="menu-icon"
+                    routerLinkActive="active"
+                    *ngIf="isLoggedIn"
+                    [routerLink]="['/text-section']">
+                <i class="fa fa-align-justify"></i>&nbsp;
+                <small>Text Sections</small>
+            </button>
+
+
+            <button mat-menu-item
+                    class="menu-icon"
+                    routerLinkActive="active"
+                    *ngIf="isLoggedIn"
+                    [routerLink]="['/call-to-action']">
+                <i class="fa fa-text-width"></i>&nbsp;
+                <small>Call To Actions</small>
+            </button>
+
+            <button mat-menu-item
+                    class="menu-icon"
+                    routerLinkActive="active"
+                    *ngIf="isLoggedIn"
+                    [routerLink]="['/cards']">
+                <i class="fa fa-passport"></i>&nbsp;
+                <small>Cards</small>
+            </button>
+
+
+            <button mat-menu-item
+                    class="menu-icon"
+                    routerLinkActive="active"
+                    *ngIf="isLoggedIn"
+                    [routerLink]="['/images']">
+                <i class="fa fa-images"></i>&nbsp;
+                <small>Images</small>
+            </button>
+
+
+
+            <button mat-menu-item
+                    class="menu-icon"
+                    routerLinkActive="active"
+                    *ngIf="isLoggedIn"
+                    [routerLink]="['/images/uploader']">
+                <i class="fa fa-cloud-upload-alt"></i>&nbsp;
+                <small>Image Uploader</small>
+            </button>
+
+            <button mat-menu-item
+                    class="menu-icon"
+                    routerLinkActive="active"
+                    *ngIf="isLoggedIn"
+                    [routerLink]="['/blog-posts']">
+                <i class="fa fa-passport"></i>&nbsp;
+                <small>Featured Posts</small>
+            </button>
+
+            <button mat-menu-item
+                    class="menu-icon"
+                    routerLinkActive="active"
+                    *ngIf="isLoggedIn"
+                    [routerLink]="['/press-releases']">
+                <i class="fa fa-bullhorn"></i>&nbsp;
+                <small>Press Releases</small>
+            </button>
+
+
+            <button mat-menu-item
+                    class="menu-icon"
+                    routerLinkActive="active"
+                    *ngIf="isLoggedIn"
+                    [routerLink]="['/contacts']">
+                <i class="fa fa-address-book"></i>&nbsp;
+                <small>Contacts</small>
+            </button>
+
+            <button mat-menu-item
+                    class="menu-icon"
+                    routerLinkActive="active"
+                    *ngIf="isLoggedIn"
+                    [routerLink]="['/calendar']">
+                <i class="fa fa-calendar-alt"></i>&nbsp;
+                <small>Calendars</small>
+            </button>
+
+            <div class="divider"></div>
+
+
+            <button mat-menu-item
+                    class="menu-icon"
+                    routerLinkActive="active"
+                    *ngIf="isLoggedIn"
+                    target="_blank"
+                    [routerLink]="['/']">
+                <i class="fa fa-laptop"></i>&nbsp;
+                <small>Live Site</small>
+            </button>
+
+            <button mat-menu-item
+                    class="menu-icon"
+                    routerLinkActive="active"
+                    *ngIf="isLoggedIn;"
+                    (click)="onLogout()">
+                <i class="fa fa-sign-out-alt"></i>
+                <small>Logout</small>
+            </button>
+            <!-- * Spacer * -->
+            <div class="spacer"></div>
+        </mat-menu>
+
+    </span>
+
+
+</nav>

@@ -1,0 +1,142 @@
+input.custom-control-input,
+label.custom-control-label {
+    cursor: pointer;
+}
+
+i.fa-cloud-upload-alt {
+    font-size: 2.7em;
+}
+
+.dropzone {
+    cursor: pointer;
+}
+
+.hovering {
+    background-color: #999999;
+}
+
+progress::-webkit-progress-value {
+    transition: width 0.1s ease;
+}
+
+input.invalid {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #701D26;
+    background-color: #F7D7DB;
+    background-clip: padding-box;
+    border: 1px solid #CBB1B4;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+img.card-img-top {
+    max-height: 300px;
+}
+
+.slug {
+    font-size: 1em;
+}
+
+/* PREVIEW */
+img.bannerPhotoURL {
+    top: 0;
+    left: 0;
+    position: relative;
+    max-height: 100px;
+    width: 100%;
+    /*z-index: 0;*/
+}
+
+h1.title {
+    position: absolute;
+    top: 5%;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+p {
+
+}
+
+.row.crumbs {
+    padding: 1em 0;
+}
+
+ol.breadcrumb, li.breadcrumb-item {
+    background-color: #fff;
+}
+
+img.photoURL {
+    max-width: 200px;
+    float: right;
+    margin: 0 0 1em 1em;
+}
+
+h2.card-sec-title {
+    padding-top: 2em;
+}
+
+.preview-body {
+    font-size: 0.75em;
+}
+
+.underline {
+    border-bottom: 2px solid #FEB512;
+    margin-top: 1em;
+}
+
+.row.cards {
+    margin: 5em 0 8em 0;
+}
+
+.card-body {
+    line-height: 2em;
+}
+
+.card-text {
+    padding: 2em;
+}
+
+.card.bg-transparent {
+    border-radius: 0;
+}
+
+a.btn.btn-warning.btn-lg {
+    background-color: #F47700;
+    color: #fff;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    font-weight: bold;
+}
+
+a.btn.btn-warning.btn-lg:hover {
+    background-color: #FEB512;
+    color: #fff;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    font-weight: bold;
+}
+
+input,
+textarea,
+select.form-control,
+option,
+pre.alert.slug,
+.card.bg-lighter {
+    border-radius: 0;
+}
+
+.text-section-preview {
+    float: right;
+}
+
+.cta-preview {
+    float: right;
+}

@@ -1,0 +1,55 @@
+h1, h2, h3, h4, h5, h6, p, div, tr, th, tr, td, ul, ol, li {
+    font-family: 'Helvetica Neue', Roboto, Arial, sans-serif !important;
+    line-height: 1.5;
+}
+
+.card, .card-body, .card-text, .card-footer {
+    font-family: 'Helvetica Neue', Roboto, Arial, sans-serif !important;
+    line-height: 1.8em;
+    font-size: 1em;
+    border-radius: 0;
+}
+
+a.text-dark:hover {
+    color: #53462C !important;
+}
+
+.viewed {
+    background-color: #FFF9DF !important;
+    color: #53462C !important;
+    border: 1px solid #FFF9DF;
+}
+
+a.viewed-text {
+    color: #53462C !important;
+}
+
+.card.viewed > div > div > div > table > tbody > tr * {
+    border-color: #FFF9DF !important;
+}
+
+tr.viewed, tr.viewed > *, tr.viewed > td > a.btn-default.btn-sm {
+    border-color: #FFF9DF !important;
+}
+
+
+.text-mono {
+    font-family: 'SF Mono', 'Menlo', 'Roboto Mono', 'DejaVu Sans Mono', 'Consolas', monospace;
+}
+
+h3.alert.alert-light {
+    background-color: #534C3E;
+    color: #FFF9DF;
+    border: 1px solid #53462C;
+}
+
+a.viewed-link {
+    color: #53462C;
+    font-weight: bold;
+}
+
+a.btn.btn-default.btn-sm.viewed-btn {
+    border-color: #53462C !important;
+    background-color: #534C3E;
+    color: #FFF9DF;
+}

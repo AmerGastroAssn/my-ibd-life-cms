@@ -1,0 +1,66 @@
+a.back-pages {
+    text-decoration: none;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+input.form-check-input,
+.form-check,
+label.form-check-label {
+    cursor: pointer;
+}
+
+input,
+textarea,
+select.form-control,
+option,
+.card.bg-lighter {
+    border-radius: 0;
+}
+
+p.alert {
+    font-size: 14px;
+    font-family: var(--cms-font) !important;
+}
+
+input.invalid {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #701D26;
+    background-color: #F7D7DB;
+    background-clip: padding-box;
+    border: 1px solid #CBB1B4;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+/* Display on anything 992px and larger */
+@media (min-width: 992px) {
+    nav#layout-navbar {
+        display: block;
+    }
+
+    nav.navbar.navbar-footer {
+        display: none;
+    }
+}
+
+/* Small devices (landscape phones, 991px and below) */
+@media (max-width: 991px) {
+    nav#layout-navbar {
+        display: none;
+    }
+
+    nav.navbar.navbar-footer {
+        display: block;
+    }
+
+    .new-page {
+        margin-bottom: 8em;
+    }
+}

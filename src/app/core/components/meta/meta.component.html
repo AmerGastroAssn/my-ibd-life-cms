@@ -1,0 +1,142 @@
+<!-- * META * -->
+<app-logo-watermark [favicon]="favicon" [sectionName]="sectionName"></app-logo-watermark>
+
+<div class="row m-4 pl-5">
+    <div class="container">
+        <a [routerLink]="['/settings']" class="btn btn-default">
+            <i class="fal fa-arrow-circle-left"></i>&nbsp;Settings
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="container mb-5">
+        <div class="col-md-12">
+            <ng-template #loading>
+                <div class="text-center text-dark p-5">
+                    <i class="far fa-spinner fa-pulse"></i>
+                    <br>
+                    loading...
+                </div>
+            </ng-template>
+            <div class="card">
+                <div class="card-body">
+                    <form [formGroup]="metaForm"
+                          (ngSubmit)="onMetaSubmit(metaForm.value)"
+                          *ngIf="meta; else loading">
+
+                        <div class="form-group">
+                            <label>Meta Description <br>
+                                <small>Should be around 150 characters</small>
+                            </label>
+                            <pre>
+                                 <textarea type="text"
+                                           rows="4"
+                                           class="form-control mono"
+                                           placeholder="Enter description of site here"
+                                           formControlName="metaDesc">
+                                </textarea>
+                             </pre>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Meta Author <br>
+                                <small>Author of the site</small>
+                            </label>
+                            <pre>
+                                 <textarea type="text"
+                                           rows="3"
+                                           class="form-control mono"
+                                           placeholder="Enter author here..."
+                                           formControlName="metaAuthor">
+                                </textarea>
+                             </pre>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Meta keywords <br>
+                                <small>Broken by a comma. eg: gi, aga, conference, etc...</small>
+                            </label>
+                            <pre>
+                                 <textarea type="text"
+                                           rows="4"
+                                           class="form-control mono"
+                                           placeholder="Enter keywords here..."
+                                           formControlName="metaKeywords">
+                                </textarea>
+                             </pre>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Meta Image URL <br>
+                                <small>Image that's loaded on your smart phone/social network when shared.</small>
+                            </label>
+                            <pre>
+                                 <textarea type="text"
+                                           rows="3"
+                                           class="form-control mono"
+                                           placeholder="Enter keywords here..."
+                                           formControlName="metaImageURL">
+                                </textarea>
+                             </pre>
+                        </div>
+
+
+                        <!--<div class="form-group">-->
+                        <!--<label>Header Meta Scripts Tags <br>-->
+                        <!--<small>(Between header tags)</small>-->
+                        <!--</label>-->
+
+                        <!--<pre>-->
+                        <!--<textarea type="text"-->
+                        <!--rows="13"-->
+                        <!--class="form-control"-->
+                        <!--placeholder="Enter header scripts here..."-->
+                        <!--[(ngModel)]="meta.headerArea"-->
+                        <!--formControlName="headerArea">-->
+                        <!--</textarea>-->
+                        <!--</pre>-->
+                        <!--</div>-->
+
+                        <!--<div class="form-group">-->
+                        <!--<label>SEO Meta Tags <br>-->
+                        <!--<small>(Bottom of header tags)</small>-->
+                        <!--</label>-->
+                        <!--<pre>-->
+                        <!--<textarea type="text"-->
+                        <!--rows="13"-->
+                        <!--class="form-control"-->
+                        <!--placeholder="Insert your meta tags here..."-->
+                        <!--[(ngModel)]="meta.seo"-->
+                        <!--formControlName="seo">-->
+                        <!--</textarea>-->
+                        <!--</pre>-->
+                        <!--</div>-->
+
+                        <div class="form-group">
+                            <label>Page Widget Snippet <br>
+                                <small>(Widget code that replaces image on Pages)</small>
+                            </label>
+                            <pre>
+                                <textarea type="text"
+                                          rows="10"
+                                          class="form-control mono"
+                                          placeholder="Enter widget snippet script here..."
+                                          formControlName="widgetSnippet">
+                                </textarea>
+                            </pre>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-secondary mb-5 full-width">
+                            <i class="fa fa-chart-line"></i>&nbsp;Save Meta
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

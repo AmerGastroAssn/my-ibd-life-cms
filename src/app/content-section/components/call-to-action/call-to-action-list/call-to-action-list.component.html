@@ -1,0 +1,115 @@
+<!-- * CTA-LIST * -->
+<app-logo-watermark [favicon]="favicon" [sectionName]="sectionName"></app-logo-watermark>
+
+<div class="row mt-3 mb-3">
+    <div class="col-md-6 mx-auto text-center">
+        <div class="btn-group">
+            <a [routerLink]="['/call-to-action/new']" class="btn btn-default">
+                <i class="fa fa-plus"></i> New CTA
+            </a>
+            <a [routerLink]="['/text-section']" class="btn btn-default">
+                <i class="fa fa-align-justify"></i> Text Sections
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Layout content -->
+<div class="layout-content mb-5 mt-4" [@simpleFadeAnimation]="'in'">
+    <!-- * Search * -->
+    <div class="row">
+        <div class="container">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <h6 class="card-header">
+                        Search All Call To Actions
+                    </h6>
+                    <div class="card-body demo-vertical-spacing-sm">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="text"
+                                               class="form-control"
+                                               placeholder="Search Call To Action titles..."
+                                               [(ngModel)]="searchTerm"
+                                               (keydown)="search($event)">
+                                        <span class="input-group-append">
+                                          <button class="btn btn-default search"
+                                                  type="button">
+                                              <i class="fa fa-search"></i>&nbsp;Search
+                                          </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Content -->
+    <div class="container flex-grow-1 container-p-y">
+
+        <div class="card p-3">
+            <h4 class="font-weight-bold py-3 mb-4 pl-2">
+                All Call To Actions
+            </h4>
+
+            <div class="card-datatable table-responsive">
+                <table id="user-list" class="table table-striped table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col" style="vertical-align: top;">Name</th>
+                        <th scope="col" style="vertical-align: top;">Updated</th>
+                        <th scope="col" style="vertical-align: top;">Author</th>
+                        <th scope="col" style="vertical-align:top; text-align:center;">Options</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let cta of ctaList">
+                        <td scope="col">
+                            <a [routerLink]="['/call-to-action/', cta.id]" class="text-truncate">
+                                {{ cta.name }}
+                            </a>
+                        </td>
+
+                        <td scope="col" class="date">{{ cta.updatedAt| date:'medium' }}</td>
+
+                        <td scope="col">
+                            <a [routerLink]="['/call-to-action/', cta.id]" class="text-truncate">
+                                {{ cta.author.displayName }}
+                            </a>
+                        </td>
+
+                        <td style="text-align:center;">
+                            <a class="btn btn-default btn-sm icon-btn sm-btn-flat user-tooltip"
+                               [routerLink]="['/call-to-action/', cta.id, 'edit']">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                            <a class="btn btn-default text-secondary btn-sm icon-btn sm-btn-flat user-tooltip ml-1"
+                               [routerLink]="['/call-to-action/', cta.id]">
+                                <i class="fa fa-eye"></i>
+                            </a>
+
+                            <a class="btn btn-default text-success btn-sm icon-btn sm-btn-flat user-tooltip ml-1"
+                               matTooltip="Send For Review"
+                               href="mailto: ?subject=For review on DDW: {{cta.name}}&body=Please review this Call To Action from DDW.org: https://ddw.org/call-to-action/{{cta.id}}">
+                                <i class="fa fa-envelope"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+
+    </div>
+    <!-- / Content -->
+
+
+</div>
+<!-- Layout content -->

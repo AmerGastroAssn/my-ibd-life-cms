@@ -1,0 +1,16 @@
+<!-- * FILE-UPLOADER * -->
+<app-logo-watermark [favicon]="favicon" [sectionName]="sectionName"></app-logo-watermark>
+
+
+<div class="row m-4 pl-5">
+    <div class="container">
+        <div class="offset-md-10">
+            <a [routerLink]="['/files']" class="btn btn-default">
+                <i class="fa fa-file-alt"></i>&nbsp;View Files
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<app-file-uploader-item></app-file-uploader-item>

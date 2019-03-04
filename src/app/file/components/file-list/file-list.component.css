@@ -1,0 +1,92 @@
+.file-gallery {
+    display: grid;
+    grid-gap: 1em;
+    /* autoprefixer: off */
+    grid-auto-rows: 12rem;
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+}
+
+.card {
+    font-family: var(--cms-font) !important;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.file-card:hover {
+    -webkit-box-shadow: 0 3px 1px -5px rgba(0, 0, 0, .08),
+    0 2px 2px 0 rgba(0, 0, 0, .08),
+    0 1px 3px 0 rgba(0, 0, 0, .08);
+    -moz-box-shadow: 0 3px 1px -5px rgba(0, 0, 0, .08),
+    0 2px 2px 0 rgba(0, 0, 0, .08),
+    0 1px 3px 0 rgba(0, 0, 0, .08);
+    box-shadow: 0 3px 1px -5px rgba(0, 0, 0, .08),
+    0 2px 2px 0 rgba(0, 0, 0, .08),
+    0 1px 3px 0 rgba(0, 0, 0, .08);
+}
+
+.card-body {
+    color: #444444;
+}
+
+p.body-text.file-types {
+    cursor: pointer;
+}
+
+code {
+    color: #444444;
+}
+
+.footer {
+    color: #777777;
+    font-size: 12px;
+    line-height: 2em;
+}
+
+.btn-sm, .btn-xs {
+    border-radius: 0;
+}
+
+.btns {
+    float: right;
+}
+
+button.btn.search {
+    border: 1px solid rgb(206, 212, 218);
+}
+
+.details {
+    z-index: 1000;
+    background-color: #fff;
+}
+
+.tip {
+    font-family: var(--cms-font) !important;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+p > span > i.fa-file-pdf {
+    font-size: 4em;
+    color: #b53232;
+}
+
+p > span > i.fa-file-excel {
+    font-size: 4em;
+    color: #468747;
+}
+
+p > span > i.fa-file-powerpoint {
+    font-size: 4em;
+    color: #7B501E;
+}
+
+p > span > i.fa-file-word {
+    font-size: 4em;
+    color: #21437B;
+}
+
+p.file-name {
+    font-family: var(--cms-font) !important;
+    font-size: 10px;
+    line-height: 1.3;
+}

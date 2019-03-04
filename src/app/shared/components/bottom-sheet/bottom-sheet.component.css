@@ -1,0 +1,16 @@
+button {
+    outline: none;
+}
+
+li.list-group-item, li.list-group-item > a {
+    border: none;
+    font-family: var(--cms-font);
+    cursor: pointer;
+    text-decoration: none;
+    color: #44484f;
+    outline: none;
+}
+
+mat-divider {
+    padding-bottom: 1em;
+}

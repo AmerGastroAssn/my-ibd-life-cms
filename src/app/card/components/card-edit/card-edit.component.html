@@ -1,0 +1,201 @@
+<!-- * PAGES-CARD-EDIT * -->
+
+<!-- * Image Uploader * -->
+<div class="mb-2 mt-5" [@simpleFadeAnimation]="'in'">
+    <app-image-uploader-item></app-image-uploader-item>
+</div>
+
+
+<div class="row mb-4">
+    <div class="container">
+        <div class="offset-md-10">
+            <a [routerLink]="['/cards']"
+               class="btn btn-default">&nbsp; <i class="fa fa-window-restore"></i>
+                All Cards
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<div class="container mb-5" [@simpleFadeAnimation]="'in'">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card bg-lighter inner-card">
+                        <div class="card-body">
+                            <div class="card-header-title">
+                                <h4 *ngIf="card && card.title">Editing ({{ card.title }})
+                                    <small class="text-secondary"></small>
+                                </h4>
+                                <hr class="inset-hr mt-3 mb-3">
+                            </div>
+                            <form [formGroup]="editCardForm"
+                                  (ngSubmit)="onUpdatePageCard(editCardForm.value)"
+                                  *ngIf="card">
+
+                                <div class="form-group">
+                                    <div class="input-group flex-nowrap">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"
+                                                  id="photoURL">
+                                                <i class="fa fa-image"></i>
+                                            </span>
+                                        </div>
+                                        <input type="url"
+                                               class="form-control"
+                                               placeholder="Image URL eg: https://"
+                                               aria-label="photoURL"
+                                               aria-describedby="addon-wrapping"
+                                               [class.invalid]="!f.photoURL.valid && f.photoURL.touched"
+                                               [(ngModel)]="card.photoURL"
+                                               formControlName="photoURL">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-group flex-nowrap">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"
+                                                  id="title">
+                                                <i class="fa fa-h1"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text"
+                                               class="form-control"
+                                               placeholder="BlogPost Title Text"
+                                               aria-label="title"
+                                               aria-describedby="addon-wrapping"
+                                               [class.invalid]="!f.title.valid && f.title.touched"
+                                               [(ngModel)]="card.title"
+                                               formControlName="title">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+
+                                    <textarea type="text"
+                                              rows="5"
+                                              placeholder="Body copy here..."
+                                              class="form-control"
+                                              [class.invalid]="!f.body.valid && f.body.touched"
+                                              [(ngModel)]="card.body"
+                                              formControlName="body">
+                                </textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-group flex-nowrap">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"
+                                                  id="buttonString">
+                                                <i class="fa fa-font"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text"
+                                               class="form-control"
+                                               placeholder="Learn More"
+                                               aria-label="buttonString"
+                                               aria-describedby="buttonString"
+                                               [class.invalid]="!f.buttonString.valid && f.buttonString.touched"
+                                               [(ngModel)]="card.buttonString"
+                                               formControlName="buttonString">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="input-group flex-nowrap">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"
+                                                  id="url">
+                                                <i class="fa fa-link"></i>
+                                            </span>
+                                        </div>
+                                        <input type="url"
+                                               class="form-control"
+                                               placeholder="https://"
+                                               aria-label="url"
+                                               aria-describedby="url"
+                                               [class.invalid]="!f.url.valid && f.url.touched"
+                                               [(ngModel)]="card.url"
+                                               formControlName="url">
+                                    </div>
+                                </div>
+
+
+                                <!-- * ExtURL  * -->
+                                <div class="form-group mt-3">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox"
+                                               class="custom-control-input"
+                                               id="isExtURL"
+                                               [(ngModel)]="card.isExtURL"
+                                               formControlName="isExtURL">
+                                        <label class="custom-control-label"
+                                               for="isExtURL">External URL?
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <button type="submit"
+                                        [disabled]="!editCardForm.valid"
+                                        class="btn btn-secondary full-width mb-3 mt-2">
+                                    <i class="fa fa-window-restore"></i>&nbsp;Update
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <!-- * Page BlogPost Item * -->
+            <div class="card card-inner bg-lighter">
+                <div class="card-body">
+                    <p class="text-right">
+                        <a class="btn btn-danger btn-sm text-white"
+                           (click)="onDeletePageCard(card.$key, card.title)">
+                            <i class="fa fa-trash-alt"></i>&nbsp;Delete
+                        </a>
+                    </p>
+                    <h6 class="alert alert-dark-dark text-center"
+                        *ngIf="card && card.isExtURL">
+                        <i class="fa fa-check-square"></i> &nbsp;External URL
+                    </h6>
+                    <h6 class="alert alert-dark text-center"
+                        *ngIf="card && !card.isExtURL">
+                        <i class="fa fa-times"></i> &nbsp;External URL
+                    </h6>
+                    <h4 class="card-header-title">BlogPost Preview</h4>
+                    <hr class="inset-hr">
+                </div>
+
+                <div class="card inner-card ml-4 mr-4 mb-4 mt-0"
+                     *ngIf="card">
+                    <div class="card-body">
+                        <img class="card-img-top"
+                             [src]="card.photoURL"
+                             [alt]="card.title"
+                             *ngIf="card.photoURL">
+                        <div class="card-body text-center">
+                            <h5 class="card-title"
+                                *ngIf="card.title">{{ card.title }}</h5>
+                            <p class="card-text"
+                               *ngIf="card.body">{{ card.body }}</p>
+                            <p class="text-center"
+                               *ngIf="card.url && card.buttonString">
+                                <a [href]="card.url"
+                                   class="btn btn-warning btn-lg">
+                                    {{ card.buttonString }}
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

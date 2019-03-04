@@ -1,0 +1,825 @@
+<!-- * HOMEPAGE-EDIT * -->
+<!-- * PAGE-HOME * -->
+<app-logo-watermark [favicon]="favicon" [sectionName]="sectionName"></app-logo-watermark>
+
+
+<!-- * Page Sections * -->
+<div class="row mt-4">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <ng-template #homeLoading>
+                    <div class="text-center text-dark p-5">
+                        <i class="far fa-spinner fa-pulse"></i>
+                        <br>
+                        loading...
+                    </div>
+                </ng-template>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card bg-lighter inner-card">
+                            <div class="card-body">
+                                <h4 class="card-title">Page Sections</h4>
+                                <hr class="inset-hr"/>
+                                <!-- * Banner * -->
+                                <form [formGroup]="homePageForm"
+                                      (ngSubmit)="onHomePageSubmit(homePageForm.value)"
+                                      *ngIf="homePage; else homeLoading">
+                                    <h5>Banner Section</h5>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="title">Title</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="title"
+                                                       formControlName="title">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="subtitle">Subtitle</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="subtitle"
+                                                       formControlName="subtitle">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="forTime">For Time</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="forTime"
+                                                       formControlName="forTime">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="subheaderLoc">Subheader Location</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="subheaderLoc"
+                                                       formControlName="subheaderLoc">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="subheaderDate">Subheader Date</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="subheaderDate"
+                                                       formControlName="subheaderDate">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- * Banner Button * -->
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h6>Banner Button</h6>
+                                            <div class="card bg-lighter">
+                                                <div class="card-body">
+                                                    <div class="form-group">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox"
+                                                                   class="custom-control-input"
+                                                                   id="hasBannerButton"
+                                                                   formControlName="hasBannerButton"
+                                                                   (click)="toggleHasBannerButton()">
+                                                            <label class="custom-control-label"
+                                                                   for="hasBannerButton">Add Banner Button?</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" *ngIf="homePage.hasBannerButton">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="bannerButtonText">Banner Button Text</label>
+                                                                <input type="text"
+                                                                       class="form-control"
+                                                                       id="bannerButtonText"
+                                                                       formControlName="bannerButtonText">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="bannerButtonURL">Banner Button URL</label>
+                                                                <input type="text"
+                                                                       class="form-control"
+                                                                       id="bannerButtonURL"
+                                                                       placeholder="/register/registration (or if ExtURL) https://"
+                                                                       formControlName="bannerButtonURL">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" *ngIf="homePage.hasBannerButton">
+                                                        <div class="container">
+                                                            <div class="form-group">
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox"
+                                                                           class="custom-control-input"
+                                                                           id="bannerButtonIsExtUrl"
+                                                                           formControlName="bannerButtonIsExtUrl"
+                                                                           (click)="toggleBannerButtonIsExtURL()">
+                                                                    <label class="custom-control-label"
+                                                                           for="bannerButtonIsExtUrl">External
+                                                                        URL?</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr class="inset-hr"/>
+                                    </div>
+
+                                    <!-- * Cards * -->
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <hr class="inset-hr"/>
+                                            <h5>Cards</h5>
+                                            <div class="form-group hide-btn">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox"
+                                                           class="custom-control-input"
+                                                           id="cardsHidden"
+                                                           formControlName="cardsHidden"
+                                                           (click)="toggleCardsHidden()">
+                                                    <label class="custom-control-label btn btn-default"
+                                                           for="cardsHidden">
+                                                        <i class="fa fa-eye-slash"></i>&nbsp;Hide Cards Section?
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <p class="spacer" *ngIf="homePage.cardsHidden">&nbsp;</p>
+                                            <div class="form-group">
+                                                <div class="card snackbar-warning" *ngIf="homePage.cardsHidden">
+                                                    <div class="card-body">
+                                                        <h6 class="text-center">
+                                                            <i class="fa fa-exclamation-triangle"></i>
+                                                            Cards Section Disabled
+                                                        </h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group" *ngIf="!homePage.cardsHidden">
+                                                <label for="cardsTitle">Cards Title</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="cardsTitle"
+                                                       formControlName="cardsTitle">
+                                            </div>
+
+                                            <div class="form-group" *ngIf="!homePage.cardsHidden">
+                                                <label for="cardsSubtitle">Cards Subtitle</label>
+                                                <textarea type="text"
+                                                          class="form-control"
+                                                          rows="3"
+                                                          id="cardsSubtitle"
+                                                          formControlName="cardsSubtitle">
+                                                </textarea>
+                                            </div>
+
+                                            <div class="form-group" *ngIf="!homePage.cardsHidden">
+                                                <label for="cardOption1">Select Card
+                                                    &nbsp;&nbsp;<i class="fa fa-align-left"></i> Left
+                                                </label>
+                                                <select class="form-control"
+                                                        id="cardOption1"
+                                                        formControlName="cardOption1">
+                                                    <option *ngFor="let card of cards$ | async"
+                                                            [value]="card.$key">
+                                                        {{ card.title }}
+                                                    </option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group" *ngIf="!homePage.cardsHidden">
+                                                <label for="cardOption2">Select Card
+                                                    &nbsp;&nbsp;<i class="fa fa-align-center"></i>
+                                                    Middle
+                                                </label>
+                                                <select class="form-control"
+                                                        id="cardOption2"
+                                                        formControlName="cardOption2">
+                                                    <option *ngFor="let card of cards$ | async"
+                                                            [value]="card.$key">
+                                                        {{ card.title }}
+                                                    </option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group"
+                                                 *ngIf="!homePage.cardsHidden">
+                                                <label for="cardOption3">Select Card
+                                                    &nbsp;&nbsp;<i class="fa fa-align-right"></i>
+                                                    Right
+                                                </label>
+                                                <select class="form-control"
+                                                        id="cardOption3"
+                                                        formControlName="cardOption3">
+                                                    <option *ngFor="let card of cards$ | async"
+                                                            [value]="card.$key">
+                                                        {{ card.title }}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <a [routerLink]="['/cards']" class="btn btn-default">
+                                                    <i class="fa fa-pencil-alt"></i>&nbsp;Edit Cards
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- * Videos * -->
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <hr class="inset-hr"/>
+                                            <h5>Video Title &amp; Subtitle</h5>
+                                            <div class="form-group hide-btn">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox"
+                                                           class="custom-control-input"
+                                                           id="videoHidden"
+                                                           formControlName="videoHidden"
+                                                           (click)="toggleVideoHidden()">
+                                                    <label class="custom-control-label btn btn-default"
+                                                           for="videoHidden">
+                                                        <i class="fa fa-eye-slash"></i>&nbsp;Hide Video Section?
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <p class="spacer" *ngIf="homePage.videoHidden">&nbsp;</p>
+                                            <div class="card snackbar-warning" *ngIf="homePage.videoHidden">
+                                                <div class="card-body">
+                                                    <h6 class="text-center">
+                                                        <i class="fa fa-exclamation-triangle"></i>
+                                                        Videos Section Disabled
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div class="form-group" *ngIf="!homePage.videoHidden">
+                                                <label for="videoTitle">Video Title</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="videoTitle"
+                                                       formControlName="videoTitle">
+                                            </div>
+
+
+                                            <div class="form-group" *ngIf="!homePage.videoHidden">
+                                                <label for="videoSubtitle">Video Subtitle</label>
+                                                <ckeditor [formControl]="homePageForm.controls['videoSubtitle']"
+                                                          id="videoSubtitle"
+                                                          [readonly]="false"
+                                                          debounce="200"
+                                                          [config]="CkeditorConfig">
+                                                </ckeditor>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- * Posts * -->
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <hr class="inset-hr"/>
+                                            <h5>Posts Title, Subtitle &amp; Button</h5>
+                                            <div class="form-group hide-btn">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox"
+                                                           class="custom-control-input"
+                                                           id="postsHidden"
+                                                           formControlName="postsHidden"
+                                                           (click)="togglePostsHidden()">
+                                                    <label class="custom-control-label btn btn-default"
+                                                           for="postsHidden">
+                                                        <i class="fa fa-eye-slash"></i>&nbsp;Hide Posts Section?
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <p class="spacer" *ngIf="homePage.postsHidden">&nbsp;</p>
+                                            <div class="card snackbar-warning" *ngIf="homePage.postsHidden">
+                                                <div class="card-body">
+                                                    <h6 class="text-center">
+                                                        <i class="fa fa-exclamation-triangle"></i>
+                                                        Posts Section Disabled
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div class="form-group" *ngIf="!homePage.postsHidden">
+                                                <label for="postsTitle">Posts Title</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="postsTitle"
+                                                       formControlName="postsTitle">
+                                            </div>
+
+                                            <div class="form-group" *ngIf="!homePage.postsHidden">
+                                                <label for="postsSubtitle">Posts Subtitle</label>
+                                                <textarea type="text"
+                                                          class="form-control"
+                                                          rows="3"
+                                                          id="postsSubtitle"
+                                                          formControlName="postsSubtitle">
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" *ngIf="!homePage.postsHidden">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="postsButtonText">Posts Button Text</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="postsButtonText"
+                                                       formControlName="postsButtonText">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="postsButtonURL">Posts Button URL</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="postsButtonURL"
+                                                       formControlName="postsButtonURL">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- * Blog Posts Select * -->
+                                    <div class="row" *ngIf="!homePage.postsHidden">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="postOption1">Select Blog Post
+                                                    &nbsp;&nbsp;<i class="fa fa-align-left"></i> Left
+                                                </label>
+                                                <select class="form-control"
+                                                        id="postOption1"
+                                                        formControlName="postOption1">
+                                                    <option *ngFor="let post1 of posts$ | async"
+                                                            [value]="post1.id">
+                                                        {{ post1.body | slice:0:100 }}
+                                                    </option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="postOption2">Select Blog Post
+                                                    &nbsp;&nbsp;<i class="fa fa-align-center"></i>
+                                                    Middle
+                                                </label>
+                                                <select class="form-control"
+                                                        id="postOption2"
+                                                        formControlName="postOption2">
+                                                    <option *ngFor="let post2 of posts$ | async"
+                                                            [value]="post2.id">
+                                                        {{ post2.body | slice:0:100 }}
+                                                    </option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="postOption3">Select Blog Post
+                                                    &nbsp;&nbsp;<i class="fa fa-align-right"></i>
+                                                    Right
+                                                </label>
+                                                <select class="form-control"
+                                                        id="postOption3"
+                                                        formControlName="postOption3">
+                                                    <option *ngFor="let post3 of posts$ | async"
+                                                            [value]="post3.id">
+                                                        {{ post3.body | slice:0:100}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <a [routerLink]="['/blog-posts']" class="btn btn-default">
+                                                    <i class="fa fa-pencil-alt"></i>&nbsp;Edit Blog Posts
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- * On Demand * -->
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <hr class="inset-hr"/>
+                                            <h5>On Demand Title, Text &amp; Button</h5>
+                                            <div class="form-group hide-btn">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox"
+                                                           class="custom-control-input"
+                                                           id="onDemandHidden"
+                                                           formControlName="onDemandHidden"
+                                                           (click)="toggleOnDemandHidden()">
+                                                    <label class="custom-control-label btn btn-default"
+                                                           for="onDemandHidden">
+                                                        <i class="fa fa-eye-slash"></i>&nbsp;Hide On Demand Section?
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <p class="spacer" *ngIf="homePage.onDemandHidden">&nbsp;</p>
+                                            <div class="card snackbar-warning" *ngIf="homePage.onDemandHidden">
+                                                <div class="card-body">
+                                                    <h6 class="text-center">
+                                                        <i class="fa fa-exclamation-triangle"></i>
+                                                        On Demand Section Disabled
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div class="form-group" *ngIf="!homePage.onDemandHidden">
+                                                <label for="onDemandTitle">On Demand Title</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="onDemandTitle"
+                                                       formControlName="onDemandTitle">
+                                            </div>
+                                            <div class="form-group" *ngIf="!homePage.onDemandHidden">
+                                                <label>On Demand Text</label>
+                                                <ckeditor [formControl]="homePageForm.controls['onDemandText']"
+                                                          [readonly]="false"
+                                                          [config]="CkeditorConfig"
+                                                          debounce="500">
+                                                </ckeditor>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" *ngIf="!homePage.onDemandHidden">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="onDemandButtonText">On Demand Button Text</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="onDemandButtonText"
+                                                       formControlName="onDemandButtonText">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="onDemandButtonURL">On Demand Button URL</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="onDemandButtonURL"
+                                                       formControlName="onDemandButtonURL">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- * Numbers * -->
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <hr class="inset-hr"/>
+                                            <h5>Numbers Title and Three Sections</h5>
+                                            <div class="form-group hide-btn">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox"
+                                                           class="custom-control-input"
+                                                           id="byTheNumbersHidden"
+                                                           formControlName="byTheNumbersHidden"
+                                                           (click)="toggleByTheNumbersHidden()">
+                                                    <label class="custom-control-label btn btn-default"
+                                                           for="byTheNumbersHidden">
+                                                        <i class="fa fa-eye-slash"></i>&nbsp;Hide By The Numbers
+                                                        Section?
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <p class="spacer" *ngIf="homePage.byTheNumbersHidden">&nbsp;</p>
+                                            <div class="card snackbar-warning" *ngIf="homePage.byTheNumbersHidden">
+                                                <div class="card-body">
+                                                    <h6 class="text-center">
+                                                        <i class="fa fa-exclamation-triangle"></i>
+                                                        On By The Numbers Section Disabled
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div class="form-group" *ngIf="!homePage.byTheNumbersHidden">
+                                                <label for="byTheNumbersTitle">Numbers Title</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="byTheNumbersTitle"
+                                                       formControlName="byTheNumbersTitle">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" *ngIf="!homePage.byTheNumbersHidden">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="byTheNumbersOneNumber">Numbers Left Number</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="byTheNumbersOneNumber"
+                                                       formControlName="byTheNumbersOneNumber">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="byTheNumbersOneSubtitle">Numbers Left Subtitle</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="byTheNumbersOneSubtitle"
+                                                       formControlName="byTheNumbersOneSubtitle">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="byTheNumbersTwoNumber">Numbers Middle Number</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="byTheNumbersTwoNumber"
+                                                       formControlName="byTheNumbersTwoNumber">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="byTheNumbersTwoSubtitle">Numbers Middle Subtitle</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="byTheNumbersTwoSubtitle"
+                                                       formControlName="byTheNumbersTwoSubtitle">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="byTheNumbersThreeNumber">Numbers Right Number</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="byTheNumbersThreeNumber"
+                                                       formControlName="byTheNumbersThreeNumber">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="byTheNumbersThreeSubtitle">Numbers Right Subtitle</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="byTheNumbersThreeSubtitle"
+                                                       formControlName="byTheNumbersThreeSubtitle">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- * Sponsors * -->
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <hr class="inset-hr"/>
+                                            <h5>Sponsors</h5>
+                                            <p>
+                                                <small>Use the Image Uploader below to get new Image URL</small>
+                                            </p>
+                                            <div class="form-group hide-btn">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox"
+                                                           class="custom-control-input"
+                                                           id="sponsorHidden"
+                                                           formControlName="sponsorHidden"
+                                                           (click)="toggleSponsorHidden()">
+                                                    <label class="custom-control-label btn btn-default"
+                                                           for="sponsorHidden">
+                                                        <i class="fa fa-eye-slash"></i>&nbsp;Hide Sponsors Section?
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <p class="spacer" *ngIf="homePage.sponsorHidden">&nbsp;</p>
+                                            <div class="card snackbar-warning" *ngIf="homePage.sponsorHidden">
+                                                <div class="card-body">
+                                                    <h6 class="text-center">
+                                                        <i class="fa fa-exclamation-triangle"></i>
+                                                        On Sponsors Section Disabled
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div class="form-group" *ngIf="!homePage.sponsorHidden">
+                                                <label for="sponsorTitle">Sponsors Title</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="sponsorTitle"
+                                                       formControlName="sponsorTitle">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" *ngIf="!homePage.sponsorHidden">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="sponsorOneImg">Sponsor One Image</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="sponsorOneImg"
+                                                       formControlName="sponsorOneImg">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="sponsorOneURL">Sponsor One URL</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="sponsorOneURL"
+                                                       formControlName="sponsorOneURL">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="sponsorTwoImg">Sponsor Two Image</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="sponsorTwoImg"
+                                                       formControlName="sponsorTwoImg">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="sponsorTwoURL">Sponsor Two URL</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="sponsorTwoURL"
+                                                       formControlName="sponsorTwoURL">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="sponsorThreeImg">Sponsor Three Image</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="sponsorThreeImg"
+                                                       formControlName="sponsorThreeImg">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="sponsorThreeURL">Sponsor Three URL</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="sponsorThreeURL"
+                                                       formControlName="sponsorThreeURL">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="sponsorFourImg">Sponsor Four Image</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="sponsorFourImg"
+                                                       formControlName="sponsorFourImg">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="sponsorFourURL">Sponsor Four URL</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="sponsorFourURL"
+                                                       formControlName="sponsorFourURL">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- * Calendar * -->
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <hr class="inset-hr"/>
+                                            <h5>Calendar</h5>
+                                            <div class="card bg-lighter">
+                                                <div class="card-body">
+
+                                                    <div class="form-group">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox"
+                                                                   class="custom-control-input"
+                                                                   id="hasCalendar"
+                                                                   formControlName="hasCalendar"
+                                                                   (click)="toggleHasCalendar()">
+                                                            <label class="custom-control-label"
+                                                                   for="hasCalendar">Does the page have a
+                                                                Calendar?</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group" *ngIf="homePage.hasCalendar">
+                                                        <label for="calendarSectionTitle">Calendar Section Title</label>
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               id="calendarSectionTitle"
+                                                               formControlName="calendarSectionTitle">
+                                                    </div>
+
+                                                    <div class="form-group" *ngIf="homePage.hasCalendar">
+                                                        <label for="calendarTitle">Select Calendar or
+                                                            <a [routerLink]="['/calendar/new']"
+                                                               class="btn btn-sm btn-default">
+                                                                <i class="fa fa-calendar-plus"></i> Create New</a> <br>
+                                                            Current Calendar set
+                                                            to: <b>{{ homePage.calendarTitle }}</b>
+                                                        </label>
+                                                        <select class="form-control"
+                                                                id="calendarTitle"
+                                                                [value]="calendarTitle"
+                                                                formControlName="calendarTitle">
+                                                            <option *ngFor="let cal of calendars$ | async"
+                                                                    [value]="cal.title">
+                                                                {{ cal.title }}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mt-4">
+                                        <button class="btn btn-secondary full-width">
+                                            <i class="fa fa-home"></i>&nbsp;Save Home Page Content
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- * Video and Countdown Clock * -->
+<div class="row mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <ng-template #videoLoading>
+                    <div class="text-center text-dark p-5">
+                        <i class="far fa-spinner fa-pulse"></i>
+                        <br>
+                        loading...
+                    </div>
+                </ng-template>
+                <div class="card">
+                    <div class="card-body">
+                        <form [formGroup]="dailyVideoForm"
+                              (ngSubmit)="onDailyVideoSubmit(dailyVideoForm.value)"
+                              *ngIf="dailyVideo; else videoLoading">
+                            <div class="form-group">
+                                <label class="helv">
+                                    <h5 class="helv">DDW Daily News Video</h5>
+                                </label>
+                                <p class="helv">
+                                    <small>If left blank, space will be removed from that blue section</small>
+                                </p>
+                                <p class="text-light helv">URL needs to come from a embedded iFrame</p>
+                                <p class="text-light helv">ie. Go to YouTube video > share > embed > grab url from
+                                    src="this-url"</p>
+
+                                <input type="url"
+                                       class="form-control"
+                                       formControlName="videoURL">
+                            </div>
+                            <button class="btn btn-secondary full-width">
+                                <i class="fa fa-video"></i>&nbsp;Save Video URL
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <ng-template #loading>
+                    <div class="text-center text-dark p-5">
+                        <i class="far fa-spinner fa-pulse"></i>
+                        <br>
+                        loading...
+                    </div>
+                </ng-template>
+                <div class="card" style="height:100%;">
+                    <div class="card-body">
+                        <form [formGroup]="countdownForm"
+                              (ngSubmit)="onCountdownSubmit(countdownForm.value)"
+                              *ngIf="countdown; else loading">
+                            <div class="form-group">
+                                <label><h5 class="helv">Set Countdown Date</h5></label><br>
+                                <div class="pb-2">
+                                    Current Set Date is:
+                                    <b>{{ countdown.date.toDate() | date:'medium' }}</b>
+                                </div>
+
+                                <input type="text"
+                                       class="form-control"
+                                       bsDatepicker
+                                       [bsConfig]="bsConfig"
+                                       placement="top"
+                                       [value]="date.toDate() | date:'medium'"
+                                       formControlName="date">
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                            </div>
+                            <button class="btn btn-secondary full-width">
+                                <i class="fa fa-alarm-clock"></i>&nbsp;Save Countdown
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- * BlogPost Edit * -->
+<!--<app-cards-edit></app-cards-edit>-->
+
+
+<!-- * Featured Posts * -->
+<!--<app-featured-blog-posts-edit></app-featured-blog-posts-edit>-->
+

@@ -1,0 +1,16 @@
+label {
+    line-height: 1.3em;
+    font-size: 16px;
+}
+
+p {
+    font-family: var(--cms-font) !important;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.mat-expansion-panel {
+    box-shadow: none !important;
+    border: 1px solid #eaeaea;
+    border-top-color: #fcfcfc;
+}

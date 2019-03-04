@@ -1,0 +1,728 @@
+<!-- * ADMIN-PAGE-EDIT * -->
+<div class="row mt-4">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="btn-group">
+                <a class="btn btn-default"
+                   [routerLink]="['/pages']">
+                    <i class="fal fa-arrow-circle-left"></i>&nbsp;All Pages
+                </a>
+                <a class="btn btn-default text-capitalize"
+                   [routerLink]="['/pages/', page.category]">
+                    <i class="fal fa-arrow-circle-left"></i>&nbsp;{{ page.category }} Pages
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mb-3" *ngIf="!isExtURL">
+    <div class="row">
+        <div class="col-lg-8"></div>
+        <div class="col-lg-4">
+            <div class="card bg-transparent text-light text-center">
+                <div class="card-body p-3">
+                    <label class="switcher switcher-md">
+                        <input type="checkbox" class="switcher-input">
+                        <span class="switcher-indicator" (click)="onTogglePagePreview()">
+                        <span class="switcher-yes">
+                            <!--<i class="fa fa-check"></i>-->
+                        </span>
+                        <span class="switcher-no">
+                            <!--<i class="fa fa-times"></i>-->
+                        </span>
+                        </span>
+                        <span class="switcher-label">Preview Text/CTA Sections</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mb-4" [@simpleFadeAnimation]="'in'">
+    <div class="row">
+        <div class="col" *ngIf="page" [ngClass]="{'col-md-4':page && togglePagePreview && !isExtURL}">
+            <div class="card mb-5">
+                <div class="card-body">
+                    <div class="card inner-card bg-lighter">
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h2>Edit: {{ page.title }}</h2>
+                            </div>
+
+                            <form [formGroup]="editPageForm"
+                                  (ngSubmit)="onUpdatePage(editPageForm.value)">
+                                <!--<button type="submit"-->
+                                <!--[disabled]="!editPageForm.valid"-->
+                                <!--class="btn btn-primary btn-sm mb-5"><i class="fa fa-save"></i>&nbsp;Update-->
+                                <!--</button>-->
+
+                                <div class="btn-group float-right" role="group" aria-label="Basic example">
+                                    <a class="btn btn-warning btn-sm"
+                                       [routerLink]="['/pages']">
+                                        <i class="fa fa-undo"></i>&nbsp;Cancel
+                                    </a>
+                                </div>
+                                <div class="form-group" *ngIf="!page.isExtURL">
+                                    <label>Slug</label>
+                                    <pre class="alert bg-lighter text-secondary slug">{{ page.slug }}</pre>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Title
+                                        <span #tooltip="matTooltip"
+                                              matTooltip="Title cannot be changed. If needed, you'll need to create a new page and notify the dev team to create a redirect for the old page."
+                                              matTooltipPosition="right"
+                                              aria-tooltip="Title cannot be Changed">
+                                    <i class="fa fa-info-circle"></i>
+                                </span>
+                                    </label>
+                                    <input type="text"
+                                           class="form-control"
+                                           readonly
+                                           [class.invalid]="!f.title.valid && f.title.touched"
+                                           formControlName="title">
+                                    <p class="help-block alert invalid-tooltip text-center mt-1"
+                                       *ngIf="!f.title.valid && f.title.touched">
+                                        Valid <b>Title</b> is required!
+                                    </p>
+                                </div>
+
+
+                                <div class="form-group" *ngIf="!isExtURL">
+                                    <label>Meta Descripton <br>
+                                        <small>If blank meta will use site default (Not recommended)</small>
+                                    </label>
+                                    <textarea type="text"
+                                              class="form-control"
+                                              rows="3"
+                                              placeholder="Should be a sentence or two that accurately describes this page"
+                                              formControlName="metaDesc">
+                                    </textarea>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox"
+                                               class="custom-control-input"
+                                               id="isExtURL"
+                                               formControlName="isExtURL"
+                                               (click)="isExtURLToggle()">
+                                        <label class="custom-control-label"
+                                               for="isExtURL">Is this an external URL?</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" *ngIf="page.isExtURL">
+                                    <label>External URL</label>
+                                    <input type="url"
+                                           class="form-control"
+                                           [class.invalid]="!f.extURL.valid && f.extURL.touched"
+                                           placeholder="https://"
+                                           formControlName="extURL">
+                                    <p class="help-block alert alert-warning text-center mt-1"
+                                       *ngIf="!f.extURL.valid && f.extURL.touched">
+                                        <b>External URL</b> is invalid!
+                                    </p>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="date">Publish On</label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fa fa-calendar-alt"></i>
+                                            </div>
+                                        </div>
+                                        <input type="text"
+                                               class="form-control"
+                                               id="date"
+                                               placeholder="Select Date"
+                                               bsDatepicker
+                                               [bsConfig]="bsConfig"
+                                               placement="bottom"
+                                               [class.invalid]="!f.date.valid && f.date.touched"
+                                               [value]="date | date:'medium'"
+                                               formControlName="date">
+                                    </div>
+                                    <p class="help-block alert alert-warning text-center mt-1"
+                                       *ngIf="!f.date.valid && f.date.touched">
+                                        <b>Date</b> is required!
+                                    </p>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="category">Category</label>
+                                    <select class="form-control"
+                                            id="category"
+                                            [class.invalid]="!f.category.valid && f.category.touched"
+                                            [value]="page.category"
+                                            formControlName="category">
+                                        <option>register</option>
+                                        <option>attendee-planning</option>
+                                        <option>education</option>
+                                        <option>exhibitor-information</option>
+                                        <option>news</option>
+                                        <option>presenters</option>
+                                    </select>
+                                    <p class="help-block alert alert-warning text-center mt-1"
+                                       *ngIf="!f.category.valid && f.category.touched">
+                                        <b>Category</b> is required!
+                                    </p>
+                                </div>
+
+                                <div class="card bg-lighter mb-3" *ngIf="!isExtURL">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox"
+                                                       class="custom-control-input"
+                                                       id="isGrandchildPageCheckbox"
+                                                       formControlName="isGrandchildPage"
+                                                       [checked]="page.isGrandchildPage"
+                                                       (click)="toggleIsGrandchildPage()">
+                                                <label class="custom-control-label"
+                                                       for="isGrandchildPageCheckbox">Is this page a Grandchild?</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" *ngIf="page.isGrandchildPage">
+                                            <label for="isGrandchildPage">What grandchild of
+                                                <span class="text-capitalize">
+                                        <b>{{ page.category }}?</b>
+                                        </span>
+                                            </label>
+                                            <select class="form-control"
+                                                    id="isGrandchildPage"
+                                                    [class.invalid]="!f.grandchildURL.valid && f.grandchildURL.touched"
+                                                    formControlName="grandchildURL">
+                                                <option *ngFor="let page of pages$ | async"
+                                                        [value]="page.url">
+                                                    {{ page.url }}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="sortOrder">Sort Order <br>
+                                        <small>Order shown in navbar dropdown category</small>
+                                    </label>
+                                    <select class="form-control"
+                                            id="sortOrder"
+                                            [class.invalid]="!f.sortOrder.valid && f.sortOrder.touched"
+                                            [value]="page.sortOrder"
+                                            formControlName="sortOrder">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                    </select>
+                                </div>
+
+
+                                <!--<div class="form-group" *ngIf="!page.isExtURL">-->
+                                <!--<label for="template">Template</label>-->
+                                <!--<select class="form-control"-->
+                                <!--id="template"-->
+                                <!--[class.invalid]="!f.template.valid && f.template.touched"-->
+                                <!--[(ngModel)]="page.template"-->
+                                <!--[value]="page.template"-->
+                                <!--formControlName="template">-->
+                                <!--<option>Full Width</option>-->
+                                <!--<option>3 Column Bottom</option>-->
+                                <!--<option>3 Column Top</option>-->
+                                <!--<option>Blog Post</option>-->
+                                <!--</select>-->
+                                <!--</div>-->
+
+
+                                <div class="card bg-lighter" *ngIf="!page.isExtURL">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox"
+                                                       class="custom-control-input"
+                                                       id="hasCalendar"
+                                                       formControlName="hasCalendar"
+                                                       (click)="toggleHasCalendar()">
+                                                <label class="custom-control-label"
+                                                       for="hasCalendar">Does the page have a Calendar?</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" *ngIf="page.hasCalendar && !page.isExtURL">
+                                            <label for="calendarTitle">Select Calendar or
+                                                <a [routerLink]="['/calendar/new']"
+                                                   class="btn btn-sm btn-default">
+                                                    <i class="fa fa-calendar-plus"></i> Create New</a> <br>
+                                                Current Calendar set
+                                                to: <b>{{ page.calendarTitle }}</b>
+                                            </label>
+                                            <select class="form-control"
+                                                    id="calendarTitle"
+                                                    formControlName="calendarTitle">
+                                                <option *ngFor="let cal of calendars$ | async"
+                                                        [value]="cal.title">
+                                                    {{ cal.title }}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!-- * Content Sections * -->
+                                <div class="card bg-lighter mt-3 mb-3">
+                                    <div class="card-body">
+                                        <label>Content Sections</label>
+                                        <div class="card bg-transparent text-light float-right">
+                                            <div class="card-body p-3">
+                                                <label class="switcher switcher-md">
+                                                    <input type="checkbox" class="switcher-input">
+                                                    <span class="switcher-indicator" (click)="onTogglePagePreview()">
+                                                        <span class="switcher-yes">
+                                                            <i class="fa fa-check"></i>
+                                                        </span>
+                                                        <span class="switcher-no">
+                                                            <i class="fa fa-times"></i>
+                                                        </span>
+                                                    </span>
+                                                    <span class="switcher-label">Preview Text/CTA Sections</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="btn-group">
+                                                <a [routerLink]="['/text-section/new']"
+                                                   class="btn btn-sm btn-default mb-2">
+                                                    <i class="fa fa-align-justify"></i> Create New Text Section
+                                                </a>
+                                                <a [routerLink]="['/call-to-action/new']"
+                                                   class="btn btn-sm btn-default mb-2">
+                                                    <i class="fa fa-text-width"></i> Create New CTA
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <!--<div class="form-group" *ngIf="textSections$">-->
+                                        <!--<mat-form-field>-->
+                                        <!--<mat-select formControlName="contentSectionTop"-->
+                                        <!--placeholder="Currently: {{tsTopValue}}">-->
+                                        <!--<mat-option>-&#45;&#45; Select Top Text Section -&#45;&#45;</mat-option>-->
+                                        <!--<mat-option *ngFor="let text of textSections$ | async"-->
+                                        <!--[value]="text.id">-->
+                                        <!--{{ text.value }}-->
+                                        <!--</mat-option>-->
+                                        <!--</mat-select>-->
+                                        <!--<mat-hint>-->
+                                        <!--<a [routerLink]="['/text-section/', contentSectionTop]"-->
+                                        <!--class="">-->
+                                        <!--<i class="fal fa-pencil-alt"></i>&nbsp;{{tsTopValue}}-->
+                                        <!--</a>-->
+                                        <!--</mat-hint>-->
+                                        <!--</mat-form-field>-->
+                                        <!--</div>-->
+
+
+                                        <div class="form-group" *ngIf="textSections$">
+                                            <label for="contentSectionTop">Text Section
+                                                &nbsp;&nbsp;<i class="fa fa-align-justify"></i> Top &nbsp;
+                                                <a [routerLink]="['/text-section/', contentSectionTop]"
+                                                   class="btn btn-default btn-sm">
+                                                    <i class="fal fa-pencil-alt"></i>&nbsp;{{tsTopValue}}
+                                                </a>
+                                            </label>
+                                            <select class="form-control"
+                                                    id="contentSectionTop"
+                                                    formControlName="contentSectionTop">
+                                                <option value="">
+                                                    --- Select Top Text Section or select this to be blank ---
+                                                </option>
+                                                <option *ngFor="let text of textSections$ | async"
+                                                        [value]="text.id">
+                                                    {{ text.value }}
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group" *ngIf="cta$">
+                                            <label for="callToAction">Call To Action
+                                                &nbsp;&nbsp;<i class="fa fa-text-width"></i>
+                                                Middle &nbsp;
+                                                <a [routerLink]="['/call-to-action/', cta.id]"
+                                                   class="btn btn-default btn-sm"
+                                                   *ngIf="cta; else noCTAValue">
+                                                    <i class="fal fa-pencil-alt"></i>&nbsp;{{cta.value}}
+                                                </a>
+                                                <ng-template #noCTAValue>
+                                                    <span class="badge badge-warning">
+                                                        <i class="fa fa-empty-set"></i>&nbsp;Selected
+                                                    </span>
+                                                </ng-template>
+                                            </label>
+                                            <select class="form-control"
+                                                    id="callToAction"
+                                                    formControlName="callToAction">
+                                                <option value="">
+                                                    --- Select Call To Action or select this to be blank ---
+                                                </option>
+                                                <option *ngFor="let cta of cta$ | async"
+                                                        [value]="cta.id">
+                                                    {{ cta.value }}
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group" *ngIf="textSections$">
+                                            <label for="contentSectionBottom">Text Section
+                                                &nbsp;&nbsp;<i class="fa fa-align-justify"></i>
+                                                Bottom &nbsp;
+                                                <a [routerLink]="['/text-section/', contentSectionBottom]"
+                                                   class="btn btn-default btn-sm"
+                                                   *ngIf="tsBottomValue; else noTsBottomValue">
+                                                    <i class="fal fa-pencil-alt"></i>&nbsp;{{tsBottomValue}}
+                                                </a>
+                                                <ng-template #noTsBottomValue>
+                                                    <span class="badge badge-warning">
+                                                        <i class="fa fa-empty-set"></i>&nbsp;Selected
+                                                    </span>
+                                                </ng-template>
+                                            </label>
+                                            <select class="form-control"
+                                                    id="contentSectionBottom"
+                                                    formControlName="contentSectionBottom">
+                                                <option value="">
+                                                    --- Select Bottom Text Section or select this to be blank ---
+                                                </option>
+                                                <option *ngFor="let text of textSections$ | async"
+                                                        [value]="text.id">
+                                                    {{ text.value }}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- * Page Cards * -->
+                                <div class="card bg-lighter mt-3 mb-3" *ngIf="!page.isExtURL">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox"
+                                                       class="custom-control-input"
+                                                       id="hasCards"
+                                                       formControlName="hasCards"
+                                                       (click)="toggleHasCards()">
+                                                <label class="custom-control-label"
+                                                       for="hasCards">Does the page have Cards?</label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group" *ngIf="page.hasCards && !isExtURL">
+                                            <a [routerLink]="['/page-cards/new']"
+                                               class="btn btn-sm btn-default mb-2">
+                                                <i class="fa fa-window-restore"></i> Create New
+                                            </a>
+                                        </div>
+
+                                        <div class="input-group mb-3" *ngIf="page.hasCards && !isExtURL">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-h2"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text"
+                                                   class="form-control"
+                                                   id="cardSectionTitle"
+                                                   placeholder="Section Title"
+                                                   aria-describedby="inputGroupPrepend"
+                                                   formControlName="cardSectionTitle">
+                                        </div>
+
+                                        <div class="form-group" *ngIf="page.hasCards && !page.isExtURL">
+                                            <label for="cardOption1">Select BlogPost
+                                                &nbsp;&nbsp;<i class="fa fa-align-left"></i> Left
+                                            </label>
+                                            <select class="form-control"
+                                                    id="cardOption1"
+                                                    formControlName="cardOption1">
+                                                <option *ngFor="let card of pageCards$ | async"
+                                                        [value]="card.$key">
+                                                    {{ card.title }}
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group" *ngIf="page.hasCards && !page.isExtURL">
+                                            <label for="cardOption2">Select BlogPost
+                                                &nbsp;&nbsp;<i class="fa fa-align-center"></i>
+                                                Middle
+                                            </label>
+                                            <select class="form-control"
+                                                    id="cardOption2"
+                                                    formControlName="cardOption2">
+                                                <option *ngFor="let card of pageCards$ | async"
+                                                        [value]="card.$key">
+                                                    {{ card.title }}
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group" *ngIf="page.hasCards && !page.isExtURL">
+                                            <label for="cardOption3">Select BlogPost
+                                                &nbsp;&nbsp;<i class="fa fa-align-right"></i>
+                                                Right
+                                            </label>
+                                            <select class="form-control"
+                                                    id="cardOption3"
+                                                    formControlName="cardOption3">
+                                                <option *ngFor="let card of pageCards$ | async"
+                                                        [value]="card.$key">
+                                                    {{ card.title }}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <app-image-uploader-item *ngIf="!isExtURL"></app-image-uploader-item>
+
+
+                                <div class="form-group" *ngIf="!page.isExtURL">
+                                    <label>Banner Image URL
+                                        <small>(Top banner image)</small>
+                                    </label>
+                                    <input type="text"
+                                           class="form-control"
+                                           [class.invalid]="!f.bannerPhotoURL.valid && f.bannerPhotoURL.touched"
+                                           formControlName="bannerPhotoURL">
+                                    <p class="help-block alert alert-warning text-center mt-1"
+                                       *ngIf="!f.bannerPhotoURL.valid && f.bannerPhotoURL.touched">
+                                        <b>Banner Image URL</b> is required!
+                                    </p>
+                                </div>
+
+                                <div class="form-group" *ngIf="!page.isExtURL && !page.showWidgetSnippet">
+                                    <label>Image URL
+                                        <small>(Image on the page)</small>
+                                    </label>
+                                    <input type="text"
+                                           class="form-control"
+                                           [class.invalid]="!f.photoURL.valid && f.photoURL.touched"
+                                           formControlName="photoURL">
+                                    <p class="help-block alert alert-warning text-center mt-1"
+                                       *ngIf="!f.photoURL.valid && f.photoURL.touched">
+                                        <b>Image URL</b> is required!
+                                    </p>
+                                </div>
+
+                                <div class="form-group" *ngIf="!page.isExtURL">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox"
+                                               class="custom-control-input"
+                                               id="showWidgetSnippet"
+                                               [(ngModel)]="page.showWidgetSnippet"
+                                               formControlName="showWidgetSnippet">
+                                        <label class="custom-control-label"
+                                               for="showWidgetSnippet">
+                                            Show Widget Snippet? <span #tooltip="matTooltip"
+                                                                       matTooltip="Check this if you want to show the widget snippet in place of the page's Image URL."
+                                                                       matTooltipPosition="right"
+                                                                       aria-tooltip="Widget Snippet">
+                                                                        <i class="fa fa-info-circle"></i>
+                                                                    </span>
+
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox"
+                                               class="custom-control-input"
+                                               id="hidden"
+                                               [checked]="page.hidden"
+                                               formControlName="hidden">
+                                        <label class="custom-control-label"
+                                               for="hidden">Should the page be hidden from the menu?</label>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox"
+                                               class="custom-control-input"
+                                               id="published"
+                                               formControlName="published">
+                                        <label class="custom-control-label"
+                                               for="published"><span class="badge badge-danger">Publish</span> the page
+                                            on
+                                            "Update"? <br>
+                                            <small>If so, page will appear according to "Publish On" date.</small>
+                                        </label>
+                                    </div>
+                                </div>
+
+
+                                <button type="submit"
+                                        [disabled]="!editPageForm.valid"
+                                        class="btn btn-secondary btn-md mb-5 full-width">
+                                    <i class="fa fa-save"></i>&nbsp;Update Page
+                                </button>
+
+                                <div class="btn-group float-right" role="group" aria-label="Basic example">
+                                    <a class="btn btn-warning btn-sm mt-3"
+                                       [routerLink]="['/pages']">
+                                        <i class="fa fa-undo"></i>&nbsp;Cancel
+                                    </a>
+                                </div>
+
+                                <!-- * Debugging * -->
+                                <!--<code>-->
+                                <!--<pre>Form value: {{ editPageForm.value | json }}</pre>-->
+                                <!--</code>-->
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-8" *ngIf="page && togglePagePreview && !isExtURL" [@simpleFadeAnimation]="'in'">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="text-section-preview" *ngIf="textSections$">
+                                <div class="card bg-light mt-1">
+                                    <div class="card-body">
+                                        <mat-form-field>
+                                            <mat-select placeholder="Preview Text Sections">
+                                                <mat-option value=""
+                                                            (click)="onHideTSPreview()">
+                                                    <i class="fal fa-eye-slash"></i> None
+                                                </mat-option>
+                                                <mat-option *ngFor="let text of textSectionPreviews$ | async"
+                                                            [value]="text.value"
+                                                            (click)="onTsPreview(text.id)">
+                                                    {{ text.value }}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <section [innerHTML]="textSectionPreview.body"
+                                     *ngIf="textSectionPreview && !hideTSPreview">
+                            </section>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <hr class="inset-hr">
+
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="cta-preview" *ngIf="ctaPreviews$">
+                                <div class="card bg-light m-1">
+                                    <div class="card-body m-1">
+                                        <mat-form-field>
+                                            <mat-select placeholder="Preview Call To Actions">
+                                                <mat-option value=""
+                                                            (click)="onHideCTAPreview()">
+                                                    <i class="fal fa-eye-slash"></i> None
+                                                </mat-option>
+                                                <mat-option *ngFor="let text of ctaPreviews$ | async"
+                                                            [value]="text.value"
+                                                            (click)="onCTAPreview(text.id)">
+                                                    {{ text.value }}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" *ngIf="ctaPreview && !hideCTAPreview">
+                        <div class="container">
+                            <div class="row cta">
+                                <div class="row pt-3 pb-4" *ngIf="ctaPreview.title || ctaPreview.subtitle">
+                                    <div class="col-md-10 text-center mx-auto">
+                                        <h2>{{ ctaPreview.title }}</h2>
+                                        <p>{{ ctaPreview.subtitle }}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5 col-media">
+                                        <iframe *ngIf="previewVideoUrl && !ctaPreview.imageUrl"
+                                                allowfullscreen="allowfullscreen"
+                                                frameborder="0"
+                                                height="315"
+                                                width="446"
+                                                [src]="previewVideoUrl">
+                                        </iframe>
+                                        <img *ngIf="ctaPreview.imageUrl && !ctaPreview.videoUrl"
+                                             [src]="previewImageUrl"
+                                             style="max-width:446px;">
+
+                                    </div>
+
+                                    <div class="col-md-7 col-quote">
+                                        <span [innerHTML]="previewCtaBody"></span>
+
+                                        <div class="row">
+                                            <div class="col-md-6 offset-md-3">
+                                                <a *ngIf="ctaPreview.buttonText && ctaPreview.buttonUrl && ctaPreview.isExtUrl"
+                                                   target="_blank"
+                                                   [href]="ctaPreview.buttonUrl"
+                                                   class="btn cta">
+                                                    {{ ctaPreview.buttonText }}
+                                                </a>
+                                                <a *ngIf="ctaPreview.buttonText && ctaPreview.buttonUrl && !ctaPreview.isExtUrl"
+                                                   [href]="ctaPreview.buttonUrl"
+                                                   class="btn cta">
+                                                    {{ ctaPreview.buttonText }}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

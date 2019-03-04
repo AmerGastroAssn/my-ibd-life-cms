@@ -1,0 +1,162 @@
+<!-- * CALL-TO-ACTION-EDIT * -->
+<div class="row mt-5">
+    <div class="container text-right">
+        <div class="btn-group">
+            <a [routerLink]="['/call-to-action']"
+               class="btn btn-default"><i class="fa fa-arrow-alt-circle-left"></i>&nbsp;
+                All CTA's
+            </a>
+            <a [routerLink]="['/call-to-action/', id]"
+               class="btn btn-default">&nbsp; <i class="fa fa-eye"></i>
+                Preview CTA
+            </a>
+            <a [routerLink]="['/call-to-action/new']" class="btn btn-default">
+                <i class="fa fa-plus"></i>&nbsp;New CTA
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container mb-5 mt-3">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card bg-lighter inner-card">
+                        <div class="card-body">
+                            <div class="card-header-title">
+                                <h4 class="pb-2">Edit Call To Action
+                                    <small class="text-secondary"></small>
+                                </h4>
+                                <hr class="inset-hr mb-3">
+                            </div>
+                            <form [formGroup]="editCTAForm"
+                                  (ngSubmit)="onCreateCTA(editCTAForm.value)"
+                                  *ngIf="cta">
+
+                                <div class="form-group">
+                                    <label class="helv">Name <br>
+                                        <small>How you'll find it in Page Builder. <span class="badge badge-warning">*Required</span>
+                                        </small>
+                                    </label>
+                                    <input type="text"
+                                           class="form-control"
+                                           required
+                                           [class.invalid]="!f.name.valid && f.name.touched"
+                                           formControlName="name">
+                                </div>
+
+                                <!--<div class="form-group">-->
+                                <!--<label class="helv">Section Title <br>-->
+                                <!--<small>At the top of the section</small>-->
+                                <!--</label>-->
+                                <!--<input type="text"-->
+                                <!--class="form-control"-->
+                                <!--[class.invalid]="!f.title.valid && f.title.touched"-->
+                                <!--formControlName="title">-->
+                                <!--</div>-->
+
+                                <!--<div class="form-group">-->
+                                <!--<label class="helv">Subtitle <br>-->
+                                <!--<small>Line of copy under title</small>-->
+                                <!--</label>-->
+                                <!--<input type="text"-->
+                                <!--class="form-control"-->
+                                <!--[class.invalid]="!f.subtitle.valid && f.subtitle.touched"-->
+                                <!--formControlName="subtitle">-->
+                                <!--</div>-->
+
+                                <div class="form-group">
+                                    <label class="helv">Body</label>
+                                    <ckeditor [formControl]="editCTAForm.controls['body']"
+                                              [config]="CkeditorConfig"
+                                              [class.invalid]="!f.body.valid && f.body.touched"
+                                              maxlength="550"
+                                              required
+                                              [readonly]="false"
+                                              [(ngModel)]="body"
+                                              debounce="500">
+                                    </ckeditor>
+                                    <p class="help-block alert alert-danger text-center"
+                                       [hidden]="f.body.valid">
+                                        Body is required and cannot have more than <b>550</b> characters. There are currently
+                                        <b>{{ body.length }}</b> characters
+                                    </p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="helv">File URL
+                                        <small>This will replace the video if no video is added</small>
+                                    </label>
+                                    <input type="url"
+                                           class="form-control"
+                                           [class.invalid]="!f.imageUrl.valid && f.imageUrl.touched"
+                                           formControlName="imageUrl">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="helv">Video URL
+                                        <small>If the CTA has a video</small>
+                                    </label>
+                                    <input type="url"
+                                           class="form-control"
+                                           placeholder="Go to YouTube video > share > embed > grab url from src='this-url'"
+                                           [class.invalid]="!f.videoUrl.valid && f.videoUrl.touched"
+                                           formControlName="videoUrl">
+                                </div>
+
+                                <!-- * Button * -->
+                                <div class="card bg-light mb-4">
+                                    <div class="card-body">
+                                        <p class="helv info">
+                                            <i class="fa fa-info-circle"></i>&nbsp;If blank, button will not show
+                                        </p>
+                                        <div class="form-group">
+                                            <label class="helv">Button Text</label>
+                                            <input type="text"
+                                                   placeholder="Ex: Learn More"
+                                                   class="form-control"
+                                                   [class.invalid]="!f.buttonText.valid && f.buttonText.touched"
+                                                   formControlName="buttonText">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="helv">Button URL</label>
+                                            <input type="text"
+                                                   placeholder="https://"
+                                                   class="form-control"
+                                                   [class.invalid]="!f.buttonUrl.valid && f.buttonUrl.touched"
+                                                   formControlName="buttonUrl">
+                                        </div>
+
+                                        <!-- * ExtURL  * -->
+                                        <div class="form-group mt-3">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox"
+                                                       class="custom-control-input ext-url"
+                                                       id="isExtUrl"
+                                                       formControlName="isExtUrl">
+                                                <label class="custom-control-label ext-url helv"
+                                                       for="isExtUrl">Is the button an external URL?
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <button type="submit"
+                                        [disabled]="!editCTAForm.valid"
+                                        class="btn btn-secondary full-width mb-3 mt-2">
+                                    <i class="fa fa-text-width"></i>&nbsp;Update
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

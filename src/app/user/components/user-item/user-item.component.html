@@ -1,0 +1,12 @@
+<tr>
+    <td scope="col">
+        <img [src]="user.photoURL"
+             [alt]="user.displayName"
+             class="profile-image">
+    </td>
+    <td scope="col">{{ user.displayName }}</td>
+    <td scope="col">{{ user.loginDate | date:'fullDate' }}</td>
+    <td scope="col">Online: {{ user.isOnline }}</td>
+    <td scope="col">Admin: {{ user.admin }}</td>
+</tr>
+

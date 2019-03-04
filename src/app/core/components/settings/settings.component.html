@@ -1,0 +1,135 @@
+<!-- * SETTINGS * -->
+<app-logo-watermark [favicon]="favicon" [sectionName]="sectionName"></app-logo-watermark>
+
+<div class="row mt-3">
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h5>Application Settings</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ng-template #settingsLoading>
+                            <div class="text-center text-dark p-5">
+                                <i class="far fa-spinner fa-pulse"></i>
+                                <br>
+                                loading...
+                            </div>
+                        </ng-template>
+                        <form (ngSubmit)="onSettingsSubmit(settingsForm.value)"
+                              [formGroup]="settingsForm"
+                              *ngIf="settings; else settingsLoading">
+                            <div class="form-group">
+                                <div class="form-group form-check">
+                                    <input type="checkbox"
+                                           id="allowSignup"
+                                           class="form-check-input"
+                                           [checked]="settings.allowSignup"
+                                           [(ngModel)]="allowSignup"
+                                           formControlName="allowSignup">
+
+                                    <label class="form-check-label"
+                                           for="allowSignup"
+                                           (change)="allowSignup = !allowSignup">
+                                        Allow User Registration?
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-group form-check">
+                                    <input type="checkbox"
+                                           id="allowSettings"
+                                           class="form-check-input"
+                                           [checked]="settings.allowSettings"
+                                           [(ngModel)]="allowSettings"
+                                           formControlName="allowSettings">
+
+                                    <label class="form-check-label"
+                                           for="allowSettings"
+                                           (change)="allowSettings = !allowSettings">
+                                        Allow this page to be editable?
+                                    </label>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="form-group form-check">
+                                    <input type="checkbox"
+                                           id="disableAdmin"
+                                           class="form-check-input"
+                                           [checked]="settings.disableAdmin"
+                                           [(ngModel)]="disableAdmin"
+                                           formControlName="disableAdmin">
+
+                                    <label class="form-check-label"
+                                           for="disableAdmin"
+                                           (change)="disableAdmin = !disableAdmin">
+                                        Disable ability for users to become <b>Admin</b>?
+                                    </label>
+                                </div>
+                            </div>
+
+
+                            <button type="submit" class="btn btn-secondary">
+                                <i class="fa fa-wrench"></i>&nbsp;Save Settings
+                            </button>
+
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-right m-2">
+                            <a [routerLink]="['/dashboard']"
+                               class="btn btn-outline-dark borderless">
+                                <i class="fa fa-chart-pie"></i>&nbsp;Google Analytics Dashboard
+                            </a>
+                        </div>
+                        <div class="text-right m-2">
+                            <a [routerLink]="['/meta']"
+                               class="btn btn-outline-dark borderless">
+                                <i class="fa fa-chart-line"></i>&nbsp;Edit Meta/Scripts
+                            </a>
+                        </div>
+                        <div class="text-right m-2">
+                            <a [routerLink]="['/ads']"
+                               class="btn btn-outline-dark borderless">
+                                <i class="fa fa-money-bill-wave"></i>&nbsp;Edit Advertising Scripts
+                            </a>
+                        </div>
+                        <div class="text-right m-2">
+                            <a [routerLink]="['/custom-nav-links']"
+                               class="btn btn-outline-dark borderless">
+                                <i class="fa fa-link"></i>&nbsp;Edit Navbar Links
+                            </a>
+                        </div>
+                        <div class="text-right m-2">
+                            <a [routerLink]="['/cards']"
+                               class="btn btn-outline-dark borderless">
+                                <i class="fa fa-passport"></i>&nbsp;Edit Cards
+                            </a>
+                        </div>
+                        <div class="text-right m-2">
+                            <a [routerLink]="['/calendar']"
+                               class="btn btn-outline-dark borderless">
+                                <i class="fa fa-calendar"></i>&nbsp;Edit Calendar
+                            </a>
+                        </div>
+                        <div class="text-right m-2">
+                            <a [routerLink]="['/privacy-policy']"
+                               class="btn btn-outline-dark borderless">
+                                <i class="fa fa-file-signature"></i>&nbsp;Edit Privacy Policy
+                            </a>
+                        </div>
+                        <div class="text-right m-2">
+                            <a [routerLink]="['/modal']"
+                               class="btn btn-outline-dark borderless">
+                                <i class="fa fa-window-alt"></i>&nbsp;Edit Homepage Modal
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

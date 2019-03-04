@@ -1,0 +1,23 @@
+a.back-users {
+    text-decoration: none;
+}
+
+input.form-check-input,
+.form-check,
+label.form-check-label {
+    cursor: pointer;
+}
+
+input.invalid {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #701D26;
+    background-color: #F7D7DB;
+    background-clip: padding-box;
+    border: 1px solid #CBB1B4;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}

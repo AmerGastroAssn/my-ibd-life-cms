@@ -1,0 +1,58 @@
+table, tr, th, td {
+    font-family: var(--cms-font) !important;
+    font-size: 14px !important;
+}
+th {
+    font-size: 14px !important;
+    font-family: var(--cms-font) !important;
+    line-height: 1.5;
+}
+
+td.date {
+    line-height: 1.5;
+}
+
+img.page-image {
+    max-width: 25px;
+}
+
+a.page-link {
+    font-size: 14px !important;
+    font-family: var(--cms-font) !important;
+    text-decoration: none;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    .card-columns {
+        columns: 1;
+    }
+    .card {
+        width: 100%;
+    }
+
+    .card-list {
+        margin-bottom: 15em;
+    }
+}
+
+/*// Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+    .card-columns {
+        columns: 2;
+    }
+}
+
+/*// Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+    .card-columns {
+        columns: 3;
+    }
+}
+
+/*// Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+    .card-columns {
+        columns: 4;
+    }
+}

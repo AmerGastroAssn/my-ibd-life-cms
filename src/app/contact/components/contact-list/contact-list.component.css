@@ -1,0 +1,18 @@
+.viewed {
+    background-color: #FFF9DF !important;
+    color: #53462C !important;
+    border: 1px solid #FFF9DF;
+    font-style: italic;
+}
+
+tr.viewed, tr.viewed > * {
+    border-color: #F3E4CB !important;
+}
+
+a.viewed-text {
+    color: #53462C !important;
+}
+
+tr > td {
+    vertical-align: middle;
+}

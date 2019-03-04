@@ -1,0 +1,33 @@
+<!-- * ADMIN * -->
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-2">
+    <div class="layout-inner">
+        <div id="layout-sidenav"
+             class="layout-sidenav sidenav sidenav-vertical bg-dark" style="background-color:#282E3E;"
+             *ngIf="toggleSidenav">
+            <app-sidenav [@simpleFadeAnimation]="'in'"></app-sidenav>
+        </div>
+
+        <div class="layout-container">
+            <!-- * Navbar * -->
+            <app-navbar></app-navbar>
+            <!-- * Fab Toggle Button * -->
+
+            <button mat-fab
+                    (click)="onToggleSidenav()">
+                <i class="fa"
+                   [ngClass]="{'fa-arrow-alt-circle-left':toggleSidenav,
+                   'fa-arrow-alt-circle-right':!toggleSidenav}"
+                   matTooltip="Click to toggle sidebar navigation"
+                   [matTooltipShowDelay]="showDelay.value"
+                   [matTooltipHideDelay]="hideDelay.value"
+                   aria-label="Click to toggle sidebar navigation">
+                </i>
+            </button>
+            <!-- * App Container * -->
+            <router-outlet></router-outlet>
+            <app-mobile-footernav></app-mobile-footernav>
+        </div>
+    </div>
+</div>
+

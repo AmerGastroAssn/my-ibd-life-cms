@@ -1,0 +1,139 @@
+<!-- * ADMIN-CONTACT-US-DETAILS * -->
+<div class="row mt-4">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="offset-md-9 col">
+                <a class="btn btn-default text-dark"
+                   [routerLink]="['/contacts']">
+                    <i class="fal fa-arrow-circle-left"></i>&nbsp;All Contacts
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mb-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card" *ngIf="contact" [class.viewed]="contact.viewed">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="btn-group float-right mb-5"
+                                 role="group"
+                                 aria-label="Basic example">
+                                <a class="btn btn-default btn-sm"
+                                   *ngIf="!contact.viewed"
+                                   (click)="onMarkViewed(contact.$key)">
+                                    <i class="fal fa-square"></i> Viewed
+                                </a>
+                                <a class="btn btn-default btn-sm viewed-btn"
+                                   *ngIf="contact.viewed"
+                                   (click)="onUnmarkViewed(contact.$key)">
+                                    <i class="fa fa-check-square"></i> Viewed
+                                </a>
+                                <a class="btn btn-secondary btn-sm"
+                                   [routerLink]="['/contacts']">
+                                    <i class="fa fa-undo"></i>&nbsp;Cancel
+                                </a>
+                                <a class="btn btn-danger btn-sm text-white"
+                                   (click)="onDeleteContact(contact.$key)">
+                                    <i class="fa fa-trash-alt"></i> Delete
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <h3 class="alert alert-light" *ngIf="contact.viewed">
+                                <i class="fa fa-check-square"></i>&nbsp;Viewed
+                            </h3>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-striped mt-2">
+                                <tbody>
+                                <tr>
+                                    <th scope="col">From:</th>
+                                    <td class="">
+                                        <i class="fa fa-user-alt"></i>&nbsp;
+                                        {{ contact.firstName }} {{ contact.lastName }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">ID:</th>
+                                    <td class="">
+                                        <i class="fa fa-ticket-alt"></i>&nbsp;<span class="text-mono">
+                                        {{ contact.$key }}
+                                        </span>
+                                    </td>
+                                </tr>
+                                <!--<tr>-->
+                                <!--<th scope="col">Program:</th>-->
+                                <!--<td class="text-dark">-->
+                                <!--<i class="fa fa-code-branch"></i>&nbsp; {{ contact.programType }}-->
+                                <!--</td>-->
+                                <!--</tr>-->
+                                <tr>
+                                    <th scope="col">Send Date:</th>
+                                    <td class=""><i class="fa fa-clock"></i>&nbsp; {{ contact.sentDate |
+                                        date:'medium' }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">Phone Number:</th>
+                                    <td>
+                                        <a href="tel:{{ contact.phoneNumber }}"
+                                           class="text-decoration-none"
+                                           [ngClass]="{'viewed-link': contact.viewed, 'text-dark': !contact.viewed}">
+                                            <i class="fa fa-phone"></i>&nbsp; {{ contact.phoneNumber }}
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">Email:</th>
+                                    <td>
+                                        <a href="mailto:{{ contact.email }}?subject=DDW® Contact"
+                                           class="text-decoration-none"
+                                           [ngClass]="{'viewed-link': contact.viewed, 'text-dark': !contact.viewed}">
+                                            <i class="fa fa-envelope"></i>&nbsp; {{ contact.email }}
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card bg-lighter">
+                        <div class="card-body">
+                            <h6 class="card-title">
+                                <i class="fa fa-code-branch"></i>&nbsp; Subject:
+                            </h6>
+                            <p class="card-text p-3">
+                                {{ contact.subject }}
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="card mt-3 bg-lighter">
+                        <div class="card-body">
+                            <h6 class="card-title">
+                                <i class="fa fa-align-left"></i>&nbsp; Body:
+                            </h6>
+                            <p class="card-text p-3">
+                                {{ contact.body }}
+                            </p>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

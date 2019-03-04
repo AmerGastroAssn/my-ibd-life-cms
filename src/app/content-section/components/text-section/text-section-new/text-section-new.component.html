@@ -1,0 +1,64 @@
+<!-- * TEXT-SECTION-NEW * -->
+<div class="row mb-4 mt-4">
+    <div class="container">
+        <div class="offset-md-10">
+            <a [routerLink]="['/text-section']"
+               class="btn btn-default">&nbsp; <i class="fa fa-align-justify"></i>
+                All Text Sections
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container mb-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card bg-lighter inner-card">
+                        <div class="card-body">
+                            <div class="card-header-title">
+                                <h4 class="pb-2">New Text Section
+                                    <small class="text-secondary"></small>
+                                </h4>
+                                <hr class="inset-hr mb-3">
+                            </div>
+                            <form [formGroup]="newTextSectionForm"
+                                  (ngSubmit)="onCreateTextSection(newTextSectionForm.value)">
+
+                                <div class="form-group">
+                                    <label class="helv">Name <br>
+                                        <small>How you'll search it in Page Builder.
+                                            <span class="badge badge-warning">*Required</span></small>
+                                    </label>
+                                    <input type="text"
+                                           class="form-control"
+                                           [class.invalid]="!f.name.valid && f.name.touched"
+                                           formControlName="name">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="helv">Body</label>
+                                    <ckeditor [formControl]="newTextSectionForm.controls['body']"
+                                              [config]="CkeditorConfig"
+                                              [class.invalid]="!f.body.valid && f.body.touched"
+                                              [readonly]="false"
+                                              debounce="500">
+                                    </ckeditor>
+                                </div>
+
+
+                                <button type="submit"
+                                        [disabled]="!newTextSectionForm.valid"
+                                        class="btn btn-secondary full-width mb-3 mt-2">
+                                    <i class="fa fa-text-width"></i>&nbsp;Create
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

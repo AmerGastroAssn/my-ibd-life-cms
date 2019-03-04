@@ -1,0 +1,27 @@
+<!-- * ADMIN-PAGE-ITEM * -->
+<a [routerLink]="['/pages/', page.url]">
+    <div class="card mb-2" [class.bg-light]="page.isExtURL">
+        <img class="card-img-top" [src]="page.bannerPhotoURL" *ngIf="!page.isExtURL">
+        <div class="card-body">
+            <h5 class="card-title text-dark">
+                {{ page.title }}
+                <img [src]="page.photoURL" class="photoURL">
+            </h5>
+            <h6 class="card-subtitle text-secondary">{{ page.date | date:'mediumDate' }}</h6>
+            <hr>
+            <p class="card-text text-dark" *ngIf="!page.isExtURL">{{ page.body | slice:0:75 }}...</p>
+            <a [href]="page.extURL" target="_blank" *ngIf="page.isExtURL">
+                <h6 class="btn btn-xs btn-default text-truncate">
+                    External Link: {{ page.extURL | slice:0:25 }}
+                </h6>
+            </a>
+            <span class="badge badge-pill badge-default">{{ page.category }}</span>
+            <p class="card-text text-secondary text-right" *ngIf="!page.isExtURL">
+                <small>{{ page.template }} Template</small>
+            </p>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">{{ page.author }}</small>
+        </div>
+    </div>
+</a>

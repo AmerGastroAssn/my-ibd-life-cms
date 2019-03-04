@@ -1,0 +1,566 @@
+<!-- * ADMIN-PAGE-NEW * -->
+<div class="row mb-4 mt-3 text-right">
+    <div class="container">
+        <div class="col-md-12">
+            <a class="btn btn-default"
+               [routerLink]="['/pages']"><i class="fal fa-arrow-circle-left"></i>&nbsp;All Pages
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container new-page">
+    <div class="col-md-12">
+        <div class="card mb-5">
+            <div class="card-body">
+                <div class="card bg-lighter inner-card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h2>New Page</h2>
+                        </div>
+
+                        <form [formGroup]="newPageForm"
+                              (ngSubmit)="onAddNewPage(newPageForm.value)">
+                            <div class="form-group">
+                                <label>Title <br>
+                                    <small>Once created, it cannot be changed</small>
+                                </label>
+                                <input type="text"
+                                       class="form-control"
+                                       [(ngModel)]="title"
+                                       [class.invalid]="!f.title.valid && f.title.touched"
+                                       formControlName="title">
+                                <p class="help-block alert alert-warning text-center mt-1"
+                                   *ngIf="!f.title.valid && f.title.touched">
+                                    <b>Title</b> is required!
+                                </p>
+                                <p class="help-block alert alert-warning text-center mt-1"
+                                   *ngIf="titleNotValid">
+                                    There is already a page with this title. Please edit that page or rename this page.
+                                </p>
+                            </div>
+
+                            <div class="form-group" *ngIf="!isExtURL">
+                                <label>Meta Descripton <br>
+                                    <small>If blank, meta will use site default (Not recommended)</small>
+                                </label>
+                                <textarea type="text"
+                                          class="form-control"
+                                          placeholder="Should be a sentence or two that accurately describes this page"
+                                          formControlName="metaDesc"
+                                          rows="3">
+                        </textarea>
+                            </div>
+
+
+                            <div class="card bg-lighter mb-3">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox"
+                                                   class="custom-control-input"
+                                                   id="isExtURL"
+                                                   formControlName="isExtURL"
+                                                   (click)="isExtURLToggle()">
+                                            <label class="custom-control-label"
+                                                   for="isExtURL">Is this an external URL?</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" *ngIf="isExtURL">
+                                        <label>External URL <br>
+                                            <p class="alert alert-info">All values are needed if this is an external
+                                                URL!</p>
+                                        </label>
+                                        <input type="url"
+                                               class="form-control"
+                                               placeholder="https://"
+                                               [class.invalid]="!f.extURL.valid && f.extURL.touched"
+                                               formControlName="extURL">
+                                        <p class="help-block alert alert-warning text-center mt-1"
+                                           *ngIf="!f.extURL.valid && f.extURL.touched">
+                                            <b>External URL</b> is invalid!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>Author</label>
+                                <input type="text"
+                                       class="form-control"
+                                       disabled
+                                       [class.invalid]="!f.author.valid && f.author.touched"
+                                       formControlName="author">
+                                <p class="help-block alert alert-warning text-center mt-1"
+                                   *ngIf="!f.author.valid && f.author.touched">
+                                    <b>Author</b> is required!
+                                </p>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="date">Publish On</label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="fa fa-calendar-alt"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text"
+                                           class="form-control"
+                                           id="date"
+                                           bsDatepicker
+                                           [bsConfig]="bsConfig"
+                                           placement="bottom"
+                                           formControlName="date">
+                                </div>
+                                <p class="help-block alert alert-warning text-center mt-1"
+                                   *ngIf="!f.date.valid && f.date.touched">
+                                    <b>Date</b> is required!
+                                </p>
+                            </div>
+
+
+                            <!--<div class="form-group">-->
+                            <!--<label>Publish On</label>-->
+                            <!--<input type="string"-->
+                            <!--class="form-control"-->
+                            <!--bsDatepicker-->
+                            <!--[bsConfig]="bsConfig"-->
+                            <!--placement="bottom"-->
+                            <!--[class.invalid]="!f.date.valid && f.date.touched"-->
+                            <!--formControlName="date">-->
+                            <!--<p class="help-block alert alert-warning text-center mt-1"-->
+                            <!--*ngIf="!f.date.valid && f.date.touched">-->
+                            <!--<b>Date</b> is required!-->
+                            <!--</p>-->
+                            <!--</div>-->
+
+
+                            <div class="form-group">
+                                <label for="category">Category</label>
+                                <select class="form-control"
+                                        id="category"
+                                        [class.invalid]="!f.category.valid && f.category.touched"
+                                        formControlName="category">
+                                    <option>register</option>
+                                    <option>attendee-planning</option>
+                                    <option>education</option>
+                                    <option>exhibitor-information</option>
+                                    <option>news</option>
+                                    <option>presenters</option>
+                                </select>
+                                <p class="help-block alert alert-warning text-center mt-1"
+                                   *ngIf="!f.category.valid && f.category.touched">
+                                    <b>Category</b> is required!
+                                </p>
+                            </div>
+
+                            <div class="card bg-lighter mb-3" *ngIf="!isExtURL">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox"
+                                                   class="custom-control-input"
+                                                   id="isGrandchildPageCheckbox"
+                                                   formControlName="isGrandchildPage"
+                                                   (click)="toggleIsGrandchildPage()">
+                                            <label class="custom-control-label"
+                                                   for="isGrandchildPageCheckbox">Is this page a Grandchild?</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" *ngIf="isGrandchildPage">
+                                        <label for="isGrandchildPage">Grandchild of what page?</label>
+                                        <select class="form-control"
+                                                id="isGrandchildPage"
+                                                formControlName="grandchildURL">
+                                            <optgroup label="Register">
+                                                <option *ngFor="let page of registerPages$ | async">
+                                                    {{ page.url }}
+                                                </option>
+                                            </optgroup>
+                                            <optgroup label="News">
+                                                <option *ngFor="let page of newsPages$ | async">
+                                                    {{ page.url }}
+                                                </option>
+                                            </optgroup>
+                                            <optgroup label="Exhibitor Information">
+                                                <option *ngFor="let page of exhibitPages$ | async">
+                                                    {{ page.url }}
+                                                </option>
+                                            </optgroup>
+                                            <optgroup label="Education">
+                                                <option *ngFor="let page of edPages$ | async">
+                                                    {{ page.url }}
+                                                </option>
+                                            </optgroup>
+                                            <optgroup label="Attendee">
+                                                <option *ngFor="let page of attendeePages$ | async">
+                                                    {{ page.url }}
+                                                </option>
+                                            </optgroup>
+                                            <optgroup label="Presenters">
+                                                <option *ngFor="let page of presPages$ | async">
+                                                    {{ page.url }}
+                                                </option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="sortOrder">Sort Order <br>
+                                    <small>Order shown in navbar dropdown category</small>
+                                </label>
+                                <select class="form-control"
+                                        id="sortOrder"
+                                        [class.invalid]="!f.sortOrder.valid && f.sortOrder.touched"
+                                        formControlName="sortOrder">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                </select>
+                            </div>
+
+                            <!--<div class="form-group" *ngIf="!isExtURL">-->
+                            <!--<label for="template">Template</label>-->
+                            <!--<select class="form-control"-->
+                            <!--id="template"-->
+                            <!--[class.invalid]="!f.template.valid && f.template.touched"-->
+                            <!--formControlName="template">-->
+                            <!--<option>Full Width</option>-->
+                            <!--<option>3 Column Bottom</option>-->
+                            <!--<option>3 Column Top</option>-->
+                            <!--<option>Blog Post</option>-->
+                            <!--</select>-->
+                            <!--</div>-->
+
+
+                            <div class="card bg-lighter mb-3" *ngIf="!isExtURL">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox"
+                                                   class="custom-control-input"
+                                                   id="hasCalendar"
+                                                   formControlName="hasCalendar"
+                                                   (click)="toggleHasCalendar()">
+                                            <label class="custom-control-label"
+                                                   for="hasCalendar">Does the page have a Calendar?</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" *ngIf="hasCalendar">
+                                        <label for="calendarTitle">Select Calendar or
+                                            <a [routerLink]="['/calendar/new']" class="btn btn-sm btn-default">
+                                                <i class="fa fa-calendar-plus"></i> Create New</a>
+                                        </label>
+                                        <select class="form-control"
+                                                id="calendarTitle"
+                                                formControlName="calendarTitle">
+                                            <option *ngFor="let cal of calendar$ | async"
+                                                    [value]="cal.title">
+                                                {{ cal.title }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- * Page Cards * -->
+                            <div class="card bg-lighter mt-3 mb-3" *ngIf="!isExtURL">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox"
+                                                   class="custom-control-input"
+                                                   id="hasCards"
+                                                   formControlName="hasCards"
+                                                   (click)="toggleHasCards()">
+                                            <label class="custom-control-label"
+                                                   for="hasCards">Does the page have Cards?</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" *ngIf="hasCards && !isExtURL">
+                                        <a [routerLink]="['/page-cards/new']"
+                                           class="btn btn-sm btn-default mb-2">
+                                            <i class="fa fa-window-restore"></i> Create New
+                                        </a>
+                                    </div>
+
+                                    <div class="input-group mb-3" *ngIf="hasCards && !isExtURL">
+                                        <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-h2"></i>
+                                    </span>
+                                        </div>
+                                        <input type="text"
+                                               class="form-control"
+                                               id="cardSectionTitle"
+                                               placeholder="Section Title"
+                                               aria-describedby="inputGroupPrepend"
+                                               formControlName="cardSectionTitle">
+                                    </div>
+
+                                    <div class="form-group" *ngIf="hasCards && !isExtURL">
+                                        <label for="cardOption1">Select BlogPost
+                                            &nbsp;&nbsp;<i class="fa fa-align-left"></i> Left
+                                        </label>
+                                        <select class="form-control"
+                                                id="cardOption1"
+                                                [(ngModel)]="cardOption1"
+                                                formControlName="cardOption1">
+                                            <option *ngFor="let card of pageCards$ | async"
+                                                    [value]="card.$key">
+                                                {{ card.title }}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group" *ngIf="hasCards && !isExtURL">
+                                        <label for="cardOption2">Select BlogPost
+                                            &nbsp;&nbsp;<i class="fa fa-align-center"></i>
+                                            Middle
+                                        </label>
+                                        <select class="form-control"
+                                                id="cardOption2"
+                                                [(ngModel)]="cardOption2"
+                                                formControlName="cardOption2">
+                                            <option *ngFor="let card of pageCards$ | async"
+                                                    [value]="card.$key">
+                                                {{ card.title }}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group" *ngIf="hasCards && !isExtURL">
+                                        <label for="cardOption3">Select BlogPost
+                                            &nbsp;&nbsp;<i class="fa fa-align-right"></i>
+                                            Right
+                                        </label>
+                                        <select class="form-control"
+                                                id="cardOption3"
+                                                [(ngModel)]="cardOption3"
+                                                formControlName="cardOption3">
+                                            <option *ngFor="let card of pageCards$ | async"
+                                                    [value]="card.$key">
+                                                {{ card.title }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- * Content Sections * -->
+                            <div class="card bg-lighter mt-3 mb-3">
+                                <div class="card-body">
+                                    <label>Content Sections</label>
+                                    <div class="form-group">
+                                        <div class="btn-group">
+                                            <a [routerLink]="['/text-section/new']"
+                                               class="btn btn-sm btn-default mb-2">
+                                                <i class="fa fa-align-justify"></i> Create New Text Section
+                                            </a>
+                                            <a [routerLink]="['/call-to-action/new']"
+                                               class="btn btn-sm btn-default mb-2">
+                                                <i class="fa fa-text-width"></i> Create New CTA
+                                            </a>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group" *ngIf="textSections$">
+                                        <label for="contentSectionTop">Select Text Section
+                                            &nbsp;&nbsp;<i class="fa fa-align-justify"></i> Top
+                                        </label>
+                                        <select class="form-control"
+                                                id="contentSectionTop"
+                                                formControlName="contentSectionTop">
+                                            <option value="">
+                                                --- Select Top Text Section or select this to be blank---
+                                            </option>
+                                            <option *ngFor="let text of textSections$ | async"
+                                                    [value]="text.id">
+                                                {{ text.value }}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group" *ngIf="cta$">
+                                        <label for="callToAction">Select Call To Action
+                                            &nbsp;&nbsp;<i class="fa fa-text-width"></i>
+                                            Middle
+                                        </label>
+                                        <select class="form-control"
+                                                id="callToAction"
+                                                formControlName="callToAction">
+                                            <option value="">
+                                                --- Select Call To Action or select this to be blank ---
+                                            </option>
+                                            <option *ngFor="let cta of cta$ | async"
+                                                    [value]="cta.id">
+                                                {{ cta.value }}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group" *ngIf="textSections$">
+                                        <label for="contentSectionBottom">Select Text Section
+                                            &nbsp;&nbsp;<i class="fa fa-align-justify"></i>
+                                            Bottom
+                                        </label>
+                                        <select class="form-control"
+                                                id="contentSectionBottom"
+                                                formControlName="contentSectionBottom">
+                                            <option value="">
+                                                --- Select Bottom Text Section or select this to be blank ---
+                                            </option>
+                                            <option *ngFor="let text of textSections$ | async"
+                                                    [value]="text.id">
+                                                {{ text.value }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--<div class="form-group" *ngIf="!isExtURL">-->
+                            <!--<label>Body</label>-->
+                            <!--<ckeditor [formControl]="newPageForm.controls['body']"-->
+                            <!--[config]="CkeditorConfig"-->
+                            <!--[class.invalid]="!f.body.valid && f.body.touched"-->
+                            <!--[readonly]="false"-->
+                            <!--debounce="500">-->
+                            <!--</ckeditor>-->
+                            <!--<p class="help-block alert alert-warning text-center mt-1"-->
+                            <!--*ngIf="!f.body.valid && f.body.touched">-->
+                            <!--The <b>Body</b> with at least 100 characters is required!-->
+                            <!--</p>-->
+                            <!--</div>-->
+
+                            <app-image-uploader-item *ngIf="!isExtURL"></app-image-uploader-item>
+
+
+                            <div class="form-group" *ngIf="!isExtURL">
+                                <label>Banner Image URL
+                                    <small>(Top banner image)</small>
+                                </label>
+                                <input type="text"
+                                       class="form-control"
+                                       [class.invalid]="!f.bannerPhotoURL.valid && f.bannerPhotoURL.touched"
+                                       [(ngModel)]="bannerPhotoURL"
+                                       formControlName="bannerPhotoURL">
+                                <p class="help-block alert alert-warning text-center mt-1"
+                                   *ngIf="!f.bannerPhotoURL.valid && f.bannerPhotoURL.touched">
+                                    <b>Banner Image URL</b> is required!
+                                </p>
+                            </div>
+
+                            <div class="form-group" *ngIf="!isExtURL && !showWidgetSnippet">
+                                <label>Image URL
+                                    <small>(Image on the page)</small>
+                                </label>
+                                <input type="text"
+                                       class="form-control"
+                                       [class.invalid]="!f.photoURL.valid && f.photoURL.touched"
+                                       [(ngModel)]="photoURL"
+                                       formControlName="photoURL">
+                                <p class="help-block alert alert-warning text-center mt-1"
+                                   *ngIf="!f.photoURL.valid && f.photoURL.touched">
+                                    <b>Image URL</b> May be required, depending on the template.
+                                </p>
+                            </div>
+
+
+                            <div class="form-group" *ngIf="!isExtURL">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox"
+                                           class="custom-control-input"
+                                           id="showWidgetSnippet"
+                                           [(ngModel)]="showWidgetSnippet"
+                                           formControlName="showWidgetSnippet">
+                                    <label class="custom-control-label"
+                                           for="showWidgetSnippet">
+                                        Show Widget Snippet? <span #tooltip="matTooltip"
+                                                                   matTooltip="Check this if you want to show the widget snippet in place of the page's Image URL."
+                                                                   matTooltipPosition="right"
+                                                                   aria-tooltip="Widget Snippet">
+                                                                <i class="fa fa-info-circle"></i>
+                                    </span>
+
+                                    </label>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox"
+                                           class="custom-control-input"
+                                           id="hidden"
+                                           formControlName="hidden">
+                                    <label class="custom-control-label"
+                                           for="hidden">Should the page be hidden from the menu?</label>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox"
+                                           class="custom-control-input"
+                                           id="published"
+                                           formControlName="published">
+                                    <label class="custom-control-label"
+                                           for="published"><span class="badge badge-danger">Publish</span> the page on
+                                        "Create"?
+                                        <br>
+                                        <small>If so, page will appear according to "Publish On" date.</small>
+                                    </label>
+                                </div>
+                            </div>
+
+
+                            <button type="submit"
+                                    class="btn btn-secondary btn-md mb-5 full-width">
+                                <i class="fa fa-file-plus"></i>&nbsp;Create Page
+                            </button>
+
+                            <div class="btn-group float-right mt-3" role="group" aria-label="Basic example">
+                                <a class="btn btn-warning btn-sm"
+                                   [routerLink]="['/pages']">
+                                    <i class="fa fa-undo"></i>&nbsp;Cancel
+                                </a>
+                            </div>
+
+                            <!-- * Debugging * -->
+                            <!--<code>-->
+                            <!--<pre>Form value: {{ newPageForm.value | json }}</pre>-->
+                            <!--</code>-->
+                            <!--<code>-->
+                            <!--<pre>Form value: {{ newPageForm.status | json }}</pre>-->
+                            <!--</code>-->
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

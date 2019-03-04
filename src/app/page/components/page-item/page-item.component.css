@@ -1,0 +1,31 @@
+.card {
+    font-size: 14px !important;
+    font-family: var(--cms-font) !important;
+    line-height: 1.5;
+}
+
+.card-body > p.card-text {
+    font-size: 14px !important;
+    font-family: var(--cms-font) !important;
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+}
+
+img.bannerPhotoURL {
+    /*max-width: 30px;*/
+}
+
+img.photoURL {
+    max-width: 50px;
+    float: right;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 768px) {
+    .card {
+        max-width: 100%;
+    }
+}

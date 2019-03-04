@@ -1,0 +1,49 @@
+.app-brand.demo, li.active > ul {
+    background-color: #1C202B;
+    font-family: var(--cms-font) !important;
+}
+
+a.sidenav-link {
+    cursor: pointer;
+    font-family: var(--cms-font) !important;
+}
+
+a:link {
+    font-family: var(--cms-font) !important;
+}
+
+.helv {
+    font-family: var(--cms-font) !important;
+}
+
+li.sidenav-item {
+    font-family: var(--cms-font) !important;
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+li.sub-item {
+    font-family: var(--cms-font) !important;
+    margin-left: 0.5em;
+}
+
+.sidenav-vertical,
+.sidenav-menu,
+.sidenav-link {
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+}
+
+a.sidenav-link {
+    text-decoration: none;
+}
+
+li.divider, .divider {
+    border-top: 1px solid #16171A !important;
+    border-bottom: 1px solid #3E4250 !important;
+}
+
+img.ddw-logo {
+    /*margin-left: em;*/
+    /*max-width: 150px;*/
+}

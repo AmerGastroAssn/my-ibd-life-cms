@@ -1,0 +1,27 @@
+input, label {
+    cursor: pointer;
+    line-height: 1.5;
+}
+
+input[type="url"],
+input[type="text"],
+textarea[type="text"] {
+    border-radius: 0;
+}
+
+i.fa-spinner {
+    font-size: 4em;
+}
+
+p {
+    font-size: 14px;
+    font-family: var(--cms-font);
+}
+
+.hide-btn {
+    float: right;
+}
+
+p.spacer {
+    padding: 1em;
+}

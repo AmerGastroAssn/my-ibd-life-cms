@@ -1,0 +1,69 @@
+<!-- * NAVBAR * -->
+<nav class="layout-navbar navbar navbar-expand-lg text-light container-p-x" id="layout-navbar">
+    <!--<a class="navbar-brand" href="#">DDW<sup>&reg;</sup> Admin</a>-->
+    <button class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <span class="nav-item nav-link current-date" [routerLink]="['pages']">
+                <i class="fa fa-calendar-alt"></i>&nbsp;<span class="helv">{{ currentDate | date:'fullDate' }}</span>
+            </span>
+            <!--<a class="nav-item nav-link" [routerLink]="['users']"><i class="fa fa-user"></i>&nbsp;Users</a>-->
+            <!--<a class="nav-item nav-link" [routerLink]="['/']"><i class="fa fa-globe"></i>&nbsp;Live Site</a>-->
+
+        </div>
+
+        <ul class="navbar-nav ml-auto text-right">
+            <li class="nav-item" *ngIf="isLoggedIn">
+                <button mat-raised-button
+                        color="link"
+                        class="nav-link btn-open"
+                        (click)="openBottomSheet()">
+                    <span class="btn-text">
+                    <i class="fa fa-plus-hexagon"></i>&nbsp;<span class="helv">Quick Add</span>
+                </span>
+                </button>
+            </li>
+            <li class="nav-item" *ngIf="user && isLoggedIn">
+                <a class="nav-link"
+                   [routerLink]="['/users/', user.$key ]">
+                    <img [src]="user.photoURL"
+                         class="user-image rounded-circle"> &nbsp;{{ loggedInUser }}
+                </a>
+            </li>
+
+            <li class="nav-item" *ngIf="isLoggedIn && allowSettings && isAdmin">
+                <a class="nav-link"
+                   [routerLink]="['/settings']">
+                    <i class="fa fa-wrench"></i>&nbsp;<span class="helv">Settings</span>
+                </a>
+            </li>
+            <li class="nav-item" *ngIf="!isLoggedIn && allowSignup && isAdmin">
+                <a class="nav-link"
+                   [routerLink]="['/auth/signup']">
+                    <i class="fa fa-user-plus"></i>&nbsp;<span class="helv">Create Account</span>
+                </a>
+            </li>
+            <li class="nav-item" *ngIf="!isLoggedIn">
+                <a class="nav-link"
+                   [routerLink]="['/auth/login']">
+                    <i class="fa fa-sign-in-alt"></i>&nbsp;<span class="helv">log In</span>
+                </a>
+            </li>
+
+            <li class="nav-item" *ngIf="isLoggedIn">
+                <a class="nav-link"
+                   style="cursor:pointer;"
+                   (click)="onLogout()"><i class="fa fa-sign-out-alt"></i>&nbsp;<span class="helv">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

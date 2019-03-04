@@ -1,0 +1,9 @@
+a.users {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+img.profile-image {
+    max-width: 25px;
+    max-height: 25px;
+}

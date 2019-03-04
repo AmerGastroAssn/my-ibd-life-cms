@@ -1,0 +1,134 @@
+.app-brand.demo, li.active > ul {
+    background-color: #1C202B;
+    font-family: var(--cms-font) !important;
+}
+
+a.sidenav-link {
+    cursor: pointer;
+    font-family: var(--cms-font) !important;
+}
+
+a:link {
+    font-family: var(--cms-font) !important;
+}
+
+.helv {
+    font-family: var(--cms-font) !important;
+}
+
+li.sidenav-item {
+    font-family: var(--cms-font) !important;
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+li.sub-item {
+    font-family: var(--cms-font) !important;
+    margin-left: 0.5em;
+}
+
+.sidenav-vertical,
+.sidenav-menu,
+.sidenav-link {
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+}
+
+a.sidenav-link {
+    text-decoration: none;
+}
+
+li.divider, .divider {
+    border-top: 1px solid #16171A !important;
+    border-bottom: 1px solid #3E4250 !important;
+}
+
+img.ddw-logo {
+    /*margin-left: em;*/
+    /*max-width: 150px;*/
+}
+
+
+/*------------------------------------------------
+     Ported from Admin Component
+------------------------------------------------*/
+/* Global Admin Styles */
+p, div, tr, th, tr, td, span, ul, ol, li, input.form-control, input[text], input[textarea], select {
+    font-size: 14px !important;
+    font-family: var(--cms-font) !important;
+    line-height: 1;
+
+}
+
+#layout-sidenav {
+    /*transition: ease-in-out 0.9s;*/
+}
+
+app-sidenav {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    overflow-y: scroll;
+
+}
+
+.image-uploader * {
+    font-size: 14px;
+}
+
+form * {
+    font-family: var(--cms-font) !important;
+}
+
+.bg-dark {
+    background-color: #282E3E !important;
+}
+
+button[mat-fab] {
+    /*background-color: #1C202B;*/
+    background-color: #1C202B;
+    margin: 5em 0 0 0;
+    border: 3px solid #9d9fa1;
+    /*border: 3px solid #1C202B;*/
+    position: fixed;
+    z-index: 3000;
+}
+
+i.fa-arrow-alt-circle-left,
+i.fa-arrow-alt-circle-right {
+    color: #9d9fa1;
+    /*padding-bottom: 8px;*/
+    /*padding-left: 3px;*/
+    font-size: 2.3em;
+    /*padding: 0 0 4em 0.2em;*/
+    /*margin: 3em 0 0 0;*/
+    /*text-shadow: 2px 2px 3px rgba(0,0,0,0.4);*/
+    cursor: pointer;
+    /*position: fixed;*/
+    /*z-index: 3000;*/
+}
+
+
+/* Mobile Queries */
+
+/* Display on anything 992px and larger */
+@media (min-width: 992px) {
+    nav#layout-navbar, button[mat-mini-fab] {
+        display: block;
+    }
+
+    nav.navbar.navbar-footer {
+        display: none;
+    }
+}
+
+/* Small devices (landscape phones, 991px and below) */
+@media (max-width: 991px) {
+    nav#layout-navbar, button[mat-fab] {
+        display: none;
+    }
+
+    nav.navbar.navbar-footer {
+        display: block;
+    }
+}

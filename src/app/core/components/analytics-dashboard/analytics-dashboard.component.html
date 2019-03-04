@@ -1,0 +1,50 @@
+<!-- * DASHBOARD * -->
+<app-logo-watermark [favicon]="favicon" [sectionName]="sectionName"></app-logo-watermark>
+
+<!-- * Nav buttons * -->
+<div class="row m-4 pl-5">
+    <div class="container">
+        <div class="text-center">
+            <div class="btn-group btn-group-md"
+                 role="group"
+                 aria-label="Basic example">
+                <a href="https://analytics.google.com/analytics/web/?authuser=2#/report-home/a767255w54942143p55907061"
+                   target="_blank"
+                   class="btn btn-default">
+                    <i class="fa fa-signal"></i>&nbsp;
+                    DDW Google Analytics</a>
+                <a [routerLink]="['/settings']"
+                   class="btn btn-default">
+                    <i class="fa fa-wrench"></i>&nbsp;Settings
+                </a>
+                <a [routerLink]="['/home']"
+                   class="btn btn-default">
+                    <i class="fa fa-home"></i>&nbsp;Home Page
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- * Data Studio Google Analytics * -->
+<div class="row mb-5">
+    <div class="container">
+        <div class="col offset-md-1">
+            <ng-template #loading>
+                <div class="text-center text-dark p-5">
+                    <i class="far fa-spinner fa-pulse"></i>
+                    <br>
+                    <span class="pt-2">loading...</span>
+                </div>
+            </ng-template>
+            <iframe width="900"
+                    height="1200"
+                    [src]="googleUrl"
+                    frameborder="0"
+                    style="border:0"
+                    allowfullscreen
+                    *ngIf="googleUrl; else loading">
+            </iframe>
+        </div>
+    </div>
+</div>

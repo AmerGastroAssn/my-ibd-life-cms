@@ -1,0 +1,90 @@
+<!-- * MODAL * -->
+<app-logo-watermark [favicon]="favicon" [sectionName]="sectionName"></app-logo-watermark>
+
+<div class="row m-4 pl-5">
+    <div class="container">
+        <div class="offset-md-10">
+            <a [routerLink]="['/settings']" class="btn btn-default">
+                <i class="fa fa-wrench"></i>&nbsp;Settings
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="container mb-5">
+        <div class="col-md-12">
+            <ng-template #loading>
+                <div class="text-center text-dark p-5">
+                    <i class="far fa-spinner fa-pulse"></i>
+                    <br>
+                    <span class="pt-2">loading...</span>
+                </div>
+            </ng-template>
+            <div class="card">
+                <div class="card-body">
+                    <form [formGroup]="modalForm"
+                          (ngSubmit)="onModalSubmit(modalForm.value)"
+                          *ngIf="modal; else loading">
+
+                        <div class="form-group" *ngIf="modal.author">
+                            <p class="mt-2 info text-right">
+                                <i class="fa fa-clock"></i>&nbsp;
+                                {{ modal.updatedAt | date:'medium' }} <br>
+                                <i class="fa fa-user"></i>&nbsp;{{ modal.author }}
+                            </p>
+                        </div>
+
+                        <!-- * Title * -->
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text"
+                                   class="form-control"
+                                   [class.invalid]="!f.title.valid && f.title.touched"
+                                   formControlName="title">
+                        </div>
+
+                        <!-- * Body  * -->
+                        <div class="form-group">
+                            <ckeditor [formControl]="modalForm.controls['body']"
+                                      [readonly]="false"
+                                      [config]="CkeditorConfig"
+                                      id="body"
+                                      debounce="500">
+                            </ckeditor>
+                        </div>
+
+                        <!-- * Button Text * -->
+                        <div class="form-group">
+                            <label>Button Text</label>
+                            <input type="text"
+                                   class="form-control"
+                                   formControlName="btnText">
+                        </div>
+
+                        <!-- * Show Checkbox  * -->
+                        <div class="form-group mt-3">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox"
+                                       class="custom-control-input show"
+                                       id="show"
+                                       formControlName="show">
+                                <label class="custom-control-label show"
+                                       for="show">Activate on homepage?
+                                </label>
+                            </div>
+                        </div>
+
+
+                        <button type="submit"
+                                class="btn btn-secondary mb-5 mt-3 full-width">
+                            <i class="fa fa-window-alt"></i>&nbsp;Save Alert Modal
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

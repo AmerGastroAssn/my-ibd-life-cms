@@ -1,0 +1,9 @@
+pre > textarea[type="text"] {
+    font-size: 13px;
+    font-family: var(--monospace) !important;
+    background-color: #282E3E;
+    color: #a1b0c0;
+    letter-spacing: 1px;
+    -moz-osx-font-smoothing: auto;
+    -webkit-font-smoothing: subpixel-antialiased;
+}

@@ -1,0 +1,303 @@
+<!-- * CUSTOM-NAV-LINK-EDIT * -->
+<app-logo-watermark [favicon]="favicon" [sectionName]="sectionName"></app-logo-watermark>
+
+<!-- * Nav buttons * -->
+<div class="row m-4 pl-5" [@simpleFadeAnimation]="'in'">
+    <div class="container">
+        <div class="text-right mr-5">
+            <div class="btn-group btn-group-md float-right"
+                 role="group"
+                 aria-label="Basic example">
+                <a [routerLink]="['/settings']"
+                   class="btn btn-default">
+                    <i class="fa fa-wrench"></i>&nbsp;Settings
+                </a>
+                <a [routerLink]="['/pages']"
+                   class="btn btn-default">
+                    <i class="fa fa-layer-group"></i>&nbsp;
+                    Pages List</a>
+                <a [routerLink]="['/home']"
+                   class="btn btn-default">
+                    <i class="fa fa-home"></i>&nbsp;Home Page
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- * Custom Links Edit * -->
+<div class="row mb-5">
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <ng-template #loading>
+                    <div class="text-center text-dark p-5">
+                        <i class="far fa-spinner fa-pulse"></i>
+                        <br>
+                        loading...
+                    </div>
+                </ng-template>
+                <div class="col-sm-12">
+                    <div class="card bg-lighter p-3 inner-card">
+                        <div class="card-body">
+                            <p class="card-text helv">
+                                <b><i class="fa fa-info-circle"></i>&nbsp; Links appear in order from left-to-right, 1-5. If blank, no link will appear.</b>
+                            </p>
+                            <div class="form-group">
+                                <hr class="inset-hr"/>
+                            </div>
+                            <form [formGroup]="customLinkForm"
+                                  (ngSubmit)="onUpdateCustomLinks(customLinkForm.value)"
+                                  *ngIf="customLink; else loading">
+                                <label for="url1"><b>Custom Link 1</b></label>
+                                <!-- * URL 1 * -->
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"
+                                          id="inputGroupPrepend">
+                                        <i class="fa fa-link"></i>
+                                    </span>
+                                    </div>
+                                    <input type="url"
+                                           class="form-control"
+                                           id="url1"
+                                           placeholder="https://"
+                                           aria-describedby="inputGroupPrepend"
+                                           formControlName="url1">
+                                </div>
+                                <!-- * Text 1 * -->
+                                <div class="input-group mt-3">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-font"></i>
+                                    </span>
+                                    </div>
+                                    <input type="text"
+                                           class="form-control"
+                                           id="text1"
+                                           placeholder="Custom Link 1 Text"
+                                           aria-describedby="inputGroupPrepend"
+                                           formControlName="text1">
+                                </div>
+
+                                <!-- * ExtURL 1 * -->
+                                <div class="form-group mt-3">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox"
+                                               class="custom-control-input"
+                                               id="isExtURL1"
+                                               formControlName="isExtURL1">
+                                        <label class="custom-control-label"
+                                               for="isExtURL1">External URL?
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <hr class="inset-hr"/>
+                                </div>
+
+
+                                <!-- * Custom Link 2 * -->
+                                <label for="url2"><b>Custom Link 2</b></label>
+                                <!-- * URL 2 * -->
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-link"></i>
+                                    </span>
+                                    </div>
+                                    <input type="url"
+                                           class="form-control"
+                                           id="url2"
+                                           placeholder="https://"
+                                           aria-describedby="inputGroupPrepend"
+                                           formControlName="url2">
+                                </div>
+                                <!-- * Text 2 * -->
+                                <div class="input-group mt-3">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-font"></i>
+                                    </span>
+                                    </div>
+                                    <input type="text"
+                                           class="form-control"
+                                           id="text2"
+                                           placeholder="Custom Link 2 Text"
+                                           aria-describedby="inputGroupPrepend"
+                                           formControlName="text2">
+                                </div>
+                                <!-- * ExtURL 2 * -->
+                                <div class="form-group mt-3">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox"
+                                               class="custom-control-input"
+                                               id="isExtURL2"
+                                               formControlName="isExtURL2">
+                                        <label class="custom-control-label"
+                                               for="isExtURL2">External URL?
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <hr class="inset-hr"/>
+                                </div>
+
+
+                                <!-- * Custom Link 3 * -->
+                                <label for="url3"><b>Custom Link 3</b></label>
+                                <!-- * URL 3 * -->
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-link"></i>
+                                    </span>
+                                    </div>
+                                    <input type="url"
+                                           class="form-control"
+                                           id="url3"
+                                           placeholder="https://"
+                                           aria-describedby="inputGroupPrepend"
+                                           formControlName="url3">
+                                </div>
+                                <!-- * Text 3 * -->
+                                <div class="input-group mt-3">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-font"></i>
+                                    </span>
+                                    </div>
+                                    <input type="text"
+                                           class="form-control"
+                                           id="text3"
+                                           placeholder="Custom Link 3 Text"
+                                           aria-describedby="inputGroupPrepend"
+                                           formControlName="text3">
+                                </div>
+                                <!-- * ExtURL 3 * -->
+                                <div class="form-group mt-3">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox"
+                                               class="custom-control-input"
+                                               id="isExtURL3"
+                                               formControlName="isExtURL3">
+                                        <label class="custom-control-label"
+                                               for="isExtURL3">External URL?
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <hr class="inset-hr"/>
+                                </div>
+
+
+                                <!-- * Custom Link 4 * -->
+                                <label for="url4"><b>Custom Link 4</b></label>
+                                <!-- * URL 4 * -->
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-link"></i>
+                                    </span>
+                                    </div>
+                                    <input type="url"
+                                           class="form-control"
+                                           id="url4"
+                                           placeholder="https://"
+                                           aria-describedby="inputGroupPrepend"
+                                           formControlName="url4">
+                                </div>
+                                <!-- * Text 4 * -->
+                                <div class="input-group mt-3">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-font"></i>
+                                    </span>
+                                    </div>
+                                    <input type="text"
+                                           class="form-control"
+                                           id="text4"
+                                           placeholder="Custom Link 4 Text"
+                                           aria-describedby="inputGroupPrepend"
+                                           formControlName="text4">
+                                </div>
+                                <!-- * ExtURL 4 * -->
+                                <div class="form-group mt-3">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox"
+                                               class="custom-control-input"
+                                               id="isExtURL4"
+                                               formControlName="isExtURL4">
+                                        <label class="custom-control-label"
+                                               for="isExtURL4">External URL?
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <hr class="inset-hr"/>
+                                </div>
+
+
+                                <!-- * Custom Link 5 * -->
+                                <label for="url5"><b>Custom Link 5</b></label>
+                                <!-- * URL 5 * -->
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-link"></i>
+                                    </span>
+                                    </div>
+                                    <input type="url"
+                                           class="form-control"
+                                           id="url5"
+                                           placeholder="https://"
+                                           aria-describedby="inputGroupPrepend"
+                                           formControlName="url5">
+                                    <div class="invalid-feedback">
+                                        Invalid URL
+                                    </div>
+                                </div>
+                                <!-- * Text 5 * -->
+                                <div class="input-group mt-3">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-font"></i>
+                                    </span>
+                                    </div>
+                                    <input type="text"
+                                           class="form-control"
+                                           id="text5"
+                                           placeholder="Custom Link 5 Text"
+                                           aria-describedby="inputGroupPrepend"
+                                           formControlName="text5">
+                                </div>
+                                <!-- * ExtURL 5 * -->
+                                <div class="form-group mt-3">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox"
+                                               class="custom-control-input"
+                                               id="isExtURL5"
+                                               formControlName="isExtURL5">
+                                        <label class="custom-control-label"
+                                               for="isExtURL5">External URL?
+                                        </label>
+                                    </div>
+                                </div>
+
+
+                                <!-- * Button * -->
+                                <div class="form-group mt-5">
+                                    <button class="btn btn-secondary full-width"
+                                            type="submit">
+                                        <i class="fa fa-link"></i>&nbsp;
+                                        Update Navbar Custom Links
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+<!-- * BOTTOM-SHEET * -->
+<ul class="list-group">
+    <li class="list-group-item">
+        <a [routerLink]="['/pages/new']"
+           (click)="openLink($event)">
+            <i class="fal fa-layer-plus"></i> New Page
+        </a>
+    </li>
+
+    <li class="list-group-item">
+        <mat-divider></mat-divider>
+        <a [routerLink]="['/text-section/new']"
+           (click)="openLink($event)">
+            <i class="fal fa-align-justify"></i> New Page Text Section
+        </a>
+    </li>
+
+    <li class="list-group-item">
+        <mat-divider></mat-divider>
+        <a [routerLink]="['/call-to-action/new']"
+           (click)="openLink($event)">
+            <i class="fal fa-text-width"></i> New Page Call To Action
+        </a>
+    </li>
+
+    <li class="list-group-item">
+        <mat-divider></mat-divider>
+        <a [routerLink]="['/home']"
+           (click)="openLink($event)">
+            <i class="fal fa-home"></i> Home Page
+        </a>
+    </li>
+
+    <li class="list-group-item">
+        <mat-divider></mat-divider>
+        <a [routerLink]="['/calendar/new']"
+           (click)="openLink($event)">
+            <i class="fal fa-calendar-plus"></i> New Calendar
+        </a>
+    </li>
+
+    <li class="list-group-item">
+        <mat-divider></mat-divider>
+        <a [routerLink]="['/page-cards/new']"
+           (click)="openLink($event)">
+            <i class="fal fa-window-restore"></i> New Page BlogPost
+        </a>
+    </li>
+
+    <li class="list-group-item">
+        <mat-divider></mat-divider>
+        <a [routerLink]="['/press-releases/new']"
+           (click)="openLink($event)">
+            <i class="fal fa-newspaper"></i> New Press Release
+        </a>
+    </li>
+
+    <li class="list-group-item">
+        <mat-divider></mat-divider>
+        <a [routerLink]="['/image-uploader']"
+           (click)="openLink($event)">
+            <i class="fal fa-images"></i> New File
+        </a>
+    </li>
+</ul>

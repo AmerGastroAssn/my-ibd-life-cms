@@ -1,0 +1,18 @@
+#body, .divarea {
+    font-family: var(--cms-font);
+    font-size: 14px;
+    line-height: 1.5em;
+}
+
+p, p.info, label, body, textarea, li, ul, div {
+    font-family: var(--cms-font);
+}
+
+p.info {
+    font-size: 14px;
+    line-height: 2em;
+}
+
+.div[_ngcontent-c7] {
+    font-family: var(--cms-font);
+}

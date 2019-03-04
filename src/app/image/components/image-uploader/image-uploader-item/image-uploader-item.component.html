@@ -1,0 +1,58 @@
+<!-- * IMAGE-UPLOADER-ITEM * -->
+<div class="row">
+    <div class="container">
+        <div class="form-group">
+            <div class="card image-uploader">
+                <div class="card-body">
+                    <h4 class="card-title mt-0">
+                        Image Uploader
+                    </h4>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="custom-file">
+                                <label class="custom-file-label" *ngIf="!downloadURL">
+                                    Click To Select
+                                </label>
+                                <label class="custom-file-label text-truncate" *ngIf="downloadURL">
+                                    {{ downloadURL | async }}
+                                </label>
+                                <input type="file"
+                                       ddwDropZone
+                                       class="custom-file-input"
+                                       accept=".png, .jpg, jpeg, .gif"
+                                       (change)="uploadImage($event)">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div *ngIf="downloadURL | async as url; else loadingURL">
+                                <p class="pb-2">
+                                    <b>Copy and paste url into the Image URL input below:</b>
+                                </p>
+                                <p>
+                                    <a [href]="url">
+                                        {{ url }}
+                                    </a>
+                                </p>
+                                <p><img [src]="url" style="max-width:100px;"></p>
+                            </div>
+                            <ng-template #loadingURL>
+                                <p class="text-center text-light">
+                                    Upload Image, Then a URL will appear here. Copy and paste that link
+                                    into any Image URL input to use.
+                                </p>
+                            </ng-template>
+                        </div>
+                    </div>
+
+
+                    <div class="mt-4 mb-3" *ngIf="percentage | async as pct">
+                        <progressbar class="progress-striped active"
+                                     [value]="pct"
+                                     type="primary"><i>Image Upload {{ pct | number }}%</i>
+                        </progressbar>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

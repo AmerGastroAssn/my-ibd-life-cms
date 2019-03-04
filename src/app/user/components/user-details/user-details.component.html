@@ -1,0 +1,84 @@
+<!-- * ADMIN-USER-DETAILS * -->
+<div class="row mt-4">
+    <div class="container">
+        <div class="offset-md-10 mb-4">
+            <a class="btn btn-default"
+               [routerLink]="['/users']">
+                <i class="fal fa-arrow-circle-left"></i>&nbsp;All Users
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container mb-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 col-sm-12">
+            <div class="card" *ngIf="user">
+                <div class="card-body">
+                    <div class="btn-group float-right"
+                         role="group"
+                         aria-label="Basic example">
+                        <a class="btn btn-secondary btn-sm"
+                           [routerLink]="['edit']"
+                           *ngIf="user">
+                            <i class="fa fa-pencil"></i>&nbsp;Edit
+                        </a>
+                        <a class="btn btn-warning btn-sm"
+                           [routerLink]="['/users']">
+                            <i class="fa fa-undo"></i>&nbsp;Cancel
+                        </a>
+                        <button class="btn btn-danger btn-sm"
+                                (click)="onDeleteUser()"
+                                *ngIf="isAdmin">
+                            <i class="fa fa-trash"></i>&nbsp;Delete
+                        </button>
+                    </div>
+                    <img class="d-block ui-w-100 rounded-circle img-fluid" [src]="user.photoURL"
+                         [alt]="user.displayName">
+
+                    <table class="table table-striped mt-4">
+                        <tbody>
+                        <tr>
+                            <th scope="col">Username</th>
+                            <td>{{ user.displayName }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">Title</th>
+                            <td>{{ user.title }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">Email</th>
+                            <td>{{ user.email }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">Admin</th>
+                            <td>
+                            <span class="badge badge-outline-success"
+                                  *ngIf="user.admin">
+                                Yes
+                            </span>
+                                <span class="badge badge-outline-danger"
+                                      *ngIf="!user.admin">
+                                No
+                            </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="col">Online</th>
+                            <td>
+                                {{ user.loginDate | date }}
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last time online: {{ user.loginDate | date:'medium' }}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

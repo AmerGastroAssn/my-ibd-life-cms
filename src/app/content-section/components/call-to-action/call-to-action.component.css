@@ -1,0 +1,3 @@
+label, input, small, .form-group * {
+    font-family: var(--cms-font) !important;
+}
