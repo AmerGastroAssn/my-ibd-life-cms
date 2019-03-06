@@ -134,18 +134,18 @@ export class PageNewComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         // Gets Page Categories for Grandchild page selection.
-        this.registerPages$ = this.pageService.getAllRegisterPages();
-        this.newsPages$ = this.pageService.getAllNewsPages();
-        this.exhibitPages$ = this.pageService.getAllExhibitorPages();
-        this.edPages$ = this.pageService.getAllEducationPages();
-        this.attendeePages$ = this.pageService.getAllAttendeePages();
-        this.presPages$ = this.pageService.getAllPresenterPages();
+        // this.registerPages$ = this.pageService.getAllRegisterPages();
+        // this.newsPages$ = this.pageService.getAllNewsPages();
+        // this.exhibitPages$ = this.pageService.getAllExhibitorPages();
+        // this.edPages$ = this.pageService.getAllEducationPages();
+        // this.attendeePages$ = this.pageService.getAllAttendeePages();
+        // this.presPages$ = this.pageService.getAllPresenterPages();
 
         // Get Calendar Titles
-        this.calendar$ = this.calendarService.getAllCalendars();
+        // this.calendar$ = this.calendarService.getAllCalendars();
         // Page Cards:
-        this.pageCards$ = this.cardService.getAllCards();
-        this.pages$ = this.pageService.getAllPages();
+        // this.pageCards$ = this.cardService.getAllCards();
+        // this.pages$ = this.pageService.getAllPages();
 
         // Content Sections:
         this.textSections$ = this.textSectionService.getAllTextSections();
@@ -242,17 +242,17 @@ export class PageNewComponent implements OnInit, OnDestroy {
         this.isExtURL = !this.isExtURL;
     }
 
-    toggleHasCalendar() {
-        this.hasCalendar = !this.hasCalendar;
-    }
-
-    toggleIsGrandchildPage() {
-        this.isGrandchildPage = !this.isGrandchildPage;
-    }
-
-    toggleHasCards() {
-        this.hasCards = !this.hasCards;
-    }
+    // toggleHasCalendar() {
+    //     this.hasCalendar = !this.hasCalendar;
+    // }
+    //
+    // toggleIsGrandchildPage() {
+    //     this.isGrandchildPage = !this.isGrandchildPage;
+    // }
+    //
+    // toggleHasCards() {
+    //     this.hasCards = !this.hasCards;
+    // }
 
 
 }

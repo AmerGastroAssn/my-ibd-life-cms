@@ -58,7 +58,7 @@ export class PageService {
                    .map((changes) => {
                        return changes.map((a) => {
                            const data = a.payload.doc.data() as Page;
-                           data.$key = a.payload.doc.id;
+                           data.id = a.payload.doc.id;
                            return data;
                        });
                    });
@@ -72,7 +72,7 @@ export class PageService {
                     return null;
                 } else {
                     const data = action.payload.data() as Page;
-                    data.uid = action.payload.id;
+                    data.id = action.payload.id;
                     // console.log('data in getPage()', data);
                     return data;
                 }
@@ -85,7 +85,7 @@ export class PageService {
     setPage(formData) {
         this.author = this.authService.getProfile();
 
-        const new$key = this.afs.createId();
+        const newId = this.afs.createId();
         const newURL: string = this.string_to_slug(formData.title);
         const timestampToNum = formData.date.getTime();
 
@@ -95,11 +95,10 @@ export class PageService {
             this.newSlug = `/${formData.category}/${newURL}`;
         }
 
-        // Creates new page with slug as the $key
+        // Creates new page with slug as the id
         const pageRef: AngularFirestoreDocument<Page> = this.afs.doc(`pages/${newURL}`);
         const data: Page = {
-            $key: this.newSlug,
-            uid: new$key,
+            id: newId,
             title: formData.title,
             author: this.author.displayName || formData.author,
             date: timestampToNum,
@@ -137,9 +136,9 @@ export class PageService {
     }
 
 
-    updatePage(formData, uid: string) {
+    updatePage(formData, id: string) {
         this.author = this.authService.getProfile();
-        const new$key = this.afs.createId();
+        const newId = this.afs.createId();
         const titleToSlug: string = this.string_to_slug(formData.title);
         if (formData.isGrandchildPage) {
             this.newSlug = `/${formData.category}/${formData.grandchildURL}/${titleToSlug}`;
@@ -150,8 +149,7 @@ export class PageService {
         if (typeof formData.date === 'number') {
             const timestampToNum = formData.date;
             const data: Page = {
-                $key: this.newSlug,
-                uid: new$key,
+                id: newId,
                 title: formData.title,
                 author: this.author.displayName,
                 date: timestampToNum,
@@ -188,8 +186,7 @@ export class PageService {
         } else {
             const timestampToNum = formData.date.getTime();
             const data: Page = {
-                $key: this.newSlug,
-                uid: new$key,
+                id: newId,
                 title: formData.title,
                 author: this.author.displayName,
                 date: timestampToNum,

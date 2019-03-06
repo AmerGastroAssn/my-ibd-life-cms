@@ -41,9 +41,9 @@ export class SettingsComponent implements OnInit {
                 this.settings = settingsData;
                 // Form:
                 this.settingsForm = this.fb.group({
-                    allowSignup: [this.settings.allowSignup],
-                    allowSettings: [this.settings.allowSettings],
-                    disableAdmin: [this.settings.disableAdmin],
+                    allowSignup: [this.settings.allowSignup || false],
+                    allowSettings: [this.settings.allowSettings || false],
+                    disableAdmin: [this.settings.disableAdmin || false],
                     id: [this.settings.id],
                 });
 

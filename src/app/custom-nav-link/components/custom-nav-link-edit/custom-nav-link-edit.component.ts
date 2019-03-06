@@ -33,7 +33,6 @@ import { CustomNavLinkService } from '../../services/custom-nav-link.service';
 export class CustomNavLinkEditComponent implements OnInit {
     customLinkForm: FormGroup;
     customLink: CustomLink;
-    $key: string;
     uid: string;
     url1: string;
     url2: string;
@@ -50,6 +49,11 @@ export class CustomNavLinkEditComponent implements OnInit {
     isExtURL3: boolean;
     isExtURL4: boolean;
     isExtURL5: boolean;
+    imageUrl1: string;
+    imageUrl2: string;
+    imageUrl3: string;
+    imageUrl4: string;
+    imageUrl5: string;
     favicon = 'fa fa-link';
     sectionName = 'Nav Links';
 
@@ -90,6 +94,11 @@ export class CustomNavLinkEditComponent implements OnInit {
                     isExtURL3: [this.customLink.isExtURL3 || false],
                     isExtURL4: [this.customLink.isExtURL4 || false],
                     isExtURL5: [this.customLink.isExtURL5 || false],
+                    imageUrl1: [this.customLink.imageUrl1 || ''],
+                    imageUrl2: [this.customLink.imageUrl2 || ''],
+                    imageUrl3: [this.customLink.imageUrl3 || ''],
+                    imageUrl4: [this.customLink.imageUrl4 || ''],
+                    imageUrl5: [this.customLink.imageUrl5 || ''],
                 });
 
                 this.url1 = this.customLinkForm.value.url1;
@@ -107,6 +116,11 @@ export class CustomNavLinkEditComponent implements OnInit {
                 this.isExtURL3 = this.customLinkForm.value.isExtURL3;
                 this.isExtURL4 = this.customLinkForm.value.isExtURL4;
                 this.isExtURL5 = this.customLinkForm.value.isExtURL5;
+                this.imageUrl1 = this.customLinkForm.value.imageUrl1;
+                this.imageUrl2 = this.customLinkForm.value.imageUrl2;
+                this.imageUrl3 = this.customLinkForm.value.imageUrl3;
+                this.imageUrl4 = this.customLinkForm.value.imageUrl4;
+                this.imageUrl5 = this.customLinkForm.value.imageUrl5;
 
             }
         });

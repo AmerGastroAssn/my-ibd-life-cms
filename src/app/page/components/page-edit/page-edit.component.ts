@@ -56,7 +56,7 @@ export class PageEditComponent implements OnInit {
     photoURL: any;
     bannerPhotoURL: any;
     category: string;
-    uid: string;
+    id: string;
     published: boolean;
     template: string;
     url: string;
@@ -174,23 +174,23 @@ export class PageEditComponent implements OnInit {
         this.disableAdminOnEdit = this.settingsService.getAdminSettings().disableAdmin;
 
         this.pageCards$ = this.cardService.getAllCards();
-        this.calendars$ = this.calendarService.getAllCalendars();
+        // this.calendars$ = this.calendarService.getAllCalendars();
         this.textSections$ = this.textSectionService.getAllTextSections();
         this.textSectionPreviews$ = this.textSectionService.getAllTextSections();
         this.cta$ = this.ctaService.getAllCtas();
         this.ctaPreviews$ = this.ctaService.getAllCtas();
 
         // Get id from url
-        this.uid = this.route.snapshot.params['id'];
+        this.id = this.route.snapshot.params['id'];
         // Get Page
-        this.pageService.getPage(this.uid).subscribe((page) => {
+        this.pageService.getPage(this.id).subscribe((page) => {
             if (page !== null) {
                 this.page = page;
                 const newURL: string = this.pageService.string_to_slug(page.title);
 
                 // Form:
                 this.editPageForm = this.fb.group({
-                    uid: [this.page.uid],
+                    id: [this.page.id],
                     title: [this.page.title,
                             Validators.compose([
                                 Validators.required, Validators.minLength(5)
@@ -198,7 +198,7 @@ export class PageEditComponent implements OnInit {
                     ],
                     author: [this.page.author],
                     date: [this.page.date || ''],
-                    bannerPhotoURL: [this.page.bannerPhotoURL || 'https://s3.amazonaws.com/DDW/ddw-org/images/banners/interior-bg.jpg'],
+                    bannerPhotoURL: [this.page.bannerPhotoURL || ''],
                     photoURL: [this.page.photoURL || ''],
                     category: [this.page.category, Validators.required],
                     published: [this.page.published || false],
@@ -224,7 +224,7 @@ export class PageEditComponent implements OnInit {
                     showWidgetSnippet: [this.page.showWidgetSnippet || false],
                 });
 
-                this.uid = this.editPageForm.value.uid;
+                this.id = this.editPageForm.value.id;
                 this.title = this.editPageForm.value.title;
                 this.author = this.editPageForm.value.author;
                 this.date = this.editPageForm.value.date.valueOf();
@@ -292,51 +292,8 @@ export class PageEditComponent implements OnInit {
                 }
 
 
-                // Page Cards (Preview):
-                // console.log('something');
-                // if (this.page.hasCards) {
-                //     console.log('hascards');
-                //     this.pagesCardService.getPageCard(this.page.cardOption1)
-                //         .subscribe((card) => {
-                //             console.log('card1', card);
-                //             this.pageCard1 = card;
-                //         });
-                //     this.pagesCardService.getPageCard(this.page.cardOption2)
-                //         .subscribe((card) => {
-                //             this.pageCard2 = card;
-                //         });
-                //     this.pagesCardService.getPageCard(this.page.cardOption3)
-                //         .subscribe((card) => {
-                //             this.pageCard3 = card;
-                //         });
-                // }
-
-
             } // END this.page
 
-            // Shows only the grandchildren of that section versus all (saves on read/writes).
-            switch (page.category) {
-                case 'register':
-                    this.pages$ = this.pageService.getAllRegisterPages();
-                    break;
-                case 'attendee-planning':
-                    this.pages$ = this.pageService.getAllAttendeePages();
-                    break;
-                case 'education':
-                    this.pages$ = this.pageService.getAllEducationPages();
-                    break;
-                case 'exhibitor-information':
-                    this.pages$ = this.pageService.getAllExhibitorPages();
-                    break;
-                case 'news':
-                    this.pages$ = this.pageService.getAllNewsPages();
-                    break;
-                case 'presenters':
-                    this.pages$ = this.pageService.getAllPresenterPages();
-                    break;
-                default:
-                    this.pages$ = null;
-            }
         });
 
 
@@ -351,7 +308,7 @@ export class PageEditComponent implements OnInit {
             });
         } else {
             console.log('formData', formData);
-            this.pageService.updatePage(formData, this.page.uid);
+            this.pageService.updatePage(formData, this.page.id);
             this.editPageForm.reset(this.editPageForm);
             this.sbAlert.open('Page was updated!', 'Dismiss', {
                 duration: 3000,
@@ -368,29 +325,11 @@ export class PageEditComponent implements OnInit {
         }
     }
 
-    onFileSelection(event) {
-        // this.pageService.fileSelection(event);
-    }
 
     onTogglePagePreview() {
         this.togglePagePreview = !this.togglePagePreview;
     }
 
-    isExtURLToggle() {
-        this.page.isExtURL = !this.page.isExtURL;
-    }
-
-    toggleHasCalendar() {
-        this.page.hasCalendar = !this.page.hasCalendar;
-    }
-
-    toggleHasCards() {
-        this.page.hasCards = !this.page.hasCards;
-    }
-
-    toggleIsGrandchildPage() {
-        this.page.isGrandchildPage = !this.page.isGrandchildPage;
-    }
 
     onTsPreview(id: string): void {
         this.textSectionService.getTextSection(id).subscribe((ts) => {

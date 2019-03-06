@@ -1,6 +1,11 @@
 export class CustomLink {
     constructor(
         public $key: string,
+        public imageUrl1: string,
+        public imageUrl2: string,
+        public imageUrl3: string,
+        public imageUrl4: string,
+        public imageUrl5: string,
         public isExtURL1: boolean,
         public isExtURL2: boolean,
         public isExtURL3: boolean,

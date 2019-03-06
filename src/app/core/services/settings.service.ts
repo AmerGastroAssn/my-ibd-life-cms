@@ -29,7 +29,7 @@ export class SettingsService {
         private afAuth: AngularFireAuth,
     ) {
 
-        this.settings$key = 'YgCYgsItfFPq4DkNCHZq';
+        this.settings$key = 'j2u1SKOP7DOvvXY8Vrpc';
         // Checks authentication of user and get's ID.
         this.user$ = this.afAuth.authState.pipe(
             switchMap(user => {

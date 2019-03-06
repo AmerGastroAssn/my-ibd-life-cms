@@ -23,7 +23,6 @@ import { PageService } from '../../services/page.service';
 export class PageDetailsComponent implements OnInit, AfterContentInit {
     id: string;
     page: Page;
-    uid: string;
     calendar$: Observable<Calendar[]>;
     calendar: Calendar;
     calendarTitle: string;
@@ -276,7 +275,7 @@ export class PageDetailsComponent implements OnInit, AfterContentInit {
     }
 
     onDeletePage() {
-        this.pageService.deletePage(this.page.uid);
+        this.pageService.deletePage(this.page.id);
     }
 
 }
