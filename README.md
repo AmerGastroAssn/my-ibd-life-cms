@@ -3,7 +3,7 @@
 
 Custom built CMS
 
-Built with Angular 6, Firebase (AngularFire 4), Bootstrap 4, ngx-bootstrap and Angular Material Design.
+Built with Angular 7, Firebase (AngularFire 4), Bootstrap 4, ngx-bootstrap and Angular Material Design.
 
 **To Use:**
 
