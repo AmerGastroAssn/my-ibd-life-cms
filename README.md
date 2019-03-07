@@ -9,12 +9,12 @@ Built with Angular 7, Firebase (AngularFire 4), Bootstrap 4, ngx-bootstrap and A
 
 Open up your terminal and clone the project:
 
-    git clone git@github.com:AmerGastroAssn/ddw-org-cms.git
+    git clone git@github.com:AmerGastroAssn/my-ibd-life-cms.git
 
 
 Rename project to whatever you want:
 
-    mv ddw-org-cms new-project-name
+    mv my-ibd-life-cms new-project-name
 
 
 Change/Move into project directory:
