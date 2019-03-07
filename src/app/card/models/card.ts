@@ -1,16 +1,13 @@
 export class Card {
     constructor(
+        public author: string,
         public id: string,
+        public imageUrl: string,
+        public isExtUrl: boolean,
+        public url: string,
         public orderNumber: number,
         public title: string,
-        public body: string,
-        public photoURL: string,
-        public buttonString: string,
-        public url: string,
-        public updatedAt: any,
-        public author: string,
-        public isExtURL: boolean,
-        public $key?: string,
+        public updatedAt: number = Date.now(),
     ) {
     }
 }

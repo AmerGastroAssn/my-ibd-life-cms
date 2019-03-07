@@ -1,6 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { UserService } from '../../../user/services/user.service';
 import { Card } from '../../models/card';
 import { CardService } from '../../services/card.service';
 
@@ -23,23 +24,37 @@ import { CardService } from '../../services/card.service';
 
             // fade out when destroyed. this could also be written as transition('void => *')
             transition(':leave',
-              animate(300, style({ opacity: 0 })))
+                animate(300, style({ opacity: 0 })))
         ])
     ]
 })
 export class CardListComponent implements OnInit {
-    pageCards$: Observable<Card[]>;
+    cards: Card[];
     favicon = 'fa fa-window-restore';
     sectionName = 'Cards';
+    displayName: string;
 
     constructor(
-      private cardService: CardService
+        private cardService: CardService,
+        private userService: UserService,
     ) {
     }
 
 
     ngOnInit() {
-        this.pageCards$ = this.cardService.getAllCards();
+        this.cardService.getAllCards().subscribe((cards: Card[]) => {
+            if (cards) {
+                this.cards = cards;
+                cards.forEach((cardArr: Card) => {
+                    if (cardArr) {
+                        this.userService.getUser(cardArr.author).subscribe((user) => {
+                            this.displayName = user.displayName;
+                        });
+                    }
+                })
+            }
+        })
+
     }
 
     onDeletePageCard(id: string, title: string) {

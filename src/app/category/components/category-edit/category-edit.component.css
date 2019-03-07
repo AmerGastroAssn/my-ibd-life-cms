@@ -14,3 +14,7 @@ p {
     border: 1px solid #eaeaea;
     border-top-color: #fcfcfc;
 }
+
+.showCards, input#showCards, label.custom-control-label {
+    cursor: pointer;
+}

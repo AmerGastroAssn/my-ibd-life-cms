@@ -36,21 +36,16 @@ import { CardService } from '../../services/card.service';
 })
 export class CardEditComponent implements OnInit {
     editCardForm: FormGroup;
-    card: Card;
-    photoURL: string;
-    title: string;
-    body: string;
-    buttonString: string;
-    url: string;
-    orderNumber: number;
-    id: string;
-    $key: string;
-    isExtURL: boolean;
-    // State for dropzone CSS toggling
-    isHovering: boolean;
-    isInvalid: boolean;
     value: any;
-
+    private card: Card;
+    private author: string;
+    private id: string;
+    private imageUrl: string;
+    private isExtUrl: boolean;
+    private url: string;
+    private orderNumber: number;
+    private title: string;
+    private updatedAt: number = Date.now();
 
     constructor(
         private pageService: PageService,
@@ -64,7 +59,7 @@ export class CardEditComponent implements OnInit {
         private imageService: ImageService,
     ) {
         // Get id from url
-        this.$key = this.route.snapshot.params['id'];
+        this.id = this.route.snapshot.params['id'];
     }
 
     // For Form Validations
@@ -74,41 +69,37 @@ export class CardEditComponent implements OnInit {
 
     ngOnInit() {
         // Card1 Form:
-        this.cardService.getPageCard(this.$key).subscribe((card) => {
-            this.card = card;
+        this.cardService.getPageCard(this.id).subscribe((card: Card) => {
+            if (card) {
+                this.card = card;
 
-            this.editCardForm = this.fb.group({
-                orderNumber: [this.card.orderNumber || ''],
-                title: [this.card.title,
-                        Validators.compose([
-                            Validators.required, Validators.minLength(3)
-                        ])
-                ],
-                body: [this.card.body,
-                       Validators.compose([
-                           Validators.required, Validators.minLength(10)
-                       ])
-                ],
-                photoURL: [this.card.photoURL, Validators.required],
-                buttonString: [this.card.buttonString, Validators.required],
-                url: [this.card.url],
-                isExtURL: [this.card.isExtURL || false],
-            });
+                this.editCardForm = this.fb.group({
+                    author: [this.card.author || ''],
+                    id: [this.card.id || ''],
+                    imageUrl: [this.card.imageUrl || ''],
+                    isExtUrl: [this.card.isExtUrl || false],
+                    url: [this.card.url || ''],
+                    orderNumber: [this.card.orderNumber || 0],
+                    title: [this.card.title, Validators.required],
+                    updatedAt: [Date.now()],
+                });
+            }
 
+            this.author = this.editCardForm.value.author;
+            this.id = this.editCardForm.value.id;
+            this.imageUrl = this.editCardForm.value.imageUrl;
+            this.isExtUrl = this.editCardForm.value.isExtUrl;
+            this.url = this.editCardForm.value.url;
             this.orderNumber = this.editCardForm.value.orderNumber;
             this.title = this.editCardForm.value.title;
-            this.body = this.editCardForm.value.body;
-            this.photoURL = this.editCardForm.value.photoURL;
-            this.buttonString = this.editCardForm.value.buttonString;
-            this.url = this.editCardForm.value.url;
-            this.isExtURL = this.editCardForm.value.isExtURL;
+            this.updatedAt = this.editCardForm.value.updatedAt;
         });
 
     }
 
     onUpdatePageCard(formData: Card) {
         if (this.editCardForm.valid) {
-            this.cardService.updatePageCard(formData, this.$key);
+            this.cardService.updatePageCard(formData, this.id);
             this.editCardForm.reset();
         } else {
             this.sbAlert.open('Form Data is invalid', 'Dismiss', {
@@ -119,7 +110,7 @@ export class CardEditComponent implements OnInit {
         }
     }
 
-    onDeletePageCard(id, title) {
+    onDeletePageCard(id: string, title: string) {
         this.cardService.deletePageCard(id, title);
     }
 }

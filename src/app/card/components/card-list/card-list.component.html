@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <h4 class="font-weight-bold py-3 mb-4 pl-2">
-                        All Page Cards
+                        All Rebate Cards
                     </h4>
                 </div>
                 <!-- * Sort Filter * -->
@@ -47,55 +47,55 @@
                     <tr>
                         <th scope="col" style="vertical-align: top;">Image</th>
                         <th scope="col" style="vertical-align: top;">Title</th>
-                        <th scope="col" style="vertical-align: top;">Button Text</th>
+                        <th scope="col" style="vertical-align: top;">Url</th>
                         <th scope="col" style="vertical-align: top;">Author</th>
                         <th scope="col" style="vertical-align: top;" class="text-center">Ext URL</th>
                         <th scope="col" style="vertical-align: top;" class="text-center">Options</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr *ngFor="let card of pageCards$ | async">
+                    <tr *ngFor="let card of cards">
                         <td scope="col">
-                            <a [routerLink]="['/cards/', card.$key, 'edit']">
-                                <img [src]="card.photoURL" [alt]="card.title" style="max-width:50px;">
+                            <a [routerLink]="['/cards/', card.id, 'edit']">
+                                <img [src]="card.imageUrl" [alt]="card.title" style="max-width:50px;">
                             </a>
                         </td>
                         <td scope="col">
-                            <a [routerLink]="['/cards/', card.$key, 'edit']"
+                            <a [routerLink]="['/cards/', card.id, 'edit']"
                                class="text-dark text-decoration-none">
                                 {{ card.title }}
                             </a>
                         </td>
                         <td scope="col">
-                            <a [routerLink]="['/cards/', card.$key, 'edit']"
+                            <a [routerLink]="['/cards/', card.id, 'edit']"
                                class="text-dark text-decoration-none">
-                                {{ card.buttonString }}
+                                {{ card.url }}
                             </a>
                         </td>
                         <td scope="col">
                             <span *ngIf="card.author">
-                                {{ card.author }}
+                                {{ displayName }}
                             </span>
                         </td>
                         <td scope="col" style="text-align:center;">
                             <span class="badge badge-outline-success"
-                                  *ngIf="card.isExtURL">
+                                  *ngIf="card.isExtUrl">
                                 <i class="fa fa-check-circle"></i>
                             </span>
                             <span class="badge badge-outline-danger"
-                                  *ngIf="!card.isExtURL">
+                                  *ngIf="!card.isExtUrl">
                                 <i class="fa fa-times-circle"></i>
                             </span>
                         </td>
                         <td class="text-center">
                             <a class="btn btn-default btn-sm icon-btn md-btn-flat user-tooltip mt-1 ml-2"
                                matTooltip="View card details"
-                               [routerLink]="['/cards/', card.$key, 'edit']">
+                               [routerLink]="['/cards/', card.id, 'edit']">
                                 <i class="fa fa-pencil-alt"></i>
                             </a>
                             <a class="btn btn-default text-danger btn-sm icon-btn md-btn-flat user-tooltip ml-2 mt-1 text-white"
                                matTooltip="Delete Card?"
-                               (click)="onDeletePageCard(card.$key, card.title)">
+                               (click)="onDeletePageCard(card.id, card.title)">
                                 <i class="fa fa-trash-alt"></i>
                             </a>
                         </td>

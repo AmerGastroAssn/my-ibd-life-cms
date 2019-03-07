@@ -14,7 +14,7 @@ export class CardService {
     pageCardCollection: AngularFirestoreCollection<Card>;
     pageCardDoc: AngularFirestoreDocument<Card>;
     pageCard$: Observable<Card>;
-    pageCards$: Observable<Card[]>;
+    cards$: Observable<Card[]>;
     loggedInUser: string;
     uid: string;
 
@@ -35,27 +35,27 @@ export class CardService {
     }
 
     getAllCards(): Observable<Card[]> {
-        this.pageCardCollection = this.afs.collection<Card>('pageCards', (ref) => {
+        this.pageCardCollection = this.afs.collection<Card>('cards', (ref) => {
             return ref.orderBy('title', 'asc');
         });
         return this.pageCardCollection.valueChanges();
     }
 
     getCardsByTitle(title: string): Observable<Card[]> {
-        this.pageCardCollection = this.afs.collection<Card>('pageCards', ref => {
+        this.pageCardCollection = this.afs.collection<Card>('cards', ref => {
             return ref.where('title', '==', `${title}`);
         });
         return this.pageCardCollection.valueChanges();
     }
 
-    getPageCard(key: string): Observable<Card> {
-        this.pageCardDoc = this.afs.doc<Card>(`pageCards/${key}`);
+    getPageCard(id: string): Observable<Card> {
+        this.pageCardDoc = this.afs.doc<Card>(`cards/${id}`);
         this.pageCard$ = this.pageCardDoc.snapshotChanges().map((action) => {
             if (action.payload.exists === false) {
                 return null;
             } else {
                 const data = action.payload.data() as Card;
-                data.$key = action.payload.id;
+                data.id = action.payload.id;
                 return data;
             }
         });
@@ -64,25 +64,22 @@ export class CardService {
 
 
     updatePageCard(formData, id): void {
-        const cardRef: AngularFirestoreDocument<Card> = this.afs.doc(`pageCards/${id}`);
+        const cardRef: AngularFirestoreDocument<Card> = this.afs.doc(`cards/${id}`);
         const data: Card = {
-            $key: id,
-            orderNumber: formData.orderNumber,
-            title: formData.title,
-            body: formData.body,
-            photoURL: formData.photoURL,
-            buttonString: formData.buttonString,
-            url: formData.url,
+            author: this.uid,
             id: id,
+            imageUrl: formData.imageUrl,
+            isExtUrl: formData.isExtUrl || false,
+            url: formData.url,
+            orderNumber: formData.orderNumber || 0,
+            title: formData.title,
             updatedAt: Date.now(),
-            author: this.loggedInUser,
-            isExtURL: formData.isExtURL
         };
 
         cardRef.set(data, { merge: true })
                .then(() => {
                    this.router.navigate(['/cards']);
-                   this.sbAlert.open('Page Card Updated!', 'Dismiss', {
+                   this.sbAlert.open('Rebate Card Updated!', 'Dismiss', {
                        duration: 3000,
                        verticalPosition: 'bottom',
                        panelClass: ['snackbar-success']
@@ -100,38 +97,34 @@ export class CardService {
 
     setPageCard(formData): Promise<void> {
         const newId = this.afs.createId();
-        const calRef: AngularFirestoreDocument<Card> = this.afs.doc(`pageCards/${newId}`);
+        const calRef: AngularFirestoreDocument<Card> = this.afs.doc(`cards/${newId}`);
 
         const data: Card = {
-            $key: newId,
-            orderNumber: formData.orderNumber,
-            title: formData.title,
-            body: formData.body,
-            photoURL: formData.photoURL,
-            buttonString: formData.buttonString,
-            url: formData.url,
+            author: this.uid,
             id: newId,
+            imageUrl: formData.imageUrl,
+            isExtUrl: formData.isExtUrl || false,
+            url: formData.url,
+            orderNumber: formData.orderNumber || 0,
+            title: formData.title,
             updatedAt: Date.now(),
-            author: this.loggedInUser,
-            isExtURL: formData.isExtURL
         };
 
         console.log('data', data);
         return calRef.set(data)
                      .then(() => {
                          this.router.navigate(['/cards']);
-                         this.sbAlert.open('Page Card Created!', 'Dismiss', {
+                         this.sbAlert.open('Rebate Card Created!', 'Dismiss', {
                              duration: 3000,
                              verticalPosition: 'bottom',
                              panelClass: ['snackbar-success']
                          });
-                         console.log('Page Card Created!', data);
                      })
-                     .catch((error) => console.log(`ERROR~sPC: `, error));
+                     .catch((error) => console.error(`ERROR~sPC: `, error));
     }
 
     deletePageCard(id: string, title: string): void {
-        this.pageCardDoc = this.afs.doc<Card>(`pageCards/${id}`);
+        this.pageCardDoc = this.afs.doc<Card>(`cards/${id}`);
         if (confirm(`Are you sure you want to delete (${title})? This is irreversible.`)) {
             this.pageCardDoc.delete()
                 .then(() => {
@@ -148,7 +141,7 @@ export class CardService {
                         verticalPosition: 'bottom',
                         panelClass: ['snackbar-danger']
                     });
-                    console.log(`ERROR~dPC: `, error);
+                    console.error(`ERROR~dPC: `, error);
                 });
         }
     }

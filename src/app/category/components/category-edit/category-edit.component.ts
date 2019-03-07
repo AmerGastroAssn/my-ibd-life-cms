@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Card } from '../../../card/models/card';
+import { CardService } from '../../../card/services/card.service';
 import { CalColumnValues } from '../../models/CalColumnValues';
 import { Category } from '../../models/Category';
 import { CategoryService } from '../../services/category.service';
@@ -50,12 +53,14 @@ export class CategoryEditComponent implements OnInit {
     private imageUrl: string;
     private name: string;
     private showCards: boolean;
+    private cards$: Observable<Card[]>;
 
     constructor(
         private categoryService: CategoryService,
         private fb: FormBuilder,
         private route: ActivatedRoute,
         private sbAlert: MatSnackBar,
+        private cardService: CardService,
     ) {
         // Get id from url
         this.id = this.route.snapshot.params['id'];
@@ -78,7 +83,7 @@ export class CategoryEditComponent implements OnInit {
                     id: [this.id],
                     imageUrl: [this.category.imageUrl || ''],
                     name: [this.category.name, Validators.required],
-                    showCards: [this.category.showCards || false],
+                    showCards: [this.category.showCards],
                 });
 
                 this.authorId = this.updateCatForm.value.authorId;
@@ -102,17 +107,12 @@ export class CategoryEditComponent implements OnInit {
     }
 
     ngOnInit() {
-
-        // Get Event 1
         this.categoryService.getCategory(this.id)
             .subscribe((calInfo) => {
                 this.category = calInfo;
             });
-        // // Get Column Values
-        // this.categoryService.getCalColumnValues()
-        //     .subscribe((values) => {
-        //         this.calColumnValues = values;
-        //     });
+
+        this.cards$ = this.cardService.getAllCards();
     }
 
 

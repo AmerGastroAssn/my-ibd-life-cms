@@ -28,7 +28,7 @@ import { CategoryService } from '../../services/category.service';
     ]
 })
 export class CategoryListComponent implements OnInit {
-    categories$: Category[];
+    categories: Category[];
     favicon = 'fa fa-tags';
     sectionName = 'All Categories';
 
@@ -40,7 +40,7 @@ export class CategoryListComponent implements OnInit {
     ngOnInit() {
         this.categoryService.getAllCategories()
             .subscribe((dates) => {
-                this.categories$ = dates;
+                this.categories = dates;
             });
     }
 

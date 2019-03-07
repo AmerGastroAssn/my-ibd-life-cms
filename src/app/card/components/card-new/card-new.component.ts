@@ -17,34 +17,28 @@ import { CardService } from '../../services/card.service';
 })
 export class CardNewComponent implements OnInit {
     newCardForm: FormGroup;
-    photoURL: string;
-    title: string;
-    body: string;
-    buttonString: string;
-    url: string;
-    orderNumber: number;
-    uid: string;
-    $key: string;
-    author: string;
-    updatedAt: any;
-    isExtURL: boolean;
     // State for dropzone CSS toggling
     isHovering: boolean;
     isInvalid: boolean;
     value: any;
-
     card: Card = {
+        author: '',
         id: '',
+        imageUrl: '',
+        isExtUrl: false,
+        url: '',
         orderNumber: 0,
         title: '',
-        body: '',
-        photoURL: '',
-        buttonString: '',
-        url: '',
-        updatedAt: '',
-        author: '',
-        isExtURL: false,
+        updatedAt: Date.now(),
     };
+    private author: string;
+    private id: string;
+    private imageUrl: string;
+    private isExtUrl: boolean;
+    private url: string;
+    private orderNumber: number;
+    private title: string;
+    private updatedAt: number = Date.now();
 
     constructor(
         private pageService: PageService,
@@ -67,30 +61,25 @@ export class CardNewComponent implements OnInit {
 
     ngOnInit() {
         this.newCardForm = this.fb.group({
-            orderNumber: [this.orderNumber || ''],
-            title: [this.title,
-                    Validators.compose([
-                        Validators.required, Validators.minLength(3)
-                    ])
-            ],
-            body: [this.body,
-                   Validators.compose([
-                       Validators.required, Validators.minLength(10)
-                   ])
-            ],
-            photoURL: [this.photoURL, Validators.required],
-            buttonString: [this.buttonString, Validators.required],
-            url: [this.url],
-            isExtURL: [this.isExtURL || false],
+            author: [''],
+            id: [''],
+            imageUrl: [''],
+            isExtUrl: [false],
+            url: [''],
+            orderNumber: [0],
+            title: ['', Validators.required],
+            updatedAt: [Date.now()],
         });
 
+        this.author = this.newCardForm.value.author;
+        this.id = this.newCardForm.value.id;
+        this.imageUrl = this.newCardForm.value.imageUrl;
+        this.isExtUrl = this.newCardForm.value.isExtUrl;
+        this.url = this.newCardForm.value.url;
         this.orderNumber = this.newCardForm.value.orderNumber;
         this.title = this.newCardForm.value.title;
-        this.body = this.newCardForm.value.body;
-        this.photoURL = this.newCardForm.value.photoURL;
-        this.buttonString = this.newCardForm.value.buttonString;
-        this.url = this.newCardForm.value.url;
-        this.isExtURL = this.newCardForm.value.isExtURL;
+        this.updatedAt = this.newCardForm.value.updatedAt;
+
 
     }
 
@@ -106,8 +95,6 @@ export class CardNewComponent implements OnInit {
                 .then(() => this.newCardForm.reset())
                 .catch((error) => console.log(error));
         }
-
-
     }
 
 

@@ -33,9 +33,9 @@
                     loading...
                 </div>
             </ng-template>
-            <div class="card bg-lighter">
+            <div class="card">
                 <div class="card-body">
-                    <div class="card inner-card">
+                    <div class="card inner-card bg-lighter">
                         <div class="card-body">
                             <form (ngSubmit)="onCategoryCreate(newCatForm.value)"
                                   [formGroup]="newCatForm"
@@ -77,6 +77,7 @@
                                         <input type="checkbox"
                                                class="custom-control-input"
                                                id="showCards"
+                                               [(ngModel)]="showCards"
                                                formControlName="showCards">
                                         <label class="custom-control-label"
                                                for="showCards">Show <b>Rebate Program Cards</b> on Page?
@@ -86,7 +87,7 @@
 
                                 <!-- * Date 1 * -->
                                 <!-- * TODO: Add options via ngFor * -->
-                                <mat-expansion-panel>
+                                <mat-expansion-panel [expanded]="showCards">
                                     <mat-expansion-panel-header class="bg-light">
                                         <mat-panel-title>
                                             <div class="fa fa-hands-usd"></div>
@@ -99,29 +100,37 @@
                                         <div class="col-md-3">
                                             <select class="form-control"
                                                     formControlName="card1">
-                                                <option value="">Select Card 1</option>
-                                                <option></option>
+                                                <option value="">-- Select Card 1 --</option>
+                                                <option [value]="card.id" *ngFor="let card of cards$ | async">
+                                                    {{ card.title }}
+                                                </option>
                                             </select>
                                         </div>
                                         <div class="col-md-3">
                                             <select class="form-control"
                                                     formControlName="card2">
-                                                <option value="">Select Card 2</option>
-                                                <option></option>
+                                                <option value="">-- Select Card 2 --</option>
+                                                <option [value]="card.id" *ngFor="let card of cards$ | async">
+                                                    {{ card.title }}
+                                                </option>
                                             </select>
                                         </div>
                                         <div class="col-md-3">
                                             <select class="form-control"
                                                     formControlName="card3">
-                                                <option value="">Select Card 3</option>
-                                                <option></option>
+                                                <option value="">-- Select Card 3 --</option>
+                                                <option [value]="card.id" *ngFor="let card of cards$ | async">
+                                                    {{ card.title }}
+                                                </option>
                                             </select>
                                         </div>
                                         <div class="col-md-3">
                                             <select class="form-control"
                                                     formControlName="card4">
-                                                <option value="">Select Card 4</option>
-                                                <option></option>
+                                                <option value="">-- Select Card 4 --</option>
+                                                <option [value]="card.id" *ngFor="let card of cards$ | async">
+                                                    {{ card.title }}
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
@@ -129,29 +138,37 @@
                                         <div class="col-md-3">
                                             <select class="form-control"
                                                     formControlName="card5">
-                                                <option value="">Select Card 5</option>
-                                                <option></option>
+                                                <option value="">-- Select Card 5 --</option>
+                                                <option [value]="card.id" *ngFor="let card of cards$ | async">
+                                                    {{ card.title }}
+                                                </option>
                                             </select>
                                         </div>
                                         <div class="col-md-3">
                                             <select class="form-control"
                                                     formControlName="card6">
-                                                <option value="">Select Card 6</option>
-                                                <option></option>
+                                                <option value="">-- Select Card 6 --</option>
+                                                <option [value]="card.id" *ngFor="let card of cards$ | async">
+                                                    {{ card.title }}
+                                                </option>
                                             </select>
                                         </div>
                                         <div class="col-md-3">
                                             <select class="form-control"
                                                     formControlName="card7">
-                                                <option value="">Select Card 7</option>
-                                                <option></option>
+                                                <option value="">-- Select Card 7 --</option>
+                                                <option [value]="card.id" *ngFor="let card of cards$ | async">
+                                                    {{ card.title }}
+                                                </option>
                                             </select>
                                         </div>
                                         <div class="col-md-3">
                                             <select class="form-control"
                                                     formControlName="card8">
-                                                <option value="">Select Card 8</option>
-                                                <option></option>
+                                                <option value="">-- Select Card 8 --</option>
+                                                <option [value]="card.id" *ngFor="let card of cards$ | async">
+                                                    {{ card.title }}
+                                                </option>
                                             </select>
                                         </div>
 

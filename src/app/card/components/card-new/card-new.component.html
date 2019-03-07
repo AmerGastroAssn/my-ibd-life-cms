@@ -25,7 +25,7 @@
                     <div class="card bg-lighter inner-card">
                         <div class="card-body">
                             <div class="card-header-title">
-                                <h4 class="pb-2">New Page Card
+                                <h4 class="pb-2">New Card
                                     <small class="text-secondary"></small>
                                 </h4>
                                 <hr class="inset-hr mb-3">
@@ -33,23 +33,22 @@
                             <form [formGroup]="newCardForm"
                                   (ngSubmit)="onCreateCard(newCardForm.value)">
                                 <div class="form-group">
-
                                     <div class="form-group">
                                         <div class="input-group flex-nowrap">
                                             <div class="input-group-prepend">
                                             <span class="input-group-text"
-                                                  id="photoURL">
+                                                  id="imageUrl">
                                                 <i class="fa fa-image"></i>
                                             </span>
                                             </div>
                                             <input type="url"
                                                    class="form-control"
-                                                   placeholder="Image URL eg: https://"
-                                                   aria-label="photoURL"
+                                                   placeholder="Image URL eg: https://icon.png"
+                                                   aria-label="imageUrl"
                                                    aria-describedby="addon-wrapping"
-                                                   [class.invalid]="!f.photoURL.valid && f.photoURL.touched"
-                                                   [(ngModel)]="card.photoURL"
-                                                   formControlName="photoURL">
+                                                   [(ngModel)]="card.imageUrl"
+                                                   [class.invalid]="!f.imageUrl.valid && f.imageUrl.touched"
+                                                   formControlName="imageUrl">
                                         </div>
                                     </div>
                                 </div>
@@ -60,50 +59,20 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"
                                                   id="title">
-                                                <i class="fa fa-h1"></i>
-                                            </span>
-                                        </div>
-                                        <input type="text"
-                                               class="form-control"
-                                               placeholder="Card Title Text"
-                                               aria-label="title"
-                                               aria-describedby="addon-wrapping"
-                                               [class.invalid]="!f.title.valid && f.title.touched"
-                                               [(ngModel)]="card.title"
-                                               formControlName="title">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <textarea type="text"
-                                              rows="5"
-                                              placeholder="Body copy here..."
-                                              class="form-control"
-                                              [class.invalid]="!f.body.valid && f.body.touched"
-                                              [(ngModel)]="card.body"
-                                              formControlName="body">
-                                </textarea>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="input-group flex-nowrap">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"
-                                                  id="buttonString">
                                                 <i class="fa fa-font"></i>
                                             </span>
                                         </div>
                                         <input type="text"
                                                class="form-control"
-                                               placeholder="Learn More"
-                                               aria-label="buttonString"
-                                               aria-describedby="buttonString"
-                                               [class.invalid]="!f.buttonString.valid && f.buttonString.touched"
-                                               [(ngModel)]="card.buttonString"
-                                               formControlName="buttonString">
+                                               placeholder="My IBD Rebate"
+                                               aria-label="title"
+                                               required
+                                               aria-describedby="addon-wrapping"
+                                               [(ngModel)]="card.title"
+                                               [class.invalid]="!f.title.valid && f.title.touched"
+                                               formControlName="title">
                                     </div>
                                 </div>
-
 
                                 <div class="form-group">
                                     <div class="input-group flex-nowrap">
@@ -115,11 +84,11 @@
                                         </div>
                                         <input type="url"
                                                class="form-control"
-                                               placeholder="https://"
+                                               placeholder="https://gastro.org"
                                                aria-label="url"
                                                aria-describedby="url"
-                                               [class.invalid]="!f.url.valid && f.url.touched"
                                                [(ngModel)]="card.url"
+                                               [class.invalid]="!f.url.valid && f.url.touched"
                                                formControlName="url">
                                     </div>
                                 </div>
@@ -130,11 +99,11 @@
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox"
                                                class="custom-control-input ext-url"
-                                               id="isExtURL"
-                                               [(ngModel)]="card.isExtURL"
-                                               formControlName="isExtURL">
+                                               id="isExtUrl"
+                                               [(ngModel)]="card.isExtUrl"
+                                               formControlName="isExtUrl">
                                         <label class="custom-control-label ext-url"
-                                               for="isExtURL">External URL?
+                                               for="isExtUrl">External URL?
                                         </label>
                                     </div>
                                 </div>
@@ -151,15 +120,15 @@
             </div>
         </div>
         <div class="col-md-6">
-            <!-- * Page Card Item * -->
+            <!-- * Card Item * -->
             <div class="card card-inner bg-lighter">
                 <div class="card-body">
                     <h6 class="alert alert-dark-dark text-center"
-                        *ngIf="card && card.isExtURL">
+                        *ngIf="card.isExtUrl">
                         <i class="fa fa-check-square"></i> &nbsp;External URL
                     </h6>
                     <h6 class="alert alert-dark text-center"
-                        *ngIf="card && !card.isExtURL">
+                        *ngIf="!card.isExtUrl">
                         <i class="fa fa-times"></i> &nbsp;External URL
                     </h6>
                     <h4 class="card-header-title">Card Preview</h4>
@@ -176,24 +145,26 @@
                     </div>
                 </ng-template>
                 <div class="card inner-card ml-4 mr-4 mb-4 mt-0"
-                     *ngIf="card.title || card.body || card.photoURL; else cardPreview">
+                     *ngIf="card.title || card.imageUrl; else cardPreview">
                     <div class="card-body">
-                        <img class="card-img-top"
-                             [src]="card.photoURL"
-                             [alt]="card.title"
-                             *ngIf="card.photoURL">
-                        <div class="card-body text-center">
-                            <h5 class="card-title"
-                                *ngIf="card.title">{{ card.title }}</h5>
-                            <p class="card-text"
-                               *ngIf="card.body">{{ card.body }}</p>
-                            <p class="text-center"
-                               *ngIf="card.url && card.buttonString">
-                                <a [href]="card.url"
-                                   class="btn btn-warning btn-lg">
-                                    {{ card.buttonString }}
-                                </a>
-                            </p>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <img class="text-left"
+                                     style="max-width:70px;"
+                                     [src]="card.imageUrl"
+                                     [alt]="card.title"
+                                     *ngIf="card.imageUrl">
+                                <span class="card-tag text-center">
+                                    <i class="fal fa-tag" *ngIf="!card.imageUrl"></i>
+                                </span>
+                            </div>
+                            <div class="col">
+                                <div class="card-preview-title">
+                                    <a [href]="card.url" class="card-preview-title-link">
+                                        {{ card.title }}
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

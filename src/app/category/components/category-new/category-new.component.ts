@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Card } from '../../../card/models/card';
+import { CardService } from '../../../card/services/card.service';
 import { Category } from '../../models/Category';
 import { CategoryService } from '../../services/category.service';
 
@@ -34,6 +37,7 @@ export class CategoryNewComponent implements OnInit {
     category: Category;
     favicon = 'fa fa-tag';
     sectionName = 'New Category';
+    cards$: Observable<Card[]>;
     private showCards: boolean;
     private card1: string;
     private card2: string;
@@ -51,6 +55,7 @@ export class CategoryNewComponent implements OnInit {
         private fb: FormBuilder,
         private route: ActivatedRoute,
         private sbAlert: MatSnackBar,
+        private cardService: CardService,
     ) {
 
         // New Category:
@@ -65,7 +70,7 @@ export class CategoryNewComponent implements OnInit {
             card8: [''],
             imageUrl: [''],
             name: ['', Validators.required],
-            showCards: [''],
+            showCards: ['' || false],
         });
 
         this.card1 = this.newCatForm.value.card1;
@@ -83,7 +88,7 @@ export class CategoryNewComponent implements OnInit {
 
 
     ngOnInit(): void {
-
+        this.cards$ = this.cardService.getAllCards();
     }
 
     // Reactive Form
