@@ -664,11 +664,11 @@
                                     </div>
 
 
-                                    <!-- * Calendar * -->
+                                    <!-- * Category * -->
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <hr class="inset-hr"/>
-                                            <h5>Calendar</h5>
+                                            <h5>Category</h5>
                                             <div class="card bg-lighter">
                                                 <div class="card-body">
 
@@ -676,36 +676,36 @@
                                                         <div class="custom-control custom-checkbox">
                                                             <input type="checkbox"
                                                                    class="custom-control-input"
-                                                                   id="hasCalendar"
-                                                                   formControlName="hasCalendar"
-                                                                   (click)="toggleHasCalendar()">
+                                                                   id="hasCategory"
+                                                                   formControlName="hasCategory"
+                                                                   (click)="toggleHasCategory()">
                                                             <label class="custom-control-label"
-                                                                   for="hasCalendar">Does the page have a
-                                                                Calendar?</label>
+                                                                   for="hasCategory">Does the page have a
+                                                                Category?</label>
                                                         </div>
                                                     </div>
 
-                                                    <div class="form-group" *ngIf="homePage.hasCalendar">
-                                                        <label for="calendarSectionTitle">Calendar Section Title</label>
+                                                    <div class="form-group" *ngIf="homePage.hasCategory">
+                                                        <label for="categorySectionTitle">Category Section Title</label>
                                                         <input type="text"
                                                                class="form-control"
-                                                               id="calendarSectionTitle"
-                                                               formControlName="calendarSectionTitle">
+                                                               id="categorySectionTitle"
+                                                               formControlName="categorySectionTitle">
                                                     </div>
 
-                                                    <div class="form-group" *ngIf="homePage.hasCalendar">
-                                                        <label for="calendarTitle">Select Calendar or
-                                                            <a [routerLink]="['/calendar/new']"
+                                                    <div class="form-group" *ngIf="homePage.hasCategory">
+                                                        <label for="categoryTitle">Select Category or
+                                                            <a [routerLink]="['/category/new']"
                                                                class="btn btn-sm btn-default">
-                                                                <i class="fa fa-calendar-plus"></i> Create New</a> <br>
-                                                            Current Calendar set
-                                                            to: <b>{{ homePage.calendarTitle }}</b>
+                                                                <i class="fa fa-category-plus"></i> Create New</a> <br>
+                                                            Current Category set
+                                                            to: <b>{{ homePage.categoryTitle }}</b>
                                                         </label>
                                                         <select class="form-control"
-                                                                id="calendarTitle"
-                                                                [value]="calendarTitle"
-                                                                formControlName="calendarTitle">
-                                                            <option *ngFor="let cal of calendars$ | async"
+                                                                id="categoryTitle"
+                                                                [value]="categoryTitle"
+                                                                formControlName="categoryTitle">
+                                                            <option *ngFor="let cal of categorys$ | async"
                                                                     [value]="cal.title">
                                                                 {{ cal.title }}
                                                             </option>

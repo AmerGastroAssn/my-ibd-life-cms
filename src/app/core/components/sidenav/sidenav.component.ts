@@ -24,7 +24,7 @@ export class SidenavComponent implements OnInit {
     showPagesToggle: boolean;
     showContentSectionToggle: boolean;
     showUsersToggle: boolean;
-    showCalendarToggle: boolean;
+    showCategoryToggle: boolean;
     showPressReleaseToggle: boolean;
     showPageCardToggle: boolean;
     showImagesToggle: boolean;
@@ -92,8 +92,8 @@ export class SidenavComponent implements OnInit {
         this.showUsersToggle = !this.showUsersToggle;
     }
 
-    onShowCalendarToggle() {
-        this.showCalendarToggle = !this.showCalendarToggle;
+    onShowCategoryToggle() {
+        this.showCategoryToggle = !this.showCategoryToggle;
     }
 
     onShowPressReleaseToggle() {

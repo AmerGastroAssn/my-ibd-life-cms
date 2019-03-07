@@ -1,0 +1,174 @@
+<!-- * CATEGORY-NEW * -->
+<app-logo-watermark [favicon]="favicon" [sectionName]="sectionName"></app-logo-watermark>
+
+<!-- * button nav group * -->
+<div class="row m-4 pl-5" [@simpleFadeAnimation]="'in'">
+    <div class="container">
+        <div class="text-right mr-5">
+            <div class="btn-group btn-group-md float-right"
+                 role="group"
+                 aria-label="Basic example">
+                <a [routerLink]="['/settings']"
+                   class="btn btn-default">
+                    <i class="fa fa-wrench"></i>&nbsp;Settings
+                </a>
+                <a [routerLink]="['/categories']"
+                   class="btn btn-default">
+                    <i class="fa fa-arrow-square-left"></i>&nbsp;
+                    Categories List</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- * Event  * -->
+<div class="row" [@simpleFadeAnimation]="'in'">
+    <div class="container mb-5">
+        <div class="col-md-12">
+            <ng-template #loading>
+                <div class="text-center text-dark p-5">
+                    <i class="far fa-spinner fa-pulse"></i>
+                    <br>
+                    loading...
+                </div>
+            </ng-template>
+            <div class="card bg-lighter">
+                <div class="card-body">
+                    <div class="card inner-card">
+                        <div class="card-body">
+                            <form (ngSubmit)="onCategoryCreate(newCatForm.value)"
+                                  [formGroup]="newCatForm"
+                                  *ngIf="newCatForm; else loading">
+
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fa fa-font"></i>
+                                </span>
+                                        </div>
+                                        <input type="text"
+                                               class="form-control"
+                                               required
+                                               placeholder="IBD & Relationships"
+                                               formControlName="name"/>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Image Url</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fa fa-image"></i>
+                                </span>
+                                        </div>
+                                        <input type="url"
+                                               class="form-control"
+                                               placeholder="https://"
+                                               formControlName="imageUrl"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group p-3">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox"
+                                               class="custom-control-input"
+                                               id="showCards"
+                                               formControlName="showCards">
+                                        <label class="custom-control-label"
+                                               for="showCards">Show <b>Rebate Program Cards</b> on Page?
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- * Date 1 * -->
+                                <!-- * TODO: Add options via ngFor * -->
+                                <mat-expansion-panel>
+                                    <mat-expansion-panel-header class="bg-light">
+                                        <mat-panel-title>
+                                            <div class="fa fa-hands-usd"></div>
+                                        </mat-panel-title>
+                                        <mat-panel-description>
+                                            Rebate Program Cards
+                                        </mat-panel-description>
+                                    </mat-expansion-panel-header>
+                                    <div class="row mt-3">
+                                        <div class="col-md-3">
+                                            <select class="form-control"
+                                                    formControlName="card1">
+                                                <option value="">Select Card 1</option>
+                                                <option></option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select class="form-control"
+                                                    formControlName="card2">
+                                                <option value="">Select Card 2</option>
+                                                <option></option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select class="form-control"
+                                                    formControlName="card3">
+                                                <option value="">Select Card 3</option>
+                                                <option></option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select class="form-control"
+                                                    formControlName="card4">
+                                                <option value="">Select Card 4</option>
+                                                <option></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-3">
+                                            <select class="form-control"
+                                                    formControlName="card5">
+                                                <option value="">Select Card 5</option>
+                                                <option></option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select class="form-control"
+                                                    formControlName="card6">
+                                                <option value="">Select Card 6</option>
+                                                <option></option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select class="form-control"
+                                                    formControlName="card7">
+                                                <option value="">Select Card 7</option>
+                                                <option></option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select class="form-control"
+                                                    formControlName="card8">
+                                                <option value="">Select Card 8</option>
+                                                <option></option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                </mat-expansion-panel>
+
+
+                                <button type="submit" class="btn btn-secondary mb-5 mt-5">
+                                    <i class="fa fa-tag"></i>&nbsp;Save Category
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

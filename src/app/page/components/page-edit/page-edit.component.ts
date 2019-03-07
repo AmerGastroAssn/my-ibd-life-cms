@@ -9,10 +9,10 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { BsDatepickerConfig, BsDatepickerDirective } from 'ngx-bootstrap';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../../../auth/services/auth.service';
-import { Calendar } from '../../../calendar/models/Calendar';
-import { CalendarService } from '../../../calendar/services/calendar.service';
 import { Card } from '../../../card/models/card';
 import { CardService } from '../../../card/services/card.service';
+import { Category } from '../../../category/models/Category';
+import { CategoryService } from '../../../category/services/category.service';
 import { CallToAction } from '../../../content-section/models/call-to-action';
 import { TextSection } from '../../../content-section/models/text-section';
 import { CallToActionService } from '../../../content-section/services/call-to-action.service';
@@ -64,10 +64,10 @@ export class PageEditComponent implements OnInit {
     isExtURL: boolean;
     isExtURLPage: boolean;
     sortOrder: number;
-    hasCalendar: boolean;
-    calendarTitle: string;
-    calendars$: Observable<Calendar[]>;
-    calendars: Calendar[];
+    hasCategory: boolean;
+    categoryTitle: string;
+    categorys$: Observable<Category[]>;
+    categorys: Category[];
     disableAdminOnEdit: boolean;
     metaDesc: string;
     hasCards: boolean;
@@ -138,7 +138,7 @@ export class PageEditComponent implements OnInit {
         private sbAlert: MatSnackBar,
         private sanitizer: DomSanitizer,
         private authService: AuthService,
-        private calendarService: CalendarService,
+        private categoryService: CategoryService,
         private cardService: CardService,
         private imageService: ImageService,
         private textSectionService: TextSectionService,
@@ -174,7 +174,7 @@ export class PageEditComponent implements OnInit {
         this.disableAdminOnEdit = this.settingsService.getAdminSettings().disableAdmin;
 
         this.pageCards$ = this.cardService.getAllCards();
-        // this.calendars$ = this.calendarService.getAllCalendars();
+        // this.categorys$ = this.categoryService.getAllCategorys();
         this.textSections$ = this.textSectionService.getAllTextSections();
         this.textSectionPreviews$ = this.textSectionService.getAllTextSections();
         this.cta$ = this.ctaService.getAllCtas();
@@ -207,8 +207,8 @@ export class PageEditComponent implements OnInit {
                     extURL: [this.page.extURL],
                     isExtURL: [this.page.isExtURL],
                     sortOrder: [this.page.sortOrder],
-                    hasCalendar: [this.page.hasCalendar],
-                    calendarTitle: [this.page.calendarTitle],
+                    // hasCategory: [this.page.hasCategory],
+                    // categoryTitle: [this.page.categoryTitle],
                     isGrandchildPage: [this.page.isGrandchildPage],
                     grandchildURL: [this.page.grandchildURL],
                     hidden: [this.page.hidden || false],
@@ -237,8 +237,8 @@ export class PageEditComponent implements OnInit {
                 this.extURL = this.editPageForm.value.extURL;
                 this.isExtURL = this.editPageForm.value.isExtURL;
                 this.sortOrder = this.editPageForm.value.sortOrder;
-                this.hasCalendar = this.editPageForm.value.hasCalendar;
-                this.calendarTitle = this.editPageForm.value.calendarTitle;
+                // this.hasCategory = this.editPageForm.value.hasCategory;
+                // this.categoryTitle = this.editPageForm.value.categoryTitle;
                 this.isGrandchildPage = this.editPageForm.value.isGrandchildPage;
                 this.grandchildURL = this.editPageForm.value.grandchildURL;
                 this.hidden = this.editPageForm.value.hidden;

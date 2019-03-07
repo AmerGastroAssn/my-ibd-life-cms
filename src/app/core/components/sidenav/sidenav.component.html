@@ -122,28 +122,28 @@
     <!--</ul>-->
     <!--</li>-->
 
-    <!-- * Calendar * -->
-    <!--<li class="sidenav-item"-->
-    <!--[ngClass]="{'active open':showCalendarToggle, '':!showCalendarToggle}"-->
-    <!--*ngIf="isLoggedIn">-->
-    <!--<a class="sidenav-link sidenav-toggle" (click)="onShowCalendarToggle()">-->
-    <!--<i class="sidenav-icon ion ion-md-speedometer"></i>-->
-    <!--<div><i class="fal fa-calendar"></i>&nbsp;<span class="helv">Calendar</span></div>-->
-    <!--</a>-->
+    <!-- * Category * -->
+    <li class="sidenav-item"
+        [ngClass]="{'active open':showCategoryToggle, '':!showCategoryToggle}"
+        *ngIf="isLoggedIn">
+        <a class="sidenav-link sidenav-toggle" (click)="onShowCategoryToggle()">
+            <i class="sidenav-icon ion ion-md-speedometer"></i>
+            <div><i class="fal fa-tag"></i>&nbsp;<span class="helv">Category</span></div>
+        </a>
 
-    <!--<ul class="sidenav-menu">-->
-    <!--<li class="sidenav-item sub-item">-->
-    <!--<a [routerLink]="['/calendar']" class="sidenav-link">-->
-    <!--<div><i class="fal fa-calendar-check"></i>&nbsp;<span class="helv">All Calendars</span></div>-->
-    <!--</a>-->
-    <!--</li>-->
-    <!--<li class="sidenav-item sub-item">-->
-    <!--<a [routerLink]="['/calendar/new']" class="sidenav-link">-->
-    <!--<div><i class="fal fa-calendar-plus"></i>&nbsp;<span class="helv">New Calendar</span></div>-->
-    <!--</a>-->
-    <!--</li>-->
-    <!--</ul>-->
-    <!--</li>-->
+        <ul class="sidenav-menu">
+            <li class="sidenav-item sub-item">
+                <a [routerLink]="['/categories']" class="sidenav-link">
+                    <div><i class="fal fa-tags"></i>&nbsp;<span class="helv">All Categories</span></div>
+                </a>
+            </li>
+            <li class="sidenav-item sub-item">
+                <a [routerLink]="['/categories/new']" class="sidenav-link">
+                    <div><i class="fal fa-tag"></i>&nbsp;<span class="helv">New Category</span></div>
+                </a>
+            </li>
+        </ul>
+    </li>
 
 
     <!--* Page Cards * -->

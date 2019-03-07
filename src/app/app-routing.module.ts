@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthModule } from './auth/auth.module';
 import { BlogPostModule } from './blog-post/blog-post.module';
-import { CalendarModule } from './calendar/calendar.module';
+import { CategoryModule } from './category/category.module';
 import { CardModule } from './card/card.module';
 import { ContactModule } from './contact/contact.module';
 import { ContentSectionModule } from './content-section/content-section.module';
@@ -28,7 +28,7 @@ const routes: Routes = [
     ],
     exports: [
         RouterModule,
-        CalendarModule,
+        CategoryModule,
         ContentSectionModule,
         CoreModule,
         UserModule,

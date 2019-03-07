@@ -1,6 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatBottomSheetModule, MatButtonModule, MatCardModule, MatDividerModule, MatExpansionModule, MatFormFieldModule, MatIconModule, MatMenuModule, MatSelectModule, MatSidenavModule, MatSnackBarModule, MatTooltipModule } from '@angular/material';
+import {
+    MatBottomSheetModule,
+    MatButtonModule,
+    MatCardModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatMenuModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSnackBarModule,
+    MatTooltipModule
+} from '@angular/material';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { CKEditorModule } from 'ng2-ckeditor';
 import { BsDatepickerModule, PopoverModule, ProgressbarModule, TabsModule, TimepickerModule } from 'ngx-bootstrap';
@@ -13,6 +26,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { DropZoneDirective } from './directives/drop-zone.directive';
 import { RunScriptsDirective } from './directives/run-scripts.directive';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
+import { HelperService } from './services/helper.service';
 
 import { SharedRoutingModule } from './shared-routing.module';
 
@@ -81,6 +95,7 @@ import { SharedRoutingModule } from './shared-routing.module';
     providers: [
         AuthService,
         UserService,
+        HelperService,
     ],
     entryComponents: [
         BottomSheetComponent,

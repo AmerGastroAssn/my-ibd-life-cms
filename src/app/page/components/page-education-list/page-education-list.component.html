@@ -19,7 +19,7 @@
                         <th scope="col" style="vertical-align: top;">External URL</th>
                         <th scope="col" style="vertical-align: top;">Published</th>
                         <th scope="col" style="vertical-align: top;">Publish <br> Date</th>
-                        <th scope="col" style="vertical-align: top;">Calendar</th>
+                        <th scope="col" style="vertical-align: top;">Category</th>
                         <th scope="col" style="vertical-align:top; text-align:center;">Author</th>
                         <th scope="col" style="vertical-align: top;">Cards</th>
                         <th scope="col" style="vertical-align: top;">Grand-<br>child</th>
@@ -62,14 +62,14 @@
                         </td>
                         <td scope="col" class="date">{{ page.date | date:'mediumDate' }}</td>
                         <td scope="col" style="text-align:center;">
-                            <a [routerLink]="['/calendar']">
-                                <span class="badge badge-outline-success" *ngIf="page.hasCalendar">
-                                <i class="fa fa-calendar-check"></i>
+                            <a [routerLink]="['/category']">
+                                <span class="badge badge-outline-success" *ngIf="page.hasCategory">
+                                <i class="fa fa-category-check"></i>
                             </span>
                             </a>
-                            <a [routerLink]="['/calendar']">
-                                <span class="badge badge-outline-danger" *ngIf="!page.hasCalendar">
-                                <i class="fa fa-calendar-times"></i>
+                            <a [routerLink]="['/category']">
+                                <span class="badge badge-outline-danger" *ngIf="!page.hasCategory">
+                                <i class="fa fa-category-times"></i>
                             </span>
                             </a>
                         </td>

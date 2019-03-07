@@ -6,10 +6,9 @@ import { BsDatepickerConfig } from 'ngx-bootstrap';
 import { Observable } from 'rxjs';
 import { BlogPost } from '../../../blog-post/models/blog-post';
 import { BlogPostService } from '../../../blog-post/services/blog-post.service';
-import { Calendar } from '../../../calendar/models/Calendar';
-import { CalendarService } from '../../../calendar/services/calendar.service';
 import { Card } from '../../../card/models/card';
 import { CardService } from '../../../card/services/card.service';
+import { CategoryService } from '../../../category/services/category.service';
 import { Countdown } from '../../models/countdown';
 import { DailyVideo } from '../../models/daily-video';
 import { Homepage } from '../../models/homepage';
@@ -74,10 +73,9 @@ export class HomepageEditComponent implements OnInit {
     sponsorFourImg: string;
     sponsorFourURL: string;
     sponsorHidden: boolean;
-    calendars$: Observable<Calendar[]>;
-    hasCalendar: boolean;
-    calendarTitle: string;
-    calendarSectionTitle: string;
+    hasCategory: boolean;
+    categoryTitle: string;
+    categorySectionTitle: string;
     bannerButtonText: string;
     bannerButtonURL: string;
     hasBannerButton: boolean;
@@ -105,7 +103,7 @@ export class HomepageEditComponent implements OnInit {
         private fb: FormBuilder,
         private countdownService: CountdownService,
         private homepageService: HomepageService,
-        private calendarService: CalendarService,
+        private categoryService: CategoryService,
         private cardService: CardService,
         private postService: BlogPostService,
     ) {
@@ -196,9 +194,6 @@ export class HomepageEditComponent implements OnInit {
                     sponsorFourImg: [this.homePage.sponsorFourImg],
                     sponsorFourURL: [this.homePage.sponsorFourURL],
                     sponsorHidden: [this.homePage.sponsorHidden],
-                    hasCalendar: [this.homePage.hasCalendar || false],
-                    calendarTitle: [this.homePage.calendarTitle],
-                    calendarSectionTitle: [this.homePage.calendarSectionTitle],
                     bannerButtonText: [this.homePage.bannerButtonText],
                     bannerButtonURL: [this.homePage.bannerButtonURL],
                     hasBannerButton: [this.homePage.hasBannerButton],
@@ -251,9 +246,6 @@ export class HomepageEditComponent implements OnInit {
                 this.sponsorFourImg = this.homePageForm.value.sponsorFourImg;
                 this.sponsorFourURL = this.homePageForm.value.sponsorFourURL;
                 this.sponsorHidden = this.homePageForm.value.sponsorHidden;
-                this.hasCalendar = this.homePageForm.value.hasCalendar;
-                this.calendarTitle = this.homePageForm.value.calendarTitle;
-                this.calendarSectionTitle = this.homePageForm.value.calendarSectionTitle;
                 this.bannerButtonText = this.homePageForm.value.bannerButtonText;
                 this.bannerButtonURL = this.homePageForm.value.bannerButtonURL;
                 this.hasBannerButton = this.homePageForm.value.hasBannerButton;
@@ -266,7 +258,6 @@ export class HomepageEditComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.calendars$ = this.calendarService.getAllCalendars();
         this.cards$ = this.cardService.getAllCards();
         this.posts$ = this.postService.getAllPosts();
     }
@@ -284,8 +275,8 @@ export class HomepageEditComponent implements OnInit {
         this.homepageService.updateHomeForm(homePageFormData);
     }
 
-    toggleHasCalendar() {
-        this.homePage.hasCalendar = !this.homePage.hasCalendar;
+    toggleHasCategory() {
+        // this.homePage.hasCategory = !this.homePage.hasCategory;
     }
 
     toggleCardsHidden() {

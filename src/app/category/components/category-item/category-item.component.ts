@@ -1,14 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { of } from 'rxjs';
-import { Calendar } from '../../models/Calendar';
+import { Category } from '../../models/Category';
+
 
 @Component({
-    selector: 'app-admin-calendar-item',
-    templateUrl: './calendar-item.component.html',
-    styleUrls: ['./calendar-item.component.css']
+    selector: 'app-category-item',
+    templateUrl: './category-item.component.html',
+    styleUrls: ['./category-item.component.css']
 })
-export class CalendarItemComponent implements OnInit {
-    @Input() calendar: Calendar;
+export class CategoryItemComponent implements OnInit {
+    @Input() category: Category;
     $key: string;
     body1: string;
     body2: string;
@@ -34,8 +35,8 @@ export class CalendarItemComponent implements OnInit {
 
     isAbbrvDate() {
         // Date 1
-        if (this.calendar.date1) {
-            const date1AsString = this.calendar.date1.toDate().toDateString();
+        if (this.category.date1) {
+            const date1AsString = this.category.date1.toDate().toDateString();
             if (date1AsString.includes('Jan')) {
                 this.month = 'Jan.';
             } else if (date1AsString.includes('Feb')) {
@@ -67,8 +68,8 @@ export class CalendarItemComponent implements OnInit {
 
 
         // Date 2
-        if (this.calendar.date2) {
-            const date2AsString = this.calendar.date2.toDate().toDateString();
+        if (this.category.date2) {
+            const date2AsString = this.category.date2.toDate().toDateString();
             if (date2AsString.includes('Jan')) {
                 this.month2 = 'Jan.';
             } else if (date2AsString.includes('Feb')) {
@@ -100,8 +101,8 @@ export class CalendarItemComponent implements OnInit {
 
 
         // Date 3
-        if (this.calendar.date3) {
-            const date3AsString = this.calendar.date3.toDate().toDateString();
+        if (this.category.date3) {
+            const date3AsString = this.category.date3.toDate().toDateString();
             if (date3AsString.includes('Jan')) {
                 this.month3 = 'Jan.';
             } else if (date3AsString.includes('Feb')) {
@@ -133,8 +134,8 @@ export class CalendarItemComponent implements OnInit {
 
 
         // Date 4
-        if (this.calendar.date4) {
-            const date4AsString = this.calendar.date4.toDate().toDateString();
+        if (this.category.date4) {
+            const date4AsString = this.category.date4.toDate().toDateString();
             if (date4AsString.includes('Jan')) {
                 this.month4 = 'Jan.';
             } else if (date4AsString.includes('Feb')) {

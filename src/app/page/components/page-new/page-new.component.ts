@@ -8,10 +8,10 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { BsDatepickerConfig } from 'ngx-bootstrap';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../../../auth/services/auth.service';
-import { Calendar } from '../../../calendar/models/Calendar';
-import { CalendarService } from '../../../calendar/services/calendar.service';
 import { Card } from '../../../card/models/card';
 import { CardService } from '../../../card/services/card.service';
+import { Category } from '../../../category/models/Category';
+import { CategoryService } from '../../../category/services/category.service';
 import { CallToAction } from '../../../content-section/models/call-to-action';
 import { TextSection } from '../../../content-section/models/text-section';
 import { CallToActionService } from '../../../content-section/services/call-to-action.service';
@@ -45,9 +45,9 @@ export class PageNewComponent implements OnInit, OnDestroy {
     extURL: string;
     isExtURL: boolean;
     sortOrder: number;
-    hasCalendar: boolean;
-    calendarTitle: string;
-    calendar$: Observable<Calendar[]>;
+    hasCategory: boolean;
+    categoryTitle: string;
+    category$: Observable<Category[]>;
     disableAdminOnNew: boolean;
     metaDesc: string;
     hasCards: boolean;
@@ -90,20 +90,20 @@ export class PageNewComponent implements OnInit, OnDestroy {
     };
 
     constructor(
-      private pageService: PageService,
-      private router: Router,
-      private route: ActivatedRoute,
-      private flashMessage: FlashMessagesService,
-      private fb: FormBuilder,
-      private settingsService: SettingsService,
-      private authService: AuthService,
-      private storage: AngularFireStorage,
-      private afs: AngularFirestore,
-      private sbAlert: MatSnackBar,
-      private calendarService: CalendarService,
-      private cardService: CardService,
-      private textSectionService: TextSectionService,
-      private ctaService: CallToActionService,
+        private pageService: PageService,
+        private router: Router,
+        private route: ActivatedRoute,
+        private flashMessage: FlashMessagesService,
+        private fb: FormBuilder,
+        private settingsService: SettingsService,
+        private authService: AuthService,
+        private storage: AngularFireStorage,
+        private afs: AngularFirestore,
+        private sbAlert: MatSnackBar,
+        private categoryService: CategoryService,
+        private cardService: CardService,
+        private textSectionService: TextSectionService,
+        private ctaService: CallToActionService,
     ) {
         // Settings
         this.disableAdminOnNew = this.settingsService.getAdminSettings().disableAdmin;
@@ -120,11 +120,11 @@ export class PageNewComponent implements OnInit, OnDestroy {
 
         // Datepicker Config
         this.bsConfig = Object.assign({},
-          {
-              containerClass: 'theme-default',
-              dateInputFormat: 'MMMM Do YYYY,h:mm a',
-              placeholder: this.currentDate,
-          });
+            {
+                containerClass: 'theme-default',
+                dateInputFormat: 'MMMM Do YYYY,h:mm a',
+                placeholder: this.currentDate,
+            });
     }
 
     // For Form Validations
@@ -141,8 +141,8 @@ export class PageNewComponent implements OnInit, OnDestroy {
         // this.attendeePages$ = this.pageService.getAllAttendeePages();
         // this.presPages$ = this.pageService.getAllPresenterPages();
 
-        // Get Calendar Titles
-        // this.calendar$ = this.calendarService.getAllCalendars();
+        // Get Category Titles
+        // this.category$ = this.categoryService.getAllCategorys();
         // Page Cards:
         // this.pageCards$ = this.cardService.getAllCards();
         // this.pages$ = this.pageService.getAllPages();
@@ -151,38 +151,38 @@ export class PageNewComponent implements OnInit, OnDestroy {
         this.textSections$ = this.textSectionService.getAllTextSections();
         this.cta$ = this.ctaService.getAllCtas();
 
-          // Form:
-          this.newPageForm = this.fb.group({
+        // Form:
+        this.newPageForm = this.fb.group({
 
-              title: ['', Validators.required],
-              body: [''],
-              author: ['' || this.author],
-              date: ['' || this.currentDate, Validators.required],
-              photoURL: [''],
-              bannerPhotoURL: ['' || 'https://s3.amazonaws.com/DDW/ddw-org/images/banners/interior-bg.jpg'],
-              category: ['', Validators.required],
-              published: ['' || false],
-              template: ['' || 'Full Width'],
-              url: [''],
-              extURL: [''],
-              isExtURL: ['' || false],
-              sortOrder: ['' || 1],
-              hasCalendar: [''],
-              calendarTitle: [''],
-              isGrandchildPage: ['' || false],
-              grandchildURL: [''],
-              hidden: ['' || false],
-              metaDesc: ['', Validators.required],
-              hasCards: ['' || false],
-              cardOption1: [''],
-              cardOption2: [''],
-              cardOption3: [''],
-              cardSectionTitle: [''],
-              contentSectionTop: [''],
-              contentSectionBottom: [''],
-              callToAction: [''],
-              showWidgetSnippet: ['' || false],
-          });
+            title: ['', Validators.required],
+            body: [''],
+            author: ['' || this.author],
+            date: ['' || this.currentDate, Validators.required],
+            photoURL: [''],
+            bannerPhotoURL: ['' || 'https://s3.amazonaws.com/DDW/ddw-org/images/banners/interior-bg.jpg'],
+            category: ['', Validators.required],
+            published: ['' || false],
+            template: ['' || 'Full Width'],
+            url: [''],
+            extURL: [''],
+            isExtURL: ['' || false],
+            sortOrder: ['' || 1],
+            hasCategory: [''],
+            categoryTitle: [''],
+            isGrandchildPage: ['' || false],
+            grandchildURL: [''],
+            hidden: ['' || false],
+            metaDesc: ['', Validators.required],
+            hasCards: ['' || false],
+            cardOption1: [''],
+            cardOption2: [''],
+            cardOption3: [''],
+            cardSectionTitle: [''],
+            contentSectionTop: [''],
+            contentSectionBottom: [''],
+            callToAction: [''],
+            showWidgetSnippet: ['' || false],
+        });
 
         this.title = this.newPageForm.value.title;
         this.body = this.newPageForm.value.body;
@@ -196,8 +196,8 @@ export class PageNewComponent implements OnInit, OnDestroy {
         this.extURL = this.newPageForm.value.extURL;
         this.isExtURL = this.newPageForm.value.isExtURL;
         this.sortOrder = this.newPageForm.value.sortOrder;
-        this.hasCalendar = this.newPageForm.value.hasCalendar;
-        this.calendarTitle = this.newPageForm.value.calendarTitle;
+        this.hasCategory = this.newPageForm.value.hasCategory;
+        this.categoryTitle = this.newPageForm.value.categoryTitle;
         this.isGrandchildPage = this.newPageForm.value.isGrandchildPage;
         this.grandchildURL = this.newPageForm.value.grandchildURL;
         this.hidden = this.newPageForm.value.hidden;
@@ -242,8 +242,8 @@ export class PageNewComponent implements OnInit, OnDestroy {
         this.isExtURL = !this.isExtURL;
     }
 
-    // toggleHasCalendar() {
-    //     this.hasCalendar = !this.hasCalendar;
+    // toggleHasCategory() {
+    //     this.hasCategory = !this.hasCategory;
     // }
     //
     // toggleIsGrandchildPage() {
