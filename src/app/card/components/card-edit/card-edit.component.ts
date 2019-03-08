@@ -37,15 +37,15 @@ import { CardService } from '../../services/card.service';
 export class CardEditComponent implements OnInit {
     editCardForm: FormGroup;
     value: any;
-    private card: Card;
-    private author: string;
-    private id: string;
-    private imageUrl: string;
-    private isExtUrl: boolean;
-    private url: string;
-    private orderNumber: number;
-    private title: string;
-    private updatedAt: number = Date.now();
+    card: Card;
+    author: string;
+    id: string;
+    imageUrl: string;
+    isExtUrl: boolean;
+    url: string;
+    orderNumber: number;
+    title: string;
+    updatedAt: number = Date.now();
 
     constructor(
         private pageService: PageService,

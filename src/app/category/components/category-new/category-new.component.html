@@ -45,9 +45,9 @@
                                     <label>Name</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="fa fa-font"></i>
-                                </span>
+                                        <span class="input-group-text">
+                                            <i class="fa fa-font"></i>
+                                        </span>
                                         </div>
                                         <input type="text"
                                                class="form-control"
@@ -57,17 +57,32 @@
 
                                     </div>
                                 </div>
+
                                 <div class="form-group">
-                                    <label>Image Url</label>
+                                    <label>Body/Summary</label>
+                                    <div class="input-group">
+                                        <textarea type="text"
+                                                  class="form-control"
+                                                  required
+                                                  rows="5"
+                                                  placeholder="Summary that goes on the page"
+                                                  formControlName="body">
+                                        </textarea>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label>FontAwesome Icon</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="fa fa-image"></i>
-                                </span>
+                                    <span class="input-group-text">
+                                        <i class="fa fa-image"></i>
+                                    </span>
                                         </div>
-                                        <input type="url"
+                                        <input type="text"
                                                class="form-control"
-                                               placeholder="https://"
+                                               placeholder="fal fa-user"
                                                formControlName="imageUrl"/>
                                     </div>
                                 </div>

@@ -45,7 +45,7 @@
                 <table id="user-list" class="table table-striped table-bordered table-hover">
                     <thead>
                     <tr>
-                        <th scope="col" style="vertical-align: top;">Image</th>
+                        <th scope="col" style="vertical-align: top;">Image/Icon</th>
                         <th scope="col" style="vertical-align: top;">Title</th>
                         <th scope="col" style="vertical-align: top;">Url</th>
                         <th scope="col" style="vertical-align: top;">Author</th>
@@ -55,9 +55,10 @@
                     </thead>
                     <tbody>
                     <tr *ngFor="let card of cards">
-                        <td scope="col">
-                            <a [routerLink]="['/cards/', card.id, 'edit']">
-                                <img [src]="card.imageUrl" [alt]="card.title" style="max-width:50px;">
+                        <td scope="col" class="text-center">
+                            <a [routerLink]="['/cards/', card.id, 'edit']" class="icon-img">
+                                <i class="fal fa-tag" *ngIf="!card.imageUrl"></i>
+                                <i [ngClass]="card.imageUrl"></i>
                             </a>
                         </td>
                         <td scope="col">

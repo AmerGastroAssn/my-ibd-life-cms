@@ -40,20 +40,21 @@ export class CategoryEditComponent implements OnInit {
     calColumnValues: CalColumnValues;
     favicon = 'fa fa-pencil-alt';
     sectionName = 'Edit Category';
-    private authorId: string;
-    private card1: string;
-    private card2: string;
-    private card3: string;
-    private card4: string;
-    private card5: string;
-    private card6: string;
-    private card7: string;
-    private card8: string;
-    private id: string;
-    private imageUrl: string;
-    private name: string;
-    private showCards: boolean;
-    private cards$: Observable<Card[]>;
+    authorId: string;
+    body: string;
+    card1: string;
+    card2: string;
+    card3: string;
+    card4: string;
+    card5: string;
+    card6: string;
+    card7: string;
+    card8: string;
+    id: string;
+    imageUrl: string;
+    name: string;
+    showCards: boolean;
+    cards$: Observable<Card[]>;
 
     constructor(
         private categoryService: CategoryService,
@@ -72,6 +73,7 @@ export class CategoryEditComponent implements OnInit {
 
                 this.updateCatForm = this.fb.group({
                     authorId: [this.category.authorId],
+                    body: [this.category.body, Validators.required],
                     card1: [this.category.card1 || ''],
                     card2: [this.category.card2 || ''],
                     card3: [this.category.card3 || ''],
@@ -87,6 +89,7 @@ export class CategoryEditComponent implements OnInit {
                 });
 
                 this.authorId = this.updateCatForm.value.authorId;
+                this.body = this.updateCatForm.value.body;
                 this.card1 = this.updateCatForm.value.card1;
                 this.card2 = this.updateCatForm.value.card2;
                 this.card3 = this.updateCatForm.value.card3;
@@ -117,7 +120,7 @@ export class CategoryEditComponent implements OnInit {
 
 
     // Reactive Form
-    onCategoryUpdate(categoryData) {
+    onCategoryUpdate(categoryData: Category) {
         if (!this.updateCatForm.valid) {
             this.sbAlert.open('The Title, Date 1 and Body 1 must be filled out, Event was NOT created.', 'Dismiss', {
                 duration: 3000,

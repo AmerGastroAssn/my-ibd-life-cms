@@ -8,6 +8,25 @@
     --frontend-header-font: 'Roboto', sans-serif;
     --monospace: 'SF Mono', 'Roboto Mono', Menlo, consolas, monospace;
     --cursive: 'Georgia', Cambria, serif;
+    /* AGA Colors */
+    --midnight: #122033;
+    --granite: #678598;
+    --ocean: #00588a;
+    --sky: #008fd5;
+    --ice: #69badf;
+    --water: #abe1fa;
+    --steel: #8fb0c5;
+    --ash: #94a3ac;
+    --silver: #dcddde;
+    --cloud: #f2f6f8;
+    --avocado: #67952e;
+    --grass: #9bcb40;
+    --lime: #c8da2b;
+    --plum: #96157c;
+    --gum: #d0167c;
+    --brick: #b02a30;
+    --valencia: #f58320;
+    --gold: #faa61a;
 
     /* Colors */
     --orange: #F47700;

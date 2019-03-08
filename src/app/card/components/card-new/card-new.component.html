@@ -41,9 +41,9 @@
                                                 <i class="fa fa-image"></i>
                                             </span>
                                             </div>
-                                            <input type="url"
+                                            <input type="text"
                                                    class="form-control"
-                                                   placeholder="Image URL eg: https://icon.png"
+                                                   placeholder="fal fa-tags"
                                                    aria-label="imageUrl"
                                                    aria-describedby="addon-wrapping"
                                                    [(ngModel)]="card.imageUrl"
@@ -149,13 +149,9 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-2">
-                                <img class="text-left"
-                                     style="max-width:70px;"
-                                     [src]="card.imageUrl"
-                                     [alt]="card.title"
-                                     *ngIf="card.imageUrl">
                                 <span class="card-tag text-center">
                                     <i class="fal fa-tag" *ngIf="!card.imageUrl"></i>
+                                    <i [ngClass]="card.imageUrl"></i>
                                 </span>
                             </div>
                             <div class="col">

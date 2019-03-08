@@ -31,14 +31,14 @@ export class CardNewComponent implements OnInit {
         title: '',
         updatedAt: Date.now(),
     };
-    private author: string;
-    private id: string;
-    private imageUrl: string;
-    private isExtUrl: boolean;
-    private url: string;
-    private orderNumber: number;
-    private title: string;
-    private updatedAt: number = Date.now();
+    author: string;
+    id: string;
+    imageUrl: string;
+    isExtUrl: boolean;
+    url: string;
+    orderNumber: number;
+    title: string;
+    updatedAt: number = Date.now();
 
     constructor(
         private pageService: PageService,

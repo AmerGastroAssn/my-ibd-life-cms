@@ -5,3 +5,8 @@ a:link {
 a.dates {
     line-height: 1.5;
 }
+
+a.icon-img {
+    color: var(--midnight);
+    font-size: 2rem;
+}

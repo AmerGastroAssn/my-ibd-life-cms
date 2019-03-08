@@ -60,6 +60,7 @@ export class CategoryService {
         const slug = this.helperService.stringToSlug(formData.name);
         const data: Category = {
             authorId: this.authService.getProfile().uid,
+            body: formData.body,
             card1: formData.card1,
             card2: formData.card2,
             card3: formData.card3,
@@ -96,6 +97,7 @@ export class CategoryService {
         const slug = this.helperService.stringToSlug(formData.name);
         const data: Category = {
             authorId: this.authService.getProfile().uid,
+            body: formData.body,
             card1: formData.card1,
             card2: formData.card2,
             card3: formData.card3,

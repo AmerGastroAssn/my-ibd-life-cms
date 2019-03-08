@@ -36,7 +36,7 @@
                     <tr>
                         <th scope="col" style="vertical-align:top; text-align:center;">Image</th>
                         <th scope="col" style="vertical-align:top;">Title</th>
-                        <th scope="col" style="vertical-align:top;">Slug</th>
+                        <th scope="col" style="vertical-align:top;">Body/Summary</th>
                         <th scope="col" style="vertical-align:top;">Updated</th>
                         <th scope="col" style="vertical-align:top; text-align:center">Cards</th>
                         <th scope="col" style="vertical-align:top; text-align:center;">Edit</th>
@@ -46,9 +46,10 @@
                     <tr *ngFor="let cat of categories">
                         <td scope="col" class="text-center">
                             <a routerLink="/categories/{{cat.id}}/edit"
-                               class="text-dark"
+                               class="icon-img"
                                *ngIf="cat.imageUrl">
-                                <img [src]="cat.imageUrl" style="max-width:50px;">
+                                <i class="fal fa-tag" *ngIf="!cat.imageUrl"></i>
+                                <i [ngClass]="cat.imageUrl"></i>
                             </a>
                         </td>
                         <td scope="col">
@@ -60,11 +61,11 @@
                         <td scope="col">
                             <a routerLink="/categories/{{cat.id}}/edit"
                                class="text-dark">
-                                {{ cat.slug }}
+                                {{ cat.body | slice:0:50 }}...
                             </a>
                         </td>
                         <td scope="col">
-                            {{ cat.updatedAt | date }}
+                            {{ cat.updatedAt | date:'medium' }}
                         </td>
                         <td scope="col" class="text-center">
                             <span class="badge badge-outline-success" *ngIf="cat.showCards">

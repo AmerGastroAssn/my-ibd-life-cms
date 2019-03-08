@@ -1,6 +1,7 @@
 export class Category {
     constructor(
         public authorId: string,
+        public body: string,
         public card1: string,
         public card2: string,
         public card3: string,

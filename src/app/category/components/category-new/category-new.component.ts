@@ -38,17 +38,18 @@ export class CategoryNewComponent implements OnInit {
     favicon = 'fa fa-tag';
     sectionName = 'New Category';
     cards$: Observable<Card[]>;
-    private showCards: boolean;
-    private card1: string;
-    private card2: string;
-    private card3: string;
-    private card4: string;
-    private card5: string;
-    private card6: string;
-    private card7: string;
-    private card8: string;
-    private imageUrl: string;
-    private name: string;
+    body: string;
+    card1: string;
+    card2: string;
+    card3: string;
+    card4: string;
+    card5: string;
+    card6: string;
+    card7: string;
+    card8: string;
+    imageUrl: string;
+    name: string;
+    showCards: boolean;
 
     constructor(
         private categoryService: CategoryService,
@@ -60,6 +61,7 @@ export class CategoryNewComponent implements OnInit {
 
         // New Category:
         this.newCatForm = this.fb.group({
+            body: ['', Validators.required],
             card1: [''],
             card2: [''],
             card3: [''],
@@ -73,6 +75,7 @@ export class CategoryNewComponent implements OnInit {
             showCards: ['' || false],
         });
 
+        this.body = this.newCatForm.value.body;
         this.card1 = this.newCatForm.value.card1;
         this.card2 = this.newCatForm.value.card2;
         this.card3 = this.newCatForm.value.card3;

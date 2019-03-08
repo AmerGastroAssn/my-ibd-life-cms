@@ -1,6 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
 import { UserService } from '../../../user/services/user.service';
 import { Card } from '../../models/card';
 import { CardService } from '../../services/card.service';
