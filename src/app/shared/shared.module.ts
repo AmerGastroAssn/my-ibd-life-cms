@@ -26,6 +26,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { DropZoneDirective } from './directives/drop-zone.directive';
 import { RunScriptsDirective } from './directives/run-scripts.directive';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
+import { SafePipe } from './pipes/safe.pipe';
+import { TrustUrlPipe } from './pipes/trust-url.pipe';
 import { HelperService } from './services/helper.service';
 
 import { SharedRoutingModule } from './shared-routing.module';
@@ -38,6 +40,8 @@ import { SharedRoutingModule } from './shared-routing.module';
         RunScriptsDirective,
         DropZoneDirective,
         SafeHtmlPipe,
+        SafePipe,
+        TrustUrlPipe,
         BottomSheetComponent,
     ],
     imports: [
@@ -90,6 +94,8 @@ import { SharedRoutingModule } from './shared-routing.module';
         MatFormFieldModule,
         MatCardModule,
         SafeHtmlPipe,
+        SafePipe,
+        TrustUrlPipe,
         MatSnackBarModule,
     ],
     providers: [

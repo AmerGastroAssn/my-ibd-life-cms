@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to ddw-org-cms!');
+    expect(page.getTitleText()).toEqual('Welcome to my-ibd-life-cms!');
   });
 
   afterEach(async () => {

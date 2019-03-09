@@ -3,7 +3,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "ddw-org-cms": {
+        "my-ibd-life-cms": {
             "root": "",
             "sourceRoot": "src",
             "projectType": "application",
@@ -13,7 +13,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "dist/ddw-org-cms",
+                        "outputPath": "dist/my-ibd-life-cms",
                         "index": "src/index.html",
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
@@ -81,18 +81,18 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "ddw-org-cms:build"
+                        "browserTarget": "my-ibd-life-cms:build"
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "ddw-org-cms:build:production"
+                            "browserTarget": "my-ibd-life-cms:build:production"
                         }
                     }
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "ddw-org-cms:build"
+                        "browserTarget": "my-ibd-life-cms:build"
                     }
                 },
                 "test": {
@@ -126,7 +126,7 @@
                 }
             }
         },
-        "ddw-org-cms-e2e": {
+        "my-ibd-life-cms-e2e": {
             "root": "e2e/",
             "projectType": "application",
             "prefix": "",
@@ -135,11 +135,11 @@
                     "builder": "@angular-devkit/build-angular:protractor",
                     "options": {
                         "protractorConfig": "e2e/protractor.conf.js",
-                        "devServerTarget": "ddw-org-cms:serve"
+                        "devServerTarget": "my-ibd-life-cms:serve"
                     },
                     "configurations": {
                         "production": {
-                            "devServerTarget": "ddw-org-cms:serve:production"
+                            "devServerTarget": "my-ibd-life-cms:serve:production"
                         }
                     }
                 },
@@ -155,5 +155,5 @@
             }
         }
     },
-    "defaultProject": "ddw-org-cms"
+    "defaultProject": "my-ibd-life-cms"
 }

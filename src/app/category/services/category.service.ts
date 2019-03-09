@@ -40,14 +40,14 @@ export class CategoryService {
         return this.categories$ = this.categoryCollection.valueChanges();
     }
 
-    getCategory(id: string): Observable<Category> {
-        this.categoryDoc = this.afs.doc<Category>(`categories/${id}`);
+    getCategory(slug: string): Observable<Category> {
+        this.categoryDoc = this.afs.doc<Category>(`categories/${slug}`);
         this.category$ = this.categoryDoc.snapshotChanges().map((action) => {
             if (action.payload.exists === false) {
                 return null;
             } else {
                 const data = action.payload.data() as Category;
-                data.id = action.payload.id;
+                data.slug = action.payload.id;
                 return data;
             }
         });
@@ -55,9 +55,9 @@ export class CategoryService {
     }
 
 
-    updateCategory(formData): object {
-        const calRef: AngularFirestoreDocument<Category> = this.afs.doc(`categories/${formData.id}`);
+    updateCategory(formData: Category): object {
         const slug = this.helperService.stringToSlug(formData.name);
+        const calRef: AngularFirestoreDocument<Category> = this.afs.doc(`categories/${slug}`);
         const data: Category = {
             authorId: this.authService.getProfile().uid,
             body: formData.body,
@@ -91,10 +91,10 @@ export class CategoryService {
                      .catch((error) => console.log(`ERROR~uC: `, error));
     }
 
-    setCategory(formData): object {
+    setCategory(formData: Category): object {
         const newId = this.afs.createId();
-        const calRef: AngularFirestoreDocument<Category> = this.afs.doc(`categories/${newId}`);
         const slug = this.helperService.stringToSlug(formData.name);
+        const calRef: AngularFirestoreDocument<Category> = this.afs.doc(`categories/${slug}`);
         const data: Category = {
             authorId: this.authService.getProfile().uid,
             body: formData.body,

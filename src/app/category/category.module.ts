@@ -6,7 +6,6 @@ import { SharedModule } from '../shared/shared.module';
 
 import { CategoryRoutingModule } from './category-routing.module';
 import { CategoryEditComponent } from './components/category-edit/category-edit.component';
-import { CategoryItemComponent } from './components/category-item/category-item.component';
 import { CategoryListComponent } from './components/category-list/category-list.component';
 import { CategoryNewComponent } from './components/category-new/category-new.component';
 import { CategoryComponent } from './components/category.component';
@@ -17,7 +16,6 @@ import { CategoryService } from './services/category.service';
     declarations: [
         CategoryComponent,
         CategoryEditComponent,
-        CategoryItemComponent,
         CategoryListComponent,
         CategoryNewComponent,
     ],
