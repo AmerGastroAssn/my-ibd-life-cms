@@ -41,12 +41,10 @@
                             </div>
 
                             <div class="form-group" *ngIf="!isExtURL">
-                                <label>Meta Descripton <br>
-                                    <small>If blank, meta will use site default (Not recommended)</small>
-                                </label>
+                                <label>Summary</label>
                                 <textarea type="text"
                                           class="form-control"
-                                          placeholder="Should be a sentence or two that accurately describes this page"
+                                          placeholder="Text copy underneath the Title"
                                           formControlName="metaDesc"
                                           rows="3">
                         </textarea>
@@ -145,8 +143,8 @@
                                         id="category"
                                         [class.invalid]="!f.category.valid && f.category.touched"
                                         formControlName="category">
-                                    <option>ibd-and-relationships</option>
-                                    <option>ibd-and-insurance</option>
+                                    <option value="ibd-relationships">ibd-relationships</option>
+                                    <option value="ibd-insurance">ibd-insurance</option>
                                     <!--<option></option>-->
                                     <!--<option>exhibitor-information</option>-->
                                     <!--<option>news</option>-->

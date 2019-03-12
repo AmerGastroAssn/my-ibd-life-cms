@@ -1,6 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, Valslugators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -21,13 +21,13 @@ import { CategoryService } from '../../services/category.service';
             // the "in" style determines the "resting" state of the element when it is visible.
             state('in', style({ opacity: 1 })),
 
-            // fade in when created. this could also be written as transition('void => *')
+            // fade in when created. this could also be written as transition('voslug => *')
             transition(':enter', [
                 style({ opacity: 0 }),
                 animate(600)
             ]),
 
-            // fade out when destroyed. this could also be written as transition('void => *')
+            // fade out when destroyed. this could also be written as transition('voslug => *')
             transition(':leave',
                 animate(300, style({ opacity: 0 })))
         ])
@@ -50,7 +50,7 @@ export class CategoryEditComponent implements OnInit {
     card6: string;
     card7: string;
     card8: string;
-    id: string;
+    slug: string;
     imageUrl: string;
     name: string;
     showCards: boolean;
@@ -63,11 +63,11 @@ export class CategoryEditComponent implements OnInit {
         private sbAlert: MatSnackBar,
         private cardService: CardService,
     ) {
-        // Get id from url
-        this.id = this.route.snapshot.params['id'];
+        // Get slug from url
+        this.slug = this.route.snapshot.params['slug'];
 
         // Edit Category:
-        this.categoryService.getCategory(this.id).subscribe((category: Category) => {
+        this.categoryService.getCategory(this.slug).subscribe((category: Category) => {
             if (category !== null) {
                 this.category = category;
 
@@ -82,7 +82,7 @@ export class CategoryEditComponent implements OnInit {
                     card6: [this.category.card6 || ''],
                     card7: [this.category.card7 || ''],
                     card8: [this.category.card8 || ''],
-                    id: [this.id],
+                    slug: [this.slug],
                     imageUrl: [this.category.imageUrl || ''],
                     name: [this.category.name, Validators.required],
                     showCards: [this.category.showCards],
@@ -98,7 +98,7 @@ export class CategoryEditComponent implements OnInit {
                 this.card6 = this.updateCatForm.value.card6;
                 this.card7 = this.updateCatForm.value.card7;
                 this.card8 = this.updateCatForm.value.card8;
-                this.id = this.updateCatForm.value.id;
+                this.slug = this.updateCatForm.value.slug;
                 this.imageUrl = this.updateCatForm.value.imageUrl;
                 this.name = this.updateCatForm.value.name;
                 this.showCards = this.updateCatForm.value.showCards;
@@ -110,7 +110,7 @@ export class CategoryEditComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.categoryService.getCategory(this.id)
+        this.categoryService.getCategory(this.slug)
             .subscribe((calInfo) => {
                 this.category = calInfo;
             });

@@ -49,7 +49,6 @@ export class PageEditComponent implements OnInit {
     @ViewChild(BsDatepickerDirective) datepicker: BsDatepickerDirective;
     page: Page;
     editPageForm: FormGroup;
-    $key: string;
     title: string;
     author: string;
     date: any;
@@ -117,15 +116,6 @@ export class PageEditComponent implements OnInit {
     pageCard1: Card;
     pageCard2: Card;
     pageCard3: Card;
-
-    CkeditorConfig = {
-        allowedContent: true,
-        height: 500,
-        extraAllowedContent: 'span;ul;li;table;td;style;*[id,rel];*(*);*{*}',
-        extraPlugins: 'codesnippet',
-        codeSnippet_theme: 'monokai_sublime',
-    };
-
 
     constructor(
         private pageService: PageService,
@@ -307,8 +297,7 @@ export class PageEditComponent implements OnInit {
                 panelClass: ['snackbar-danger']
             });
         } else {
-            console.log('formData', formData);
-            this.pageService.updatePage(formData, this.page.id);
+            this.pageService.updatePage(formData);
             this.editPageForm.reset(this.editPageForm);
             this.sbAlert.open('Page was updated!', 'Dismiss', {
                 duration: 3000,

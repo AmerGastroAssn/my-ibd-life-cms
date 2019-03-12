@@ -91,13 +91,11 @@
 
 
                                 <div class="form-group" *ngIf="!isExtURL">
-                                    <label>Meta Descripton <br>
-                                        <small>If blank meta will use site default (Not recommended)</small>
-                                    </label>
+                                    <label>Summary</label>
                                     <textarea type="text"
                                               class="form-control"
                                               rows="3"
-                                              placeholder="Should be a sentence or two that accurately describes this page"
+                                              placeholder="Text copy underneath the Title"
                                               formControlName="metaDesc">
                                     </textarea>
                                 </div>
@@ -162,8 +160,8 @@
                                             [class.invalid]="!f.category.valid && f.category.touched"
                                             [value]="page.category"
                                             formControlName="category">
-                                        <option>ibd-and-relationships</option>
-                                        <option>ibd-and-insurance</option>
+                                        <option value="ibd-relationships">ibd-relationships</option>
+                                        <option value="ibd-insurance">ibd-insurance</option>
                                     </select>
                                     <p class="help-block alert alert-warning text-center mt-1"
                                        *ngIf="!f.category.valid && f.category.touched">
@@ -718,7 +716,5 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 </div>

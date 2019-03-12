@@ -2,7 +2,6 @@ export class Page {
     constructor(
         public author: string,
         public bannerPhotoURL: string,
-        public calendarTitle: string,
         public callToAction: string,
         public cardOption1: string,
         public cardOption2: string,
@@ -14,7 +13,6 @@ export class Page {
         public date: number,
         public extURL: string,
         public grandchildURL: string,
-        public hasCalendar: boolean,
         public hasCards: boolean,
         public hidden: boolean,
         public id: string,

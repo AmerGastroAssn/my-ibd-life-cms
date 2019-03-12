@@ -112,8 +112,6 @@ export class PageService {
             extURL: formData.extURL,
             isExtURL: formData.isExtURL,
             sortOrder: formData.sortOrder,
-            hasCalendar: formData.hasCalendar,
-            calendarTitle: formData.calendarTitle,
             isGrandchildPage: formData.isGrandchildPage,
             grandchildURL: formData.grandchildURL,
             hidden: formData.hidden,
@@ -136,7 +134,7 @@ export class PageService {
     }
 
 
-    updatePage(formData, id: string) {
+    updatePage(formData) {
         this.author = this.authService.getProfile();
         const newId = this.afs.createId();
         const titleToSlug: string = this.string_to_slug(formData.title);
@@ -163,8 +161,6 @@ export class PageService {
                 extURL: formData.extURL,
                 isExtURL: formData.isExtURL,
                 sortOrder: formData.sortOrder,
-                hasCalendar: formData.hasCalendar,
-                calendarTitle: formData.calendarTitle,
                 isGrandchildPage: formData.isGrandchildPage,
                 grandchildURL: formData.grandchildURL,
                 hidden: formData.hidden,
@@ -181,7 +177,7 @@ export class PageService {
                 showWidgetSnippet: formData.showWidgetSnippet || false
             };
             pageRef.set(data, { merge: true })
-                   .then(() => this.router.navigate([`/pages/${data.category}`]))
+                   .then(() => this.router.navigate([`/pages`]))
                    .catch((error) => console.log(`ERROR~aP: `, error));
         } else {
             const timestampToNum = formData.date.getTime();
@@ -200,8 +196,6 @@ export class PageService {
                 extURL: formData.extURL,
                 isExtURL: formData.isExtURL,
                 sortOrder: formData.sortOrder,
-                hasCalendar: formData.hasCalendar,
-                calendarTitle: formData.calendarTitle,
                 isGrandchildPage: formData.isGrandchildPage,
                 grandchildURL: formData.grandchildURL,
                 hidden: formData.hidden,
@@ -218,7 +212,7 @@ export class PageService {
                 showWidgetSnippet: formData.showWidgetSnippet || false
             };
             pageRef.set(data, { merge: true })
-                   .then(() => this.router.navigate([`/pages/${data.category}`]))
+                   .then(() => this.router.navigate([`/pages`]))
                    .catch((error) => console.log(`ERROR~aP: `, error));
         }
     }
