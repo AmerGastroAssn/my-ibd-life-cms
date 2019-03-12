@@ -1,6 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, Valslugators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
