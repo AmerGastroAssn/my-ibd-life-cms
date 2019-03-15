@@ -50,13 +50,7 @@ export class CallToActionNewComponent implements OnInit {
         this.author = this.authService.getProfile();
         this.currentDate = Date.now();
 
-        this.body = `<blockquote>
-            ## Quoted text here. The pound signs are styling placeholders, to hold
-            the styling. After you add your text, you should remove them. Please only backspace once over each pound-sign to remove. That way it will hold its styled tag. </blockquote>
-        
-        <p class="quoteby">
-            <span> ## Yellow text goes here,</span> ## Non-Yellow text here.
-        </p>`;
+        this.body = ``;
     }
 
 
@@ -69,13 +63,7 @@ export class CallToActionNewComponent implements OnInit {
     ngOnInit() {
         this.newCTAForm = this.fb.group({
             author: [this.author],
-            body: [this.body,
-                   Validators.compose([
-                       Validators.required,
-                       Validators.minLength(10),
-                       Validators.maxLength(550)
-                   ])
-            ],
+            body: [this.body],
             buttonUrl: [this.buttonUrl || ''],
             buttonText: [this.buttonText || ''],
             imageUrl: [this.imageUrl || ''],

@@ -64,13 +64,7 @@ export class CallToActionEditComponent implements OnInit {
             this.cta = cta;
             if (this.cta !== null) {
                 this.editCTAForm = this.fb.group({
-                    body: [this.cta.body,
-                           Validators.compose([
-                               Validators.required,
-                               Validators.minLength(10),
-                               Validators.maxLength(550)
-                           ])
-                    ],
+                    body: [this.cta.body || ''],
                     buttonUrl: [this.cta.buttonUrl || ''],
                     buttonText: [this.cta.buttonText || ''],
                     createdAt: [this.cta.createdAt],

@@ -36,9 +36,7 @@
 
                                 <div class="form-group">
                                     <label class="helv">Name <br>
-                                        <small>How you'll find it in Page Builder. <span class="badge badge-warning">*Required</span>
-                                        </small>
-                                    </label>
+                                        <small>How you'll find it in Page Edit/New</small></label>
                                     <input type="text"
                                            class="form-control"
                                            required
@@ -72,22 +70,19 @@
                                               [config]="CkeditorConfig"
                                               [class.invalid]="!f.body.valid && f.body.touched"
                                               maxlength="550"
-                                              required
                                               [readonly]="false"
                                               [(ngModel)]="body"
                                               debounce="500">
                                     </ckeditor>
-                                    <p class="help-block alert alert-danger text-center"
-                                       [hidden]="f.body.valid">
-                                        Body is required and cannot have more than <b>550</b> characters. There are currently
-                                        <b>{{ body.length }}</b> characters
-                                    </p>
+                                    <!--<p class="help-block alert alert-danger text-center"-->
+                                       <!--[hidden]="f.body.valid">-->
+                                        <!--Body is required and cannot have more than <b>550</b> characters. There are currently-->
+                                        <!--<b>{{ body.length }}</b> characters-->
+                                    <!--</p>-->
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="helv">File URL
-                                        <small>This will replace the video if no video is added</small>
-                                    </label>
+                                    <label class="helv">Image URL</label>
                                     <input type="url"
                                            class="form-control"
                                            [class.invalid]="!f.imageUrl.valid && f.imageUrl.touched"
@@ -95,55 +90,55 @@
                                 </div>
 
 
-                                <div class="form-group">
-                                    <label class="helv">Video URL
-                                        <small>If the CTA has a video</small>
-                                    </label>
-                                    <input type="url"
-                                           class="form-control"
-                                           placeholder="Go to YouTube video > share > embed > grab url from src='this-url'"
-                                           [class.invalid]="!f.videoUrl.valid && f.videoUrl.touched"
-                                           formControlName="videoUrl">
-                                </div>
+                                <!--<div class="form-group">-->
+                                    <!--<label class="helv">Video URL-->
+                                        <!--<small>If the CTA has a video</small>-->
+                                    <!--</label>-->
+                                    <!--<input type="url"-->
+                                           <!--class="form-control"-->
+                                           <!--placeholder="Go to YouTube video > share > embed > grab url from src='this-url'"-->
+                                           <!--[class.invalid]="!f.videoUrl.valid && f.videoUrl.touched"-->
+                                           <!--formControlName="videoUrl">-->
+                                <!--</div>-->
 
-                                <!-- * Button * -->
-                                <div class="card bg-light mb-4">
-                                    <div class="card-body">
-                                        <p class="helv info">
-                                            <i class="fa fa-info-circle"></i>&nbsp;If blank, button will not show
-                                        </p>
-                                        <div class="form-group">
-                                            <label class="helv">Button Text</label>
-                                            <input type="text"
-                                                   placeholder="Ex: Learn More"
-                                                   class="form-control"
-                                                   [class.invalid]="!f.buttonText.valid && f.buttonText.touched"
-                                                   formControlName="buttonText">
-                                        </div>
+                                <!--&lt;!&ndash; * Button * &ndash;&gt;-->
+                                <!--<div class="card bg-light mb-4">-->
+                                    <!--<div class="card-body">-->
+                                        <!--<p class="helv info">-->
+                                            <!--<i class="fa fa-info-circle"></i>&nbsp;If blank, button will not show-->
+                                        <!--</p>-->
+                                        <!--<div class="form-group">-->
+                                            <!--<label class="helv">Button Text</label>-->
+                                            <!--<input type="text"-->
+                                                   <!--placeholder="Ex: Learn More"-->
+                                                   <!--class="form-control"-->
+                                                   <!--[class.invalid]="!f.buttonText.valid && f.buttonText.touched"-->
+                                                   <!--formControlName="buttonText">-->
+                                        <!--</div>-->
 
-                                        <div class="form-group">
-                                            <label class="helv">Button URL</label>
-                                            <input type="text"
-                                                   placeholder="https://"
-                                                   class="form-control"
-                                                   [class.invalid]="!f.buttonUrl.valid && f.buttonUrl.touched"
-                                                   formControlName="buttonUrl">
-                                        </div>
+                                        <!--<div class="form-group">-->
+                                            <!--<label class="helv">Button URL</label>-->
+                                            <!--<input type="text"-->
+                                                   <!--placeholder="https://"-->
+                                                   <!--class="form-control"-->
+                                                   <!--[class.invalid]="!f.buttonUrl.valid && f.buttonUrl.touched"-->
+                                                   <!--formControlName="buttonUrl">-->
+                                        <!--</div>-->
 
-                                        <!-- * ExtURL  * -->
-                                        <div class="form-group mt-3">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox"
-                                                       class="custom-control-input ext-url"
-                                                       id="isExtUrl"
-                                                       formControlName="isExtUrl">
-                                                <label class="custom-control-label ext-url helv"
-                                                       for="isExtUrl">Is the button an external URL?
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                        <!--&lt;!&ndash; * ExtURL  * &ndash;&gt;-->
+                                        <!--<div class="form-group mt-3">-->
+                                            <!--<div class="custom-control custom-checkbox">-->
+                                                <!--<input type="checkbox"-->
+                                                       <!--class="custom-control-input ext-url"-->
+                                                       <!--id="isExtUrl"-->
+                                                       <!--formControlName="isExtUrl">-->
+                                                <!--<label class="custom-control-label ext-url helv"-->
+                                                       <!--for="isExtUrl">Is the button an external URL?-->
+                                                <!--</label>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
 
 
                                 <button type="submit"
