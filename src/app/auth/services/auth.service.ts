@@ -291,7 +291,8 @@ export class AuthService {
 
         userRef.set(data, { merge: true })
                .then()
-               .catch((error) => console.log(error));
+               .catch((error) => console.error(error));
+
     }
 
     // Sets user but also in local storage.

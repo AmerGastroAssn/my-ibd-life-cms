@@ -1,0 +1,51 @@
+.section-one {
+    background-color: var(--sec-one-blue);
+    padding: 5rem 0 3rem 0;
+    text-align: center;
+    color: var(--midnight);
+}
+
+.image-section {
+    text-align: center;
+    background-color: var(--sec-one-blue);
+}
+
+img.seal-img {
+    margin-bottom: -6rem;
+}
+
+.section-two {
+    background-color: var(--sec-two-blue) !important;
+    padding: 10rem 0 8rem 0;
+    text-align: center;
+    color: var(--midnight);
+}
+
+.section-three {
+    padding: 5rem 0;
+    background-color: var(--light);
+}
+
+p > i.fal {
+    color: var(--plum);
+    font-size: 3rem;
+}
+
+.section-four {
+    background-color: var(--sec-two-blue);
+    padding: 8rem 0;
+}
+
+p.bottom-icon > i {
+    color: var(--ice);
+    font-size: 4rem;
+}
+
+.section-four-text-top {
+    font-size: 1.5rem;
+}
+
+p.section-four-text-bottom {
+    font-size: 1.5rem;
+    font-style: italic;
+}

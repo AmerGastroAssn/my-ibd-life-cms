@@ -78,7 +78,9 @@ export class NavbarComponent implements OnInit {
 
         // Sets users login date.
         this.user$.take(1).subscribe((userInfo) => {
-            this.authService.setUserToOnline(userInfo);
+            if (userInfo) {
+                this.authService.setUserToOnline(userInfo);
+            }
         });
 
 

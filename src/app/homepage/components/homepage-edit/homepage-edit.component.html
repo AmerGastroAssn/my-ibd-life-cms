@@ -2,6 +2,17 @@
 <!-- * PAGE-HOME * -->
 <app-logo-watermark [favicon]="favicon" [sectionName]="sectionName"></app-logo-watermark>
 
+<div class="row">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <button class="btn btn-default" (click)="lgModal.show()">
+                    <i class="fa fa-glasses"></i>&nbsp;Preview
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- * Page Sections * -->
 <div class="row mt-4">
@@ -234,3 +245,131 @@
         </div>
     </div>
 </div>
+
+
+<!-- * PREVIEW MODAL * -->
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1"
+     role="dialog" aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-sizes-name1" class="modal-title pull-left">
+                   <i class="fa fa-glasses"></i>&nbsp;Preview
+                </h4>
+                <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- * HOME * -->
+                <!-- * Section One * -->
+                <div class="row section-one" *ngIf="homePage">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 offset-md-2">
+                                <h1 class="title">{{ sec1Title }}</h1>
+                                <p class="subtitle">
+                                    {{ sec1Subtitle }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row image-section" *ngIf="homePage">
+                    <div class="container">
+                        <div class="text-center">
+                            <img [src]="sec1ImageUrl"
+                                 style="width:200px; height:200px;"
+                                 class="rounded-circle seal-img">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- * Section Two * -->
+                <div class="row section-two" *ngIf="homePage">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{ sec2TextLeft }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ sec2TextRight }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- * Section Three * -->
+                <div class="row section-three" *ngIf="homePage">
+                    <div class="container">
+                        <div class="row mb-5">
+                            <div class="col-sm-12 text-center">
+                                <h2 class="serif">{{ sec3Title }}</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 offset-md-3 text-center">
+                                <p>{{ sec3CardLeftTitle }}</p>
+                                <p class="icons">
+                                    <i [ngClass]="sec3CardLeftImageUrl"></i>
+                                </p>
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <p>{{ sec3CardMiddleTitle }}</p>
+                                <p class="icons">
+                                    <i [ngClass]="sec3CardMiddleImageUrl"></i>
+                                </p>
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <p>{{ sec3CardRightTitle }}</p>
+                                <p class="icons">
+                                    <i [ngClass]="sec3CardRightImageUrl"></i>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row text-center mt-5">
+                            <div class="col-md-6 offset-md-3">
+                                <h5 class="section-three-subtitle">
+                                    {{ sec3Subtitle }}
+                                </h5>
+                                <p class="section-three-text mt-3">
+                                    <span [innerHTML]="sec3Text"></span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img [src]="" class="img-fluid">
+                            </div>
+                            <div class="col-md-6">
+                                <img [src]="" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- * Section Four * -->
+                <div class="row section-four" *ngIf="homePage">
+                    <div class="container text-center">
+                        <div class="col-md-6 offset-md-3">
+                            <p class="bottom-icon">
+                                <i [ngClass]="sec4ImageUrl"></i>
+                            </p>
+                            <p class="section-four-text-top">
+                                {{ sec4Title }}
+                            </p>
+                            <p class="section-four-text-bottom serif">
+                                {{ sec4Text }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
