@@ -1,3 +1,7 @@
+p, p.subtitle {
+    line-height: 1.5rem;
+}
+
 .section-one {
     background-color: var(--sec-one-blue);
     padding: 5rem 0 3rem 0;
