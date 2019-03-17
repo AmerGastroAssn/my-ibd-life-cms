@@ -10,6 +10,7 @@ export class Category {
         public card6: string,
         public card7: string,
         public card8: string,
+        public homepageImageUrl: string,
         public id: string,
         public imageUrl: string,
         public name: string,

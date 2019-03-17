@@ -21,22 +21,7 @@ export class HomepageService {
         private afs: AngularFirestore,
     ) {
         this.videoId = 'TsCwvT2a4VolBZrvTbOS';
-        this.id = 'iKCpMdHlnJHKBzLbfmZs';
-    }
-
-    getVideoURL(): Observable<DailyVideo> {
-        this.videoDoc = this.afs.doc<DailyVideo>(`dailyVideo/${this.videoId}`);
-        this.video$ = this.videoDoc.snapshotChanges().map((action) => {
-            if (action.payload.exists === false) {
-                return null;
-            } else {
-                const data = action.payload.data() as DailyVideo;
-                data.id = action.payload.id;
-                return data;
-            }
-        });
-
-        return this.video$;
+        this.id = 'iaid7gh0P4Zjqw8dL9CU';
     }
 
 
@@ -55,30 +40,7 @@ export class HomepageService {
         return this.home$;
     }
 
-    updateVideoURL(updatedVideoURL): void {
-        this.videoDoc = this.afs.doc<DailyVideo>(`dailyVideo/${this.videoId}`);
-
-        this.videoDoc.update(updatedVideoURL)
-            .then(() => {
-                this.sbAlert.open('Video URL was Saved!', 'Dismiss', {
-                    duration: 3000,
-                    verticalPosition: 'bottom',
-                    panelClass: ['snackbar-success']
-                });
-                console.log('Video URL updated', updatedVideoURL);
-            })
-            .catch((error) => {
-                this.sbAlert.open('Video URL was NOT Saved.', 'Dismiss', {
-                    duration: 3000,
-                    verticalPosition: 'bottom',
-                    panelClass: ['snackbar-danger']
-                });
-                console.log(`ERROR~uDV: `, error);
-            });
-    }
-
-
-    updateHomeForm(formData: Homepage): void {
+    updateHome(formData: Homepage): void {
         this.homeDoc = this.afs.doc<Homepage>(`homePage/${this.id}`);
 
         this.homeDoc.update(formData)

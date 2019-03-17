@@ -50,11 +50,20 @@ export class CategoryEditComponent implements OnInit {
     card6: string;
     card7: string;
     card8: string;
+    homepageImageUrl: string;
     slug: string;
     imageUrl: string;
     name: string;
     showCards: boolean;
     cards$: Observable<Card[]>;
+    cardList1: Observable<Card[]>;
+    cardList2: Observable<Card[]>;
+    cardList3: Observable<Card[]>;
+    cardList4: Observable<Card[]>;
+    cardList5: Observable<Card[]>;
+    cardList6: Observable<Card[]>;
+    cardList7: Observable<Card[]>;
+    cardList8: Observable<Card[]>;
 
     constructor(
         private categoryService: CategoryService,
@@ -64,11 +73,11 @@ export class CategoryEditComponent implements OnInit {
         private cardService: CardService,
     ) {
         // Get slug from url
-        this.slug = this.route.snapshot.params['slug'];
+        this.slug = this.route.snapshot.params['id'];
 
         // Edit Category:
         this.categoryService.getCategory(this.slug).subscribe((category: Category) => {
-            if (category !== null) {
+            if (category) {
                 this.category = category;
 
                 this.updateCatForm = this.fb.group({
@@ -82,10 +91,11 @@ export class CategoryEditComponent implements OnInit {
                     card6: [this.category.card6 || ''],
                     card7: [this.category.card7 || ''],
                     card8: [this.category.card8 || ''],
+                    homepageImageUrl: [this.category.homepageImageUrl || ''],
                     slug: [this.slug],
                     imageUrl: [this.category.imageUrl || ''],
                     name: [this.category.name, Validators.required],
-                    showCards: [this.category.showCards],
+                    showCards: [this.category.showCards || false],
                 });
 
                 this.authorId = this.updateCatForm.value.authorId;
@@ -98,6 +108,7 @@ export class CategoryEditComponent implements OnInit {
                 this.card6 = this.updateCatForm.value.card6;
                 this.card7 = this.updateCatForm.value.card7;
                 this.card8 = this.updateCatForm.value.card8;
+                this.homepageImageUrl = this.updateCatForm.value.homepageImageUrl;
                 this.slug = this.updateCatForm.value.slug;
                 this.imageUrl = this.updateCatForm.value.imageUrl;
                 this.name = this.updateCatForm.value.name;
@@ -111,8 +122,8 @@ export class CategoryEditComponent implements OnInit {
 
     ngOnInit() {
         this.categoryService.getCategory(this.slug)
-            .subscribe((calInfo) => {
-                this.category = calInfo;
+            .subscribe((catInfo) => {
+                this.category = catInfo;
             });
 
         this.cards$ = this.cardService.getAllCards();
@@ -129,7 +140,6 @@ export class CategoryEditComponent implements OnInit {
             });
         } else {
             this.categoryService.updateCategory(categoryData);
-            console.log(categoryData);
             this.updateCatForm.reset();
             this.sbAlert.open('Category Updated!', 'Dismiss', {
                 duration: 3000,

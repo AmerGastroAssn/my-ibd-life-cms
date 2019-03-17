@@ -56,10 +56,9 @@ export class ContactListComponent implements OnInit {
         // // Get id from url
         this.id = this.route.snapshot.params['id'];
         // Get each contact's details
-        this.contactService.getContact(this.id).subscribe((contactInfo) => {
+        this.contactService.getContact(this.id).subscribe((contactInfo: Contact) => {
             if (contactInfo !== null) {
                 this.contact = contactInfo;
-                console.log('this.contact', this.contact);
             }
         });
     }

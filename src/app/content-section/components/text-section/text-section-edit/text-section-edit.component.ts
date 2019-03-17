@@ -24,8 +24,6 @@ export class TextSectionEditComponent implements OnInit {
         allowedContent: true,
         height: 200,
         extraAllowedContent: 'script;span;ul;li;table;td;style;*[id];*(*);*{*}',
-        extraPlugins: 'codesnippet',
-        codeSnippet_theme: 'monokai_sublime',
     };
 
     constructor(

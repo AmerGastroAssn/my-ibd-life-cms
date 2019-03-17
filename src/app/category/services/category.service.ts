@@ -58,8 +58,10 @@ export class CategoryService {
     updateCategory(formData: Category): object {
         const slug = this.helperService.stringToSlug(formData.name);
         const calRef: AngularFirestoreDocument<Category> = this.afs.doc(`categories/${slug}`);
+        const newId = this.afs.createId();
+        const authorId = this.authService.getProfile().uid;
         const data: Category = {
-            authorId: this.authService.getProfile().uid,
+            authorId: authorId || '',
             body: formData.body,
             card1: formData.card1,
             card2: formData.card2,
@@ -69,7 +71,8 @@ export class CategoryService {
             card6: formData.card6,
             card7: formData.card7,
             card8: formData.card8,
-            id: formData.id,
+            homepageImageUrl: formData.homepageImageUrl,
+            id: formData.id || newId,
             imageUrl: formData.imageUrl,
             name: formData.name,
             showCards: formData.showCards || false,
@@ -77,7 +80,6 @@ export class CategoryService {
             updatedAt: Date.now(),
         };
 
-        console.log('data', data);
         return calRef.set(data, { merge: true })
                      .then(() => {
                          this.router.navigate(['/categories']);
@@ -86,9 +88,8 @@ export class CategoryService {
                              verticalPosition: 'bottom',
                              panelClass: ['snackbar-success']
                          });
-                         console.log('Category Updated!', data);
                      })
-                     .catch((error) => console.log(`ERROR~uC: `, error));
+                     .catch((error) => console.error(`ERROR~uC: `, error));
     }
 
     setCategory(formData: Category): object {
@@ -106,6 +107,7 @@ export class CategoryService {
             card6: formData.card6,
             card7: formData.card7,
             card8: formData.card8,
+            homepageImageUrl: formData.homepageImageUrl,
             id: newId,
             imageUrl: formData.imageUrl,
             name: formData.name,
@@ -123,7 +125,6 @@ export class CategoryService {
                              verticalPosition: 'bottom',
                              panelClass: ['snackbar-success']
                          });
-                         console.log('Category Saved!', data);
                      })
                      .catch((error) => console.log(`ERROR~uC: `, error));
     }

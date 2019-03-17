@@ -32,8 +32,6 @@ export class CallToActionNewComponent implements OnInit {
         allowedContent: true,
         height: 200,
         extraAllowedContent: 'span;ul;li;table;td;style;*[id];*(*);*{*}',
-        extraPlugins: 'codesnippet',
-        codeSnippet_theme: 'monokai_sublime',
     };
 
     constructor(

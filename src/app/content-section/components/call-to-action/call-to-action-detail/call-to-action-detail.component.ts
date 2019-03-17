@@ -38,7 +38,6 @@ export class CallToActionDetailComponent implements OnInit {
             if (cta.body) {
                 this.body = this.sanitizer.bypassSecurityTrustHtml(cta.body);
             }
-            console.log('thiscta', this.cta);
         });
     }
 

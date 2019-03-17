@@ -24,12 +24,12 @@
                                  aria-label="Basic example">
                                 <a class="btn btn-default btn-sm"
                                    *ngIf="!contact.viewed"
-                                   (click)="onMarkViewed(contact.$key)">
+                                   (click)="onMarkViewed(contact.uid)">
                                     <i class="fal fa-square"></i> Viewed
                                 </a>
                                 <a class="btn btn-default btn-sm viewed-btn"
                                    *ngIf="contact.viewed"
-                                   (click)="onUnmarkViewed(contact.$key)">
+                                   (click)="onUnmarkViewed(contact.uid)">
                                     <i class="fa fa-check-square"></i> Viewed
                                 </a>
                                 <a class="btn btn-secondary btn-sm"
@@ -37,7 +37,7 @@
                                     <i class="fa fa-undo"></i>&nbsp;Cancel
                                 </a>
                                 <a class="btn btn-danger btn-sm text-white"
-                                   (click)="onDeleteContact(contact.$key)">
+                                   (click)="onDeleteContact(contact.uid)">
                                     <i class="fa fa-trash-alt"></i> Delete
                                 </a>
                             </div>
@@ -67,7 +67,7 @@
                                     <th scope="col">ID:</th>
                                     <td class="">
                                         <i class="fa fa-ticket-alt"></i>&nbsp;<span class="text-mono">
-                                        {{ contact.$key }}
+                                        {{ contact.uid }}
                                         </span>
                                     </td>
                                 </tr>
@@ -96,7 +96,7 @@
                                 <tr>
                                     <th scope="col">Email:</th>
                                     <td>
-                                        <a href="mailto:{{ contact.email }}?subject=DDW® Contact"
+                                        <a href="mailto:{{ contact.email }}?subject=MyIBD Life Contact"
                                            class="text-decoration-none"
                                            [ngClass]="{'viewed-link': contact.viewed, 'text-dark': !contact.viewed}">
                                             <i class="fa fa-envelope"></i>&nbsp; {{ contact.email }}

@@ -85,8 +85,6 @@ export class PageNewComponent implements OnInit, OnDestroy {
         allowedContent: true,
         height: 500,
         extraAllowedContent: 'span;ul;li;table;td;style;*[id];*(*);*{*}',
-        extraPlugins: 'codesnippet',
-        codeSnippet_theme: 'monokai_sublime',
     };
 
     constructor(

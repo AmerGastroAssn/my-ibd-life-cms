@@ -47,6 +47,7 @@ export class CategoryNewComponent implements OnInit {
     card6: string;
     card7: string;
     card8: string;
+    homepageImageUrl: string;
     imageUrl: string;
     name: string;
     showCards: boolean;
@@ -70,6 +71,7 @@ export class CategoryNewComponent implements OnInit {
             card6: [''],
             card7: [''],
             card8: [''],
+            homepageImageUrl: [''],
             imageUrl: [''],
             name: ['', Validators.required],
             showCards: ['' || false],
@@ -84,6 +86,7 @@ export class CategoryNewComponent implements OnInit {
         this.card6 = this.newCatForm.value.card6;
         this.card7 = this.newCatForm.value.card7;
         this.card8 = this.newCatForm.value.card8;
+        this.homepageImageUrl = this.newCatForm.value.homepageImageUrl;
         this.imageUrl = this.newCatForm.value.imageUrl;
         this.name = this.newCatForm.value.name;
         this.showCards = this.newCatForm.value.showCards;

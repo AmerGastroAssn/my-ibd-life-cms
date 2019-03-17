@@ -5,6 +5,15 @@ li.nav-item {
     font-size: 1rem;
 }
 
+.text-section > *,
+.text-section *,
+.text-section > p,
+.text-section > ul > li,
+.text-section > ol > li {
+    font-family: var(--serif) !important;
+    line-height: 1.5rem;
+}
+
 .btn.cta {
     margin-bottom: 0;
 }

@@ -12,59 +12,27 @@
                 <i class="fa fa-plus"></i>&nbsp;New CTA
             </a>
 
+            <!-- * TODO Update Links * -->
             <a class="btn btn-default"
                *ngIf="cta"
                matTooltip="Send For Review"
-               href="mailto: ?subject=For review on DDW: {{cta.name}}&body=Please review this Call To Action from DDW.org: https://ddw.org/call-to-action/{{cta.id}}">
+               href="mailto: ?subject=For review on MyIBD LIfe: {{cta.name}}&body=Please review this Call To Action from DDW.org: https://ddw.org/call-to-action/{{cta.id}}">
                 <i class="fa fa-envelope"></i>&nbsp;Send For Review
             </a>
         </div>
     </div>
 </div>
 
-<div class="row">
+<div class="row mt-5">
     <div class="container">
-        <div class="row cta" *ngIf="cta">
-            <div class="row pt-3 pb-4" *ngIf="cta.title || cta.subtitle">
-                <div class="col-md-10 text-center mx-auto">
-                    <h2>{{ cta.title }}</h2>
-                    <p>{{ cta.subtitle }}</p>
-                </div>
+        <div class="row" *ngIf="imageUrl">
+            <div class="col-sm-8 offset-md-2">
+                <img [src]="imageUrl" class="img-fluid">
             </div>
-            <div class="row">
-                <div class="col-md-5 col-media">
-                    <iframe *ngIf="cta.videoUrl"
-                            allowfullscreen="allowfullscreen"
-                            frameborder="0"
-                            height="315"
-                            width="446"
-                            [src]="videoUrl">
-                    </iframe>
-                    <img [src]="imageUrl"
-                         *ngIf="imageUrl"
-                         style="max-width:446px;">
-
-                </div>
-
-                <div class="col-md-7 col-quote">
-                    <span [innerHTML]="body"></span>
-
-                    <div class="row">
-                        <div class="col-md-6 offset-md-3">
-                            <a *ngIf="cta.buttonText && cta.buttonUrl && cta.isExtUrl"
-                               target="_blank"
-                               [href]="cta.buttonUrl"
-                               class="btn cta">
-                                {{ cta.buttonText }}
-                            </a>
-                            <a *ngIf="cta.buttonText && cta.buttonUrl && !cta.isExtUrl"
-                               [href]="cta.buttonUrl"
-                               class="btn cta">
-                                {{ cta.buttonText }}
-                            </a>
-                        </div>
-                    </div>
-                </div>
+        </div>
+        <div class="row pt-4" *ngIf="body">
+            <div class="col-sm-8 offset-md-2">
+                <span [innerHTML]="body"></span>
             </div>
         </div>
     </div>
@@ -80,7 +48,7 @@
                  *ngIf="cta">
                 <a class="navbar-brand" href="#">
                     <img src="https://s3.amazonaws.com/DDW/ddw-org/images/logos/gray-ddw-150.png" width="100"
-                         class="d-inline-block align-top" alt="DDW">
+                         class="d-inline-block align-top" alt="MyIBD Life">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -111,7 +79,7 @@
                                [routerLink]="['/call-to-action']">
                                 <i class="fa fa-undo"></i>&nbsp;Cancel
                             </a>
-
+                            <!-- * TODO Update Links * -->
                             <a class="btn btn-success"
                                matTooltip="Send For Review"
                                href="mailto: ?subject=For review on DDW: {{cta.name}}&body=Please review this Call To Action from DDW.org: https://ddw.org/call-to-action/{{cta.id}}">

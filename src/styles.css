@@ -7,6 +7,7 @@
     --frontend-font: 'Open Sans', Roboto, 'Helvetica Neue', sans-serif;
     --frontend-header-font: 'Roboto', sans-serif;
     --monospace: 'SF Mono', 'Roboto Mono', Menlo, consolas, monospace;
+    --serif: 'Georgia', Cambria, serif;
     --cursive: 'Georgia', Cambria, serif;
     /* AGA Colors */
     --midnight: #122033;
@@ -46,8 +47,8 @@
 }
 
 h1, h2, h3 {
-    font-family: Roboto, Helvetica, Arial, sans-serif;
-    font-weight: 600;
+    /*font-family: Roboto, Helvetica, Arial, sans-serif;*/
+    /*font-weight: 600;*/
 }
 
 .helv {
@@ -73,6 +74,10 @@ hr.inset-hr {
 
 .inner-card {
     border-radius: 0;
+}
+
+a:link {
+    text-decoration: none !important;
 }
 
 p > a:link, li > a:link {

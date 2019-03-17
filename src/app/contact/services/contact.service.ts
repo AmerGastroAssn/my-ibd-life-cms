@@ -23,8 +23,7 @@ export class ContactService {
 
     getAllContacts(sortValue): Observable<Contact[]> {
         // Ref, and order by title
-        console.log('sortValue', sortValue);
-        this.contactCollection = this.afs.collection(`contactForm`,
+        this.contactCollection = this.afs.collection(`contacts`,
             ref => ref.orderBy(sortValue, 'asc')
         );
         // Gets array of pressReleases along with their uid.
@@ -39,7 +38,7 @@ export class ContactService {
     }
 
     getAllUnviewedContacts(): Observable<Contact[]> {
-        this.contactCollection = this.afs.collection(`contactForm`,
+        this.contactCollection = this.afs.collection(`contacts`,
             ref => ref.where('viewed', '==', false)
         );
         // Gets array of pressReleases along with their uid.
@@ -54,14 +53,13 @@ export class ContactService {
     }
 
     getContact(id: string): Observable<Contact> {
-        this.contactDoc = this.afs.doc<Contact>(`contactForm/${id}`);
+        this.contactDoc = this.afs.doc<Contact>(`contacts/${id}`);
         this.contact = this.contactDoc.snapshotChanges().map((action) => {
             if (action.payload.exists === false) {
                 return null;
             } else {
                 const data = action.payload.data() as Contact;
                 data.uid = action.payload.id;
-                console.log('data in getContact', data);
                 return data;
             }
         });
@@ -73,7 +71,7 @@ export class ContactService {
     setContact(formData) {
         // Creates new pressRelease with slug as the $key
         const new$key = this.afs.createId();
-        const contactRef: AngularFirestoreDocument<Contact> = this.afs.doc(`contactForm/${new$key}`);
+        const contactRef: AngularFirestoreDocument<Contact> = this.afs.doc(`contacts/${new$key}`);
 
         const data: Contact = {
             $key: new$key,
@@ -92,7 +90,7 @@ export class ContactService {
     }
 
     deleteContact(id: string): void {
-        this.contactDoc = this.afs.doc<Contact>(`contactForm/${id}`);
+        this.contactDoc = this.afs.doc<Contact>(`contacts/${id}`);
         if (confirm(`Are you sure you want to delete this Contact? This is irreversible.`)) {
             this.contactDoc.delete()
                 .then(() => {
@@ -115,7 +113,7 @@ export class ContactService {
     }
 
     setViewedContact(id) {
-        this.afs.doc(`contactForm/${id}`).set({
+        this.afs.doc(`contacts/${id}`).set({
             viewed: true
         }, { merge: true })
             .then(() => {
@@ -136,7 +134,7 @@ export class ContactService {
     }
 
     setUnviewedContact(id) {
-        this.afs.doc(`contactForm/${id}`).set({
+        this.afs.doc(`contacts/${id}`).set({
             viewed: false
         }, { merge: true })
             .then(() => {

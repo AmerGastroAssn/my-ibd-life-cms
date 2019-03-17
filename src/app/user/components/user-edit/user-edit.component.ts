@@ -62,7 +62,7 @@ export class UserEditComponent implements OnInit {
     }
 
     uploadImage(event) {
-        const customMetadata = { app: 'DDW.org' };
+        const customMetadata = { app: 'MyIBD Life' };
         // The File object
         const file = event.target.files[0];
         // Client-side validation example
