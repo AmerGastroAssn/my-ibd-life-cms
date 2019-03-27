@@ -35,7 +35,7 @@ import { CategoryService } from '../../services/category.service';
 export class CategoryNewComponent implements OnInit {
     newCatForm: FormGroup;
     category: Category;
-    favicon = 'fa fa-tag';
+    favicon = 'fa fa-folder-plus';
     sectionName = 'New Category';
     cards$: Observable<Card[]>;
     body: string;

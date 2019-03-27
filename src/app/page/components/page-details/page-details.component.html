@@ -1,332 +1,52 @@
 <!-- * ADMIN-PAGE-DETAILS (PREVIEW) * -->
+<div class="row" *ngIf="page" id="stage">
+    <img [src]="page.bannerPhotoURL" class="img-fluid banner-photo-url">
+    <div class="container main mb-5">
 
-<!-- * If Regular Page * -->
-<div *ngIf="page && !page.isExtURL" class="page-container">
-
-    <div class="row">
-        <img [src]="page.bannerPhotoURL" class="bannerPhotoURL">
-        <div class="container">
-            <h1 class="title">{{ page.title }}</h1>
+        <div class="row flex-row pt-5">
+            <h5 class="subtitle">
+                <span *ngIf="isIBDRelationships">IBD &amp; Relationships</span>
+                <span *ngIf="!isIBDRelationships">IBD &nbsp; Insurance</span>
+            </h5>
         </div>
-    </div>
 
-    <!-- * Breadcrumbs * -->
-    <div class="row crumbs">
-        <div class="container">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <div class="text-capitalize text-decoration-none text-dark">
-                        {{ page.category }}
-                    </div>
-                </li>
-                <li class="breadcrumb-item text-capitalize text-dark"
-                    *ngIf="page.isGrandchildPage">
-                    <a [routerLink]="['/pages', page.category, page.grandchildURL]"
-                       style="color:#2e6da4;"
-                       class="child">{{page.grandchildURL}}</a>
-                </li>
-                <li class="breadcrumb-item active text-dark">
-                    {{page.title}}
-                </li>
-            </ol>
-        </div>
-    </div>
-
-    <!-- * Content Sections * -->
-    <div class="row">
-        <div class="container">
-            <div class="image-container">
-                <img [src]="page.photoURL"
-                     *ngIf="page.photoURL && !page.showWidgetSnippet"
-                     class="photoURL">
-                <img [src]="ingoImage"
-                     *ngIf="widgetSnippet && page.showWidgetSnippet"
-                     class="widgetSnippet"
-                     id="widgetSnippet">
-                <!--<span [innerHTML]="(widgetSnippet | safeHtml) || ingoImage"-->
-                <!--*ngIf="widgetSnippet && page.showWidgetSnippet"-->
-                <!--ddwRunScripts-->
-                <!--class="widgetSnippet"-->
-                <!--id="widgetSnippet">-->
-                <!--</span>-->
+        <div class="row flex-row">
+            <div class="row">
+                <h1 class="title">{{ page.title }}</h1>
             </div>
 
-            <!-- * TEXT SECTIONS * -->
-            <!-- * Text Section Top * -->
-            <span class="frontend-content" *ngIf="tsTopBody && page.contentSectionTop"
-                  [innerHTML]="tsTopBody">
-            </span>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="container">
-
-            <!-- * Call To Action * -->
-            <div class="row cta" *ngIf="page.callToAction && cta">
-                <div class="row pt-3" *ngIf="cta.title || cta.subtitle">
-                    <div class="col-md-10 text-center mx-auto">
-                        <h2>{{ cta.title }}</h2>
-                        <p>{{ cta.subtitle }}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-5 cta-left col-media">
-                        <iframe *ngIf="cta.videoUrl"
-                                allowfullscreen="allowfullscreen"
-                                frameborder="0"
-                                height="315"
-                                width="446"
-                                [src]="videoUrl">
-                        </iframe>
-                        <img [src]="imageUrl"
-                             *ngIf="cta.imageUrl"
-                             style="max-width:446px;">
-
-                    </div>
-
-                    <div class="col-md-7 col-quote">
-                        <span class="frontend-content" [innerHTML]="ctaBody"></span>
-
-                        <div class="row">
-                            <div class="col-md-6 offset-md-3">
-                                <a *ngIf="cta.buttonText && cta.buttonUrl && cta.isExtUrl"
-                                   target="_blank"
-                                   [href]="cta.buttonUrl"
-                                   class="btn cta">
-                                    {{ cta.buttonText }}
-                                </a>
-                                <a *ngIf="cta.buttonText && cta.buttonUrl && !cta.isExtUrl"
-                                   [href]="cta.buttonUrl"
-                                   class="btn cta">
-                                    {{ cta.buttonText }}
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="row">
+                <p class="summary">
+                    {{ page.metaDesc }}
+                </p>
             </div>
 
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="container">
-            <!-- * Text Section Bottom * -->
-            <div class="frontend-content" *ngIf="tsBottomBody && page.contentSectionBottom"
-                 [innerHTML]="tsBottomBody">
+            <div class="row">
+                <div class="spacer"></div>
             </div>
-
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="container">
-            <!-- * Calendar * -->
-            <div *ngIf="page.hasCalendar">
-                <div *ngFor="let calendar of calendar$ | async">
-                    <!-- * ADMIN-CALENDAR-ITEM * -->
-                    <div class="row">
-                        <div class="col-md-12" style="padding-left:0;">
-                            <h2 style="margin-left:0;">{{ calendar.displayName }}</h2>
+            <div class="row">
+                <div class="text-sections">
+                    <div class="row" *ngIf="textSectionTop">
+                        <div [innerHTML]="textSectionTop.body"
+                             class="text-section">
                         </div>
                     </div>
 
-                    <!-- * Tabs * -->
-                    <div class="row">
-                        <div style="max-width:1200px;">
-                            <ul class="nav nav-tabs nav-fill" id="calTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active"
-                                       id="date1-tab"
-                                       data-toggle="tab"
-                                       href="#date1"
-                                       role="tab"
-                                       aria-controls="date1"
-                                       aria-selected="true"
-                                       *ngIf="calendar.date1">{{ calendar.date1.toDate() | date:'LLLL dd' }}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link"
-                                       id="date2-tab"
-                                       data-toggle="tab"
-                                       href="#date2"
-                                       role="tab"
-                                       aria-controls="date2"
-                                       aria-selected="false"
-                                       *ngIf="calendar.date2">{{ calendar.date2.toDate() | date:'LLLL dd' }}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link"
-                                       id="date3-tab"
-                                       data-toggle="tab"
-                                       href="#date3"
-                                       role="tab"
-                                       aria-controls="date3"
-                                       aria-selected="false"
-                                       *ngIf="calendar.date3">{{ calendar.date3.toDate() | date:'LLLL dd' }}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link"
-                                       id="date4-tab"
-                                       data-toggle="tab"
-                                       href="#date4"
-                                       role="tab"
-                                       aria-controls="date4"
-                                       aria-selected="false"
-                                       *ngIf="calendar.date4">{{ calendar.date4.toDate() | date:'LLLL dd' }}</a>
-                                </li>
-                            </ul>
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active"
-                                     id="date1"
-                                     role="tabpanel"
-                                     aria-labelledby="date1-tab"
-                                     *ngIf="calendar.date1">
-                                    <h4 class="pt-5 pb-5 mb-3 pl-3"
-                                        *ngIf="calendar.date1 && calendar.body1">
-                                        <strong>{{ calendar.date1.toDate() | date:'EEEE' }}</strong>,
-                                        {{ month }}
-                                        {{ calendar.date1.toDate() | date:"dd" }},
-                                        {{ calendar.date1.toDate() | date:"yyyy" }}
-                                    </h4>
-                                    <div [innerHTML]="calendar.body1 | safeHtml" class="cal-content"></div>
-                                </div>
-                                <div class="tab-pane fade"
-                                     id="date2"
-                                     role="tabpanel"
-                                     aria-labelledby="date2-tab"
-                                     *ngIf="calendar.date2">
-                                    <h4 class="pt-5 pb-5 mb-3 pl-3"
-                                        *ngIf="calendar.date2 && calendar.body2">
-                                        <strong>{{ calendar.date2.toDate() | date:'EEEE' }}</strong>,
-                                        {{ month2 }}
-                                        {{ calendar.date2.toDate() | date:"dd" }},
-                                        {{ calendar.date2.toDate() | date:"yyyy" }}
-                                    </h4>
-                                    <div [innerHTML]="calendar.body2 | safeHtml" class="cal-content"></div>
-                                </div>
-                                <div class="tab-pane fade"
-                                     id="date3"
-                                     role="tabpanel"
-                                     aria-labelledby="date3-tab"
-                                     *ngIf="calendar.date3">
-                                    <h4 class="pt-5 pb-5 mb-3 pl-3"
-                                        *ngIf="calendar.date3 && calendar.body3">
-                                        <strong>{{ calendar.date3.toDate() | date:'EEEE' }}</strong>,
-                                        {{ month3 }}
-                                        {{ calendar.date3.toDate() | date:"dd" }},
-                                        {{ calendar.date3.toDate() | date:"yyyy" }}
-                                    </h4>
-                                    <div [innerHTML]="calendar.body3 | safeHtml" class="cal-content"></div>
-                                </div>
-                                <div class="tab-pane fade"
-                                     id="date4"
-                                     role="tabpanel"
-                                     aria-labelledby="date4-tab"
-                                     *ngIf="calendar.date4">
-                                    <h4 class="pt-5 pb-5 mb-3 pl-3"
-                                        *ngIf="calendar.date4 && calendar.body4">
-                                        <strong>{{ calendar.date4.toDate() | date:'EEEE' }}</strong>,
-                                        {{ month4 }}
-                                        {{ calendar.date4.toDate() | date:"dd" }},
-                                        {{ calendar.date4.toDate() | date:"yyyy" }}
-                                    </h4>
-                                    <div [innerHTML]="calendar.body4 | safeHtml" class="cal-content"></div>
-                                </div>
-                            </div>
+                    <div class="row cta-image-row" *ngIf="page && cta && cta.imageUrl">
+                        <img [src]="cta.imageUrl" class="img-fluid cta-img">
+                    </div>
+
+                    <div class="row" *ngIf="page && cta && cta.body">
+                        <div [innerHTML]="cta.body"
+                             class="cta">
                         </div>
                     </div>
 
-                </div>
-            </div>
-            <!-- * Page Cards Section Title * -->
-            <div class="row" *ngIf="page.cardSectionTitle">
-                <div class="container">
-                    <div class="col-md-12 text-center">
-                        <h2 class="card-sec-title">{{ page.cardSectionTitle }}</h2>
-                    </div>
-                </div>
-            </div>
-
-            <!-- * Page Cards * -->
-            <div class="row cards" *ngIf="page.hasCards">
-                <div class="card-deck">
-                    <div class="row">
-                        <!-- * Card 1 * -->
-                        <div class="card text-center mt-3 mb-3" *ngIf="pageCard1">
-                            <img class="card-img-top"
-                                 [src]="pageCard1.photoURL"
-                                 [alt]="pageCard1.title">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ pageCard1.title }}</h5>
-                                <p class="card-text">{{ pageCard1.body }}</p>
-                                <p class="text-center">
-                                    <a [href]="pageCard1.url"
-                                       class="btn btn-warning btn-lg">
-                                        {{ pageCard1.buttonString }}
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
-                        <!-- * Card 2 * -->
-                        <div class="card text-center mt-3 mb-3" *ngIf="pageCard2">
-                            <img class="card-img-top"
-                                 [src]="pageCard2.photoURL"
-                                 [alt]="pageCard2.title">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ pageCard2.title }}</h5>
-                                <p class="card-text">{{ pageCard2.body }}</p>
-                                <p class="text-center">
-                                    <a [href]="pageCard2.url"
-                                       class="btn btn-warning btn-lg">
-                                        {{ pageCard2.buttonString }}
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
-                        <!-- * Card 3 * -->
-                        <div class="card text-center mt-3 mb-3" *ngIf="pageCard3">
-                            <img class="card-img-top"
-                                 [src]="pageCard3.photoURL"
-                                 [alt]="pageCard3.title">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ pageCard3.title }}</h5>
-                                <p class="card-text">{{ pageCard3.body }}</p>
-                                <p class="text-center">
-                                    <a [href]="pageCard3.url"
-                                       class="btn btn-warning btn-lg">
-                                        {{ pageCard3.buttonString }}
-                                    </a>
-                                </p>
-                            </div>
+                    <div class="row" *ngIf="textSectionBottom">
+                        <div [innerHTML]="textSectionBottom.body"
+                             class="text-section">
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- * If External Link * -->
-<div *ngIf="page && page.isExtURL">
-    <div class="row">
-        <div class="container text-center">
-            <div class="card mb-4 mt-5">
-                <div class="card-body ext-link">
-                    <h4 class="card-title">{{ page.title }}</h4>
-                    <div class="card-subtitle text-muted mb-3">Created By: {{ page.author }}</div>
-                    <p class="card-text">
-                        URL: <span class="text-primary">{{ page.extURL }}</span> <br>
-                        Sort Order Number: <span class="text-primary">{{ page.sortOrder }}</span>
-                    </p>
-                    <a [href]="page.extURL"
-                       target="_blank"
-                       class="btn btn-default">
-                        Go To External Link
-                    </a>
                 </div>
             </div>
         </div>
@@ -357,7 +77,7 @@
                         <!--<li class="nav-item">-->
                         <!--<i class="fa fa-user"></i> {{ page.author }}-->
                         <!--</li>-->
-                        <li class="nav-item text-capitalize">
+                        <li class="nav-item text-capitalize ml-5">
                             <i class="fa fa-project-diagram"></i> {{ page.category }}
                         </li>
                     </ul>

@@ -128,18 +128,18 @@
         *ngIf="isLoggedIn">
         <a class="sidenav-link sidenav-toggle" (click)="onShowCategoryToggle()">
             <i class="sidenav-icon ion ion-md-speedometer"></i>
-            <div><i class="fal fa-tag"></i>&nbsp;<span class="helv">Category</span></div>
+            <div><i class="fal fa-folder-tree"></i>&nbsp;<span class="helv">Category</span></div>
         </a>
 
         <ul class="sidenav-menu">
             <li class="sidenav-item sub-item">
                 <a [routerLink]="['/categories']" class="sidenav-link">
-                    <div><i class="fal fa-tags"></i>&nbsp;<span class="helv">All Categories</span></div>
+                    <div><i class="fal fa-folder-tree"></i>&nbsp;<span class="helv">All Categories</span></div>
                 </a>
             </li>
             <li class="sidenav-item sub-item">
                 <a [routerLink]="['/categories/new']" class="sidenav-link">
-                    <div><i class="fal fa-tag"></i>&nbsp;<span class="helv">New Category</span></div>
+                    <div><i class="fal fa-folder-plus"></i>&nbsp;<span class="helv">New Category</span></div>
                 </a>
             </li>
         </ul>
@@ -152,18 +152,18 @@
         *ngIf="isLoggedIn">
         <a class="sidenav-link sidenav-toggle" (click)="onShowPageCardToggle()">
             <i class="sidenav-icon ion ion-md-speedometer"></i>
-            <div><i class="fal fa-window-restore"></i>&nbsp;<span class="helv">Rebate Cards</span></div>
+            <div><i class="fal fa-tags"></i>&nbsp;<span class="helv">Rebate Cards</span></div>
         </a>
 
         <ul class="sidenav-menu">
             <li class="sidenav-item sub-item">
                 <a [routerLink]="['/cards']" class="sidenav-link">
-                    <div><i class="fal fa-window-restore"></i>&nbsp;<span class="helv">All Cards</span></div>
+                    <div><i class="fal fa-tags"></i>&nbsp;<span class="helv">All Cards</span></div>
                 </a>
             </li>
             <li class="sidenav-item sub-item">
                 <a [routerLink]="['/cards/new']" class="sidenav-link">
-                    <div><i class="fal fa-window-restore"></i>&nbsp;<span class="helv">New Card</span></div>
+                    <div><i class="fal fa-tag"></i>&nbsp;<span class="helv">New Card</span></div>
                 </a>
             </li>
         </ul>

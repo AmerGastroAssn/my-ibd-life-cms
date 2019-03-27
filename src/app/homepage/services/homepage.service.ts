@@ -43,7 +43,7 @@ export class HomepageService {
     updateHome(formData: Homepage): void {
         this.homeDoc = this.afs.doc<Homepage>(`homePage/${this.id}`);
 
-        this.homeDoc.update(formData)
+        this.homeDoc.set(formData, { merge: true })
             .then(() => {
                 this.sbAlert.open('Home Page Form Saved!', 'Dismiss', {
                     duration: 3000,

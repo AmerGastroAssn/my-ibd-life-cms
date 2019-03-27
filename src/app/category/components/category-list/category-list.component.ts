@@ -29,7 +29,7 @@ import { CategoryService } from '../../services/category.service';
 })
 export class CategoryListComponent implements OnInit {
     categories: Category[];
-    favicon = 'fa fa-tags';
+    favicon = 'fa fa-folder-tree';
     sectionName = 'All Categories';
 
     constructor(

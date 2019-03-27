@@ -1,242 +1,102 @@
-p, ul, ol, li {
-    font-family: var(--frontend-font);
-    line-height: 2;
-    font-size: 18px;
-}
-
-p, ul, ol, li {
-    font-size: 18px;
-}
-
-h1, h2, h3 {
-    font-family: var(--frontend-header-font);
-    font-weight: 500;
-}
-
-.card-body.ext-link *, .card-body.ext-link > p, .card-body.ext-link > h4 {
-    font-family: var(--cms-font) !important;
-    line-height: 1.5;
-}
-
-.navbar {
-    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-    0 3px 1px -2px rgba(0, 0, 0, 0.12),
-    0 1px 5px 0 rgba(0, 0, 0, 0.2);
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-    0 3px 1px -2px rgba(0, 0, 0, 0.12),
-    0 1px 5px 0 rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-}
-
-.page-container {
-    margin-bottom: 10em;
-}
-
-.fa-caret-square-down {
-    color: #9d9fa1 !important;
-}
-
-li.nav-item {
-    padding: 0 1em;
-    font-size: 14px;
-}
-
-/* Preview */
-img.bannerPhotoURL {
-    top: 0;
-    left: 0;
-    position: relative;
-    max-height: 350px;
-    width: 100%;
-    /*z-index: 0;*/
-}
-
-h1.title {
-    position: absolute;
-    top: 25% !important;
-    color: #ffffff;
-    font-weight: bold;
-}
-
-.row.crumbs {
-    padding: 2em 0;
-}
-
-ol.breadcrumb, li.breadcrumb-item {
-    background-color: transparent;
-    font-size: 18px;
-}
-
-.image-container {
-    float: right;
-    min-height: 305px;
+#stage {
     display: flex;
-    justify-content: center;
+    width: 100%;
+    height: 300px;
+    /*background: url(https://firebasestorage.googleapis.com/v0/b/my-ibd-life-dev.appspot.com/o/images%2F2019%2F1552614544597_doctors.png?alt=media&token=cbe25a2c-e558-4273-9974-4df9f2d2631f) center center no-repeat;*/
+    background-size: cover;
+    background-color: var(--cloud);
     align-items: center;
+    justify-content: center;
+    margin-bottom: 10rem;
+    min-height: 2000px;
 }
 
-img.photoURL {
-    max-width: 450px;
-    float: right;
-    margin: 0 0 1em 1em;
-}
-
-.widgetSnippet, #widgetSnippet {
-    /*width: 450px;*/
-    /*height: auto;*/
-    /*float: right;*/
-    /*margin: 0 0 1rem 1rem;*/
-}
-
-.ingo_social_widget {
-    /*background-color: #fff;*/
-    /*width: 450px !important;*/
-    /*height: 305px !important;*/
-    /*display: -webkit-box;*/
-    /*display: -webkit-flex;*/
-    /*display: -ms-flexbox;*/
-    /*display: flex;*/
-    /*-webkit-box-orient: vertical;*/
-    /*-webkit-box-direction: normal;*/
-    /*-webkit-flex-direction: column;*/
-    /*-ms-flex-direction: column;*/
-    /*flex-direction: column;*/
-    /*font-family: Helvetica Neue, Helvetica, Arial, sans-serif;*/
-    /*line-height: 1.2;*/
-    /*letter-spacing: normal;*/
-    /*position: relative;*/
-    /*margin: 0 auto;*/
-    /*border: 1px solid #4da3c6;*/
-    /*color: #777;*/
-}
-
-h2.card-sec-title {
-    padding-top: 2em;
-}
-
-.underline {
-    border-bottom: 2px solid #FEB512;
-    margin-top: 1em;
-}
-
-.row.cards {
-    margin: 5em 0 8em 0;
-}
-
-.card-body {
-    line-height: 2em;
-}
-
-.details-body {
-    font-family: var(--frontend-font);
-    font-size: 18px;
-    line-height: 2;
-}
-
-.details-body > h2 {
-    font-weight: 700;
-}
-
-.card-text {
-    padding: 2em;
-}
-
-a.btn.btn-warning.btn-lg {
-    background-color: #F47700;
-    color: #fff;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-    font-weight: bold;
-    text-decoration: none;
-    padding: 0.5em 2em;
-    font-size: 18px;
-}
-
-a.btn.btn-warning.btn-lg:hover {
-    background-color: #FEB512;
-    color: #fff;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-    font-weight: bold;
-    text-decoration: none;
-    padding: 0.5em 2em;
-    font-size: 18px;
-}
-
-.btn-group.btn-group-sm.float-right > a.btn,
-.btn-group.btn-group-sm.float-right > button.btn {
-    border-radius: 0;
-}
-
-/* Call To Action */
-.btn.cta {
-    margin-bottom: 0;
-}
-
-
-/*------------------------------------------------
-     Calendar
-------------------------------------------------*/
-/* Active Tab */
-a[aria-selected=true] {
-    background-color: #FEBE10 !important;
-    border-radius: 0;
-    padding-bottom: 0;
-    height: 47px;
-}
-
-a[aria-selected=true]::after {
-    display: block;
-    content: "";
-    background: #FEBE10;
-    width: 25px;
-    height: 25px;
-    position: relative;
-    left: 45%;
-    bottom: 2px;
-    transform: rotate(45deg);
+img.banner-photo-url {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    max-height: 350px;
     z-index: 1;
 }
 
-li.nav-item > a.nav-link {
-    color: #004060;
+
+.flex-row {
+    display: flex;
+    justify-content: center;
 }
 
-li.nav-item:hover {
-    background-color: #EBEBEB;
+.container.main {
+    z-index: 2;
+    /*position: fixed;*/
+    /*top: 25% !important;*/
+    margin-top: 10rem;
+    background-color: #ffffff;
+    /*left: 10%;*/
+    /*right: 10%;*/
+    /*padding: 5rem 0;*/
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
 }
 
-.cal-content {
-    background-color: #FAFAFA;
+.space {
+    text-align: center;
+    display: block;
 }
 
-a:link, a:link:active {
-    color: #004060;
-    text-decoration: none;
+h5.subtitle {
+    font-family: var(--sans-serif);
+    color: var(--ash);
 }
 
-h4, p, li {
-    font-family: var(--frontend-font);
+h1.title {
+    font-family: var(--sans-serif);
+    color: var(--midnight);
+    text-align: center;
+    font-weight: 900;
 }
 
-#calTab {
-    border: 1px solid #EBEBEB;
+p.summary {
+    font-family: var(--sans-serif);
+    color: var(--midnight);
+    text-align: center;
+    line-height: 2.2rem;
+    font-size: 1.3rem;
+    padding: 1rem 7rem 0 7rem;
+    font-weight: 300;
 }
 
-#calTab > li.nav-item {
-    padding: 0;
+.spacer {
+    border-top: 1px solid var(--cloud) !important;
 }
 
-.tab-content {
-    border: 1px solid #EBEBEB;
-    border-top: #fff;
-    background-color: #FAFAFA;
+.text-sections {
+    padding: 0 7rem 20rem 7rem;
+    margin-bottom: 10rem;
 }
 
-@media (max-width: 575px) {
-    form.form-inline {
-        margin: 2em 0 1em 0;
-    }
+.text-section {
+    color: var(--midnight);
+    font-family: var(--serif);
+    margin-top: 3rem;
+    font-size: 1.1rem !important;
+    line-height: 1.8rem !important;
+}
+
+
+.cta {
+    color: var(--midnight);
+    font-family: var(--serif);
+    margin-top: 3rem;
+    font-size: 1.1rem !important;
+    line-height: 1.8rem !important;
+}
+
+.row.cta-image-row {
+    text-align: center;
+}
+
+img.cta-img {
+    width: 100%;
+    height: auto;
 }

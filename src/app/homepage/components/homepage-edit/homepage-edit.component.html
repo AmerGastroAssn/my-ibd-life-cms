@@ -187,11 +187,11 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="sec3Text">Textarea</label>
-                                                <ckeditor [formControl]="homePageForm.controls['sec3Text']"
-                                                          id="sec3Text"
+                                                <ckeditor id="sec3Text"
                                                           [readonly]="false"
                                                           debounce="200"
-                                                          [config]="CkeditorConfig">
+                                                          [config]="CkeditorConfig"
+                                                          [formControl]="homePageForm.controls['sec3Text']">
                                                 </ckeditor>
                                             </div>
                                         </div>
@@ -254,7 +254,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 id="dialog-sizes-name1" class="modal-title pull-left">
-                   <i class="fa fa-glasses"></i>&nbsp;Preview
+                    <i class="fa fa-glasses"></i>&nbsp;Preview
                 </h4>
                 <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
                     <span aria-hidden="true">&times;</span>

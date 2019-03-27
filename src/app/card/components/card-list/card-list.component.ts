@@ -29,8 +29,8 @@ import { CardService } from '../../services/card.service';
 })
 export class CardListComponent implements OnInit {
     cards: Card[];
-    favicon = 'fa fa-window-restore';
-    sectionName = 'Cards';
+    favicon = 'fa fa-tags';
+    sectionName = 'Rebate Cards';
     displayName: string;
 
     constructor(

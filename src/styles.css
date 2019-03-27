@@ -8,6 +8,7 @@
     --frontend-header-font: 'Roboto', sans-serif;
     --monospace: 'SF Mono', 'Roboto Mono', Menlo, consolas, monospace;
     --serif: 'Georgia', Cambria, serif;
+    --sans-serif: "Gotham SSm A", "Gotham SSm B", AvenirLTStd-Book, 'Gotham Book', 'Avenir Next', 'Nunito', sans-serif !important;
     --cursive: 'Georgia', Cambria, serif;
     /* AGA Colors */
     --midnight: #122033;
@@ -149,34 +150,6 @@ select[value="value"] {
     -moz-border-radius: 0;
     border-radius: 0;
 }
-
-/* CUSTOM FRONT-END STYLES */
-.cta {
-    background-color: #003f5f;
-    color: #ffffff;
-    margin: 5em 0;
-}
-
-.cta-left {
-    padding: 0;
-}
-
-.cta-right {
-    padding: 3em 1em 0 4em;
-    vertical-align: middle;
-}
-
-.cta-right > blockquote {
-    font-family: var(--cms-font) !important;
-    font-size: 18px;
-    line-height: 1.5;
-    font-weight: 600;
-}
-
-.lg-quote {
-    font-size: 32px;
-}
-
 /* Application wide Styles */
 body {
     background-color: #fff;
