@@ -20,6 +20,7 @@ export class PageDetailsComponent implements OnInit {
     cta: CallToAction;
     textSectionTop: TextSection;
     textSectionBottom: TextSection;
+    logo: string;
 
     constructor(
         private pageService: PageService,
@@ -27,6 +28,7 @@ export class PageDetailsComponent implements OnInit {
         private tsService: TextSectionService,
         private ctaService: CallToActionService,
     ) {
+        this.logo = 'https://firebasestorage.googleapis.com/v0/b/my-ibd-life-dev.appspot.com/o/images%2F2019%2F1551821167531_my_ibd_life_logo_grey_250.png?alt=media&token=14b5d8ae-2a1a-4794-a479-f0d66103f8b1';
         this.url = this.route.snapshot.params['id'];
     }
 

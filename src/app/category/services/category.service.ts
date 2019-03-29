@@ -54,6 +54,15 @@ export class CategoryService {
         return this.category$;
     }
 
+    getTwoCategories(): Observable<Category[]> {
+        this.categoryCollection = this.afs.collection<Category>('categories', ref => {
+            return ref
+            .orderBy('slug', 'desc')
+            .limit(2);
+        });
+        return this.categoryCollection.valueChanges();
+    }
+
 
     updateCategory(formData: Category): object {
         const slug = this.helperService.stringToSlug(formData.name);

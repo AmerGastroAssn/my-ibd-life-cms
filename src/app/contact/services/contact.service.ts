@@ -120,7 +120,7 @@ export class ContactService {
                 this.sbAlert.open('Contact marked as Viewed', 'Dismiss', {
                     duration: 3000,
                     verticalPosition: 'bottom',
-                    panelClass: ['snackbar-success']
+                    panelClass: ['snackbar-info']
                 });
             })
             .catch((error) => {
@@ -141,7 +141,7 @@ export class ContactService {
                 this.sbAlert.open('Contact Un-viewed', 'Dismiss', {
                     duration: 3000,
                     verticalPosition: 'bottom',
-                    panelClass: ['snackbar-success']
+                    panelClass: ['snackbar-info']
                 });
             })
             .catch((error) => {

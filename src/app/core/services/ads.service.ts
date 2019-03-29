@@ -21,7 +21,7 @@ export class AdsService {
         private flashMessage: FlashMessagesService,
         public sbAlert: MatSnackBar,
     ) {
-        this.id = 'stB5CaEitpZxkJ1KF7rJ';
+        this.id = 'heVUMkho7PToQv24MjzU';
     }
 
     getAd(): Observable<Ads> {
@@ -49,7 +49,6 @@ export class AdsService {
                     verticalPosition: 'bottom',
                     panelClass: ['snackbar-success']
                 });
-                console.log('Ads updated', updatedAds);
             })
             .catch((error) => {
                 this.sbAlert.open('Ads were NOT Saved!', 'Dismiss', {

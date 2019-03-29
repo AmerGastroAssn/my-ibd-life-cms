@@ -13,6 +13,7 @@ export class TextSectionDetailComponent implements OnInit {
     textSection: TextSection;
     id: string;
     body: any;
+    logo: string;
 
     constructor(
       private route: ActivatedRoute,
@@ -20,6 +21,7 @@ export class TextSectionDetailComponent implements OnInit {
       private sanitizer: DomSanitizer
     ) {
         this.id = this.route.snapshot.params['id'];
+        this.logo = 'https://firebasestorage.googleapis.com/v0/b/my-ibd-life-dev.appspot.com/o/images%2F2019%2F1551821167531_my_ibd_life_logo_grey_250.png?alt=media&token=14b5d8ae-2a1a-4794-a479-f0d66103f8b1';
     }
 
     ngOnInit() {

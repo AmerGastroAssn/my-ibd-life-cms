@@ -6,10 +6,12 @@
 a.sidenav-link {
     cursor: pointer;
     font-family: var(--cms-font) !important;
+    font-size: 14px;
 }
 
 a:link {
     font-family: var(--cms-font) !important;
+    font-size: 14px;
 }
 
 .helv {

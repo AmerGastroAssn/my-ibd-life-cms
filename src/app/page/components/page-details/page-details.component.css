@@ -100,3 +100,7 @@ img.cta-img {
     width: 100%;
     height: auto;
 }
+
+nav.fixed-bottom {
+    z-index: 1000;
+}

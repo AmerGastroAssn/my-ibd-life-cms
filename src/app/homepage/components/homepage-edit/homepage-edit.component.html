@@ -6,9 +6,17 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 text-center">
-                <button class="btn btn-default" (click)="lgModal.show()">
-                    <i class="fa fa-glasses"></i>&nbsp;Preview
-                </button>
+                <div class="btn-group">
+                    <button class="btn btn-default" title="Preview Homepage" (click)="lgModal.show()">
+                        <i class="fa fa-glasses"></i>&nbsp;Preview
+                    </button>
+                    <a href="https://fontawesome.com/icons"
+                       target="_blank"
+                       title="View Font Awesome icons"
+                       class="btn btn-default">&nbsp; <i class="fab fa-font-awesome-flag"></i>
+                        FontAwesome Icons
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -254,7 +262,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 id="dialog-sizes-name1" class="modal-title pull-left">
-                    <i class="fa fa-glasses"></i>&nbsp;Preview
+                    <i class="fa fa-glasses"></i>&nbsp;Homepage Preview
                 </h4>
                 <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -340,12 +348,26 @@
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <img [src]="" class="img-fluid">
+                        <div class="row mt-5">
+                            <div class="col-md-6" *ngIf="category1">
+                                <a [routerLink]="['/categories/', category1.slug]">
+                                    <figure class="caption">
+                                        <img class="category"
+                                             [src]="category1.homepageImageUrl"
+                                             [alt]="category1.name"/>
+                                        <figcaption class="caption-text">{{ category1.name }}</figcaption>
+                                    </figure>
+                                </a>
                             </div>
-                            <div class="col-md-6">
-                                <img [src]="" class="img-fluid">
+                            <div class="col-md-6" *ngIf="category2">
+                                <a [routerLink]="['/categories/', category2.slug]">
+                                    <figure class="caption">
+                                        <img class="category"
+                                             [src]="category2.homepageImageUrl"
+                                             [alt]="category2.name"/>
+                                        <figcaption class="caption-text">{{ category2.name }}</figcaption>
+                                    </figure>
+                                </a>
                             </div>
                         </div>
                     </div>

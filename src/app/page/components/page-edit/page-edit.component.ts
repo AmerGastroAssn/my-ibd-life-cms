@@ -307,12 +307,12 @@ export class PageEditComponent implements OnInit {
         }
     }
 
-    @HostListener('window:scroll')
-    onScrollEvent() {
-        if ('window:scroll') {
-            this.datepicker.hide();
-        }
-    }
+    // @HostListener('window:scroll')
+    // onScrollEvent() {
+    //     if ('window:scroll') {
+    //         this.datepicker.hide();
+    //     }
+    // }
 
 
     onTogglePagePreview() {

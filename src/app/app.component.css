@@ -53,9 +53,9 @@ img.ddw-logo {
      Ported from Admin Component
 ------------------------------------------------*/
 /* Global Admin Styles */
-p, div, tr, th, tr, td, span, ul, ol, li, input.form-control, input[text], input[textarea], select {
-    font-size: 14px !important;
-    font-family: var(--cms-font) !important;
+tr, th, tr, td, span, ul, ol, li, input.form-control, input[text], input[textarea], select, button {
+    font-size: 14px;
+    font-family: var(--cms-font);
     line-height: 1;
 
 }

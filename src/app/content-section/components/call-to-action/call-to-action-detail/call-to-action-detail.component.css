@@ -1,3 +1,7 @@
+nav.navbar.fixed-bottom {
+    z-index: 1000;
+}
+
 li.nav-item {
     font-family: var(--cms-font) !important;
     font-weight: 500;

@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { of } from 'rxjs/internal/observable/of';
 import { AuthService } from '../../../auth/services/auth.service';
+import { Category } from '../../../category/models/Category';
+import { CategoryService } from '../../../category/services/category.service';
 import { User } from '../../../user/modals/user';
 import { Homepage } from '../../models/homepage';
 import { CountdownService } from '../../services/countdown.service';
@@ -40,6 +43,8 @@ export class HomepageEditComponent implements OnInit {
     updatedAt: number;
     favicon: string;
     sectionName: string;
+    category1: Category;
+    category2: Category;
 
     CkeditorConfig = {
         allowedContent: true,
@@ -54,6 +59,7 @@ export class HomepageEditComponent implements OnInit {
         private countdownService: CountdownService,
         private homepageService: HomepageService,
         private authService: AuthService,
+        private catService: CategoryService,
     ) {
         this.favicon = 'fa fa-home';
         this.sectionName = 'Home Page';
@@ -116,6 +122,14 @@ export class HomepageEditComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.catService.getTwoCategories().subscribe((cat: Category[]) => {
+            if (cat) {
+                this.category1 = cat[0];
+                this.category2 = cat[1];
+            } else {
+                return of(null);
+            }
+        });
 
     }
 
