@@ -1,12 +1,17 @@
-p, p.subtitle {
-    line-height: 1.5rem;
-}
-
 .section-one {
     background-color: var(--sec-one-blue);
     padding: 5rem 0 3rem 0;
     text-align: center;
     color: var(--midnight);
+}
+
+h1.title {
+    font-family: "Gotham Bold", var(--sans-serif);
+    font-weight: 900;
+}
+
+p.subtitle, p.sec-two {
+    font-family: var(--sans-serif);
 }
 
 .image-section {
@@ -15,7 +20,7 @@ p, p.subtitle {
 }
 
 img.seal-img {
-    margin-bottom: -6rem;
+    margin-bottom: -8rem;
 }
 
 .section-two {
@@ -30,9 +35,13 @@ img.seal-img {
     background-color: var(--light);
 }
 
+h5.section-three-subtitle {
+    font-family: var(--sans-serif-bold);
+}
+
 p > i.fal {
-    color: var(--plum);
-    font-size: 3rem;
+    color: var(--gum);
+    font-size: 4rem;
 }
 
 .section-four {
@@ -54,20 +63,34 @@ p.section-four-text-bottom {
     font-style: italic;
 }
 
+.ibd-cat {
+    background-color: var(--gum);
+    margin: 0 0 18px 0;
+    width: 100%;
+    height: 300px;
+    min-height: 300px;
+    border-radius: 2px;
+    display: inline-block;
+    position: relative;
+    /*background: url();*/
+    background-size: cover;
+    background-position: center;
+}
+
 /* Text Image Overlay */
-.caption {
+.caption, .caption-right {
     position: relative;
     padding: 0;
     margin: 0;
 }
 
-.caption > img.category {
+.caption > img.category, .caption-right > img.category {
     display: block;
     width: 350px;
     height: 200px;
 }
 
-.caption:after {
+.caption:after, .caption-right:after {
     content: "";
     position: absolute;
     display: block;
@@ -75,12 +98,24 @@ p.section-four-text-bottom {
     top: 0;
     width: 350px;
     height: 200px;
-    background: rgba(0, 0, 0, 0) linear-gradient(to bottom, rgba(0, 0, 0, 0) 0px, var(--plum-rgb) 100%) repeat 0 0;
+    background: rgba(0, 0, 0, 0) linear-gradient(to bottom, rgba(0, 0, 0, 0) 0px, var(--gum-rgb) 100%) repeat 0 0;
+    z-index: 1;
+}
+
+.caption-right:after {
+    content: "";
+    position: absolute;
+    display: block;
+    left: 0;
+    top: 0;
+    width: 350px;
+    height: 200px;
+    background: rgba(0, 0, 0, 0) linear-gradient(to bottom, rgba(0, 0, 0, 0) 0px, var(--water-rgb) 100%) repeat 0 0;
     z-index: 1;
 }
 
 .caption-text {
-    font-family: var(--sans-serif);
+    font-family: var(--sans-serif-bold) !important;
     font-size: 2rem;
     display: block;
     position: absolute;
@@ -93,3 +128,22 @@ p.section-four-text-bottom {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
+
+
+.icon {
+    padding-top: 0.5rem;
+}
+
+.icon > i {
+    font-size: 3rem;
+}
+
+.cat-name {
+    line-height: 2.1rem;
+}
+
+.cat-name-right {
+    line-height: 2.1rem;
+    max-width: 200px;
+}
+

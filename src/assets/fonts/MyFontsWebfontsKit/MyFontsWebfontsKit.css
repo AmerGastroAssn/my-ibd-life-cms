@@ -1,0 +1,63 @@
+/**
+ * @license
+ * MyFonts Webfont Build ID 3466188, 2017-10-17T10:06:40-0400
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: AvenirLTStd-Heavy by Linotype
+ * URL: https://www.myfonts.com/fonts/linotype/avenir/85-heavy/
+ * Copyright: Copyright &#x00A9; 1989, 1995, 2002 Adobe Systems Incorporated.  All Rights Reserved. &#x00A9; 1981, 1995, 2002 Heidelberger Druckmaschinen AG. All rights reserved.
+ * 
+ * Webfont: AvenirLTStd-MediumOblique by Linotype
+ * URL: https://www.myfonts.com/fonts/linotype/avenir/65-mediumoblique/
+ * Copyright: Copyright &#x00A9; 1981 - 2006 Linotype GmbH, www.linotype.com. All rights reserved. Copyright &#x00A9; 1989 - 2002 Adobe Systems Incorporated.  All Rights Reserved.
+ * 
+ * Webfont: AvenirLTStd-Medium by Linotype
+ * URL: https://www.myfonts.com/fonts/linotype/avenir/65-medium/
+ * Copyright: Copyright &#x00A9; 1981 - 2006 Linotype GmbH, www.linotype.com. All rights reserved. Copyright &#x00A9; 1989 - 2002 Adobe Systems Incorporated.  All Rights Reserved.
+ * 
+ * Webfont: AvenirLTStd-BookOblique by Linotype
+ * URL: https://www.myfonts.com/fonts/linotype/avenir/45-book-oblique/
+ * Copyright: Copyright &#x00A9; 1989, 1995, 2002 Adobe Systems Incorporated.  All Rights Reserved. &#x00A9; 1981, 1995, 2002 Heidelberger Druckmaschinen AG. All rights reserved.
+ * 
+ * Webfont: AvenirLTStd-Book by Linotype
+ * URL: https://www.myfonts.com/fonts/linotype/avenir/45-book/
+ * Copyright: Copyright &#x00A9; 1989, 1995, 2002 Adobe Systems Incorporated.  All Rights Reserved. &#x00A9; 1981, 1995, 2002 Heidelberger Druckmaschinen AG. All rights reserved.
+ * 
+ * Webfont: AvenirLTStd-HeavyOblique by Linotype
+ * URL: https://www.myfonts.com/fonts/linotype/avenir/85-heavy-oblique/
+ * Copyright: Copyright &#x00A9; 1989, 1995, 2002 Adobe Systems Incorporated.  All Rights Reserved. &#x00A9; 1981, 1995, 2002 Heidelberger Druckmaschinen AG. All rights reserved.
+ * 
+ * 
+ * License: https://www.myfonts.com/viewlicense?type=web&buildid=3466188
+ * Licensed pageviews: 250,000
+ * 
+ * © 2017 MyFonts Inc
+*/
+
+
+/* @import must be at top of file, otherwise CSS will not work */
+@import url("//hello.myfonts.net/count/34e3cc");
+
+  
+@font-face {font-family: 'AvenirLTStd-Heavy';src: url('webfonts/34E3CC_0_0.eot');src: url('webfonts/34E3CC_0_0.eot?#iefix') format('embedded-opentype'),url('webfonts/34E3CC_0_0.woff2') format('woff2'),url('webfonts/34E3CC_0_0.woff') format('woff'),url('webfonts/34E3CC_0_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'AvenirLTStd-MediumOblique';src: url('webfonts/34E3CC_1_0.eot');src: url('webfonts/34E3CC_1_0.eot?#iefix') format('embedded-opentype'),url('webfonts/34E3CC_1_0.woff2') format('woff2'),url('webfonts/34E3CC_1_0.woff') format('woff'),url('webfonts/34E3CC_1_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'AvenirLTStd-Medium';src: url('webfonts/34E3CC_2_0.eot');src: url('webfonts/34E3CC_2_0.eot?#iefix') format('embedded-opentype'),url('webfonts/34E3CC_2_0.woff2') format('woff2'),url('webfonts/34E3CC_2_0.woff') format('woff'),url('webfonts/34E3CC_2_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'AvenirLTStd-BookOblique';src: url('webfonts/34E3CC_3_0.eot');src: url('webfonts/34E3CC_3_0.eot?#iefix') format('embedded-opentype'),url('webfonts/34E3CC_3_0.woff2') format('woff2'),url('webfonts/34E3CC_3_0.woff') format('woff'),url('webfonts/34E3CC_3_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'AvenirLTStd-Book';src: url('webfonts/34E3CC_4_0.eot');src: url('webfonts/34E3CC_4_0.eot?#iefix') format('embedded-opentype'),url('webfonts/34E3CC_4_0.woff2') format('woff2'),url('webfonts/34E3CC_4_0.woff') format('woff'),url('webfonts/34E3CC_4_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'AvenirLTStd-HeavyOblique';src: url('webfonts/34E3CC_5_0.eot');src: url('webfonts/34E3CC_5_0.eot?#iefix') format('embedded-opentype'),url('webfonts/34E3CC_5_0.woff2') format('woff2'),url('webfonts/34E3CC_5_0.woff') format('woff'),url('webfonts/34E3CC_5_0.ttf') format('truetype');}
+ 

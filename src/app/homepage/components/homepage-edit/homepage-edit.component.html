@@ -275,9 +275,9 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-8 offset-md-2">
-                                <h1 class="title">{{ sec1Title }}</h1>
+                                <h1 class="title">{{ homePage.sec1Title }}</h1>
                                 <p class="subtitle">
-                                    {{ sec1Subtitle }}
+                                    {{ homePage.sec1Subtitle }}
                                 </p>
                             </div>
                         </div>
@@ -287,8 +287,8 @@
                 <div class="row image-section" *ngIf="homePage">
                     <div class="container">
                         <div class="text-center">
-                            <img [src]="sec1ImageUrl"
-                                 style="width:200px; height:200px;"
+                            <img [src]="homePage.sec1ImageUrl"
+                                 style="width:250px; height:250px;"
                                  class="rounded-circle seal-img">
                         </div>
                     </div>
@@ -298,11 +298,15 @@
                 <div class="row section-two" *ngIf="homePage">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-6">
-                                <p>{{ sec2TextLeft }}</p>
+                            <div class="col-md-4 offset-md-1">
+                                <p class="sec-two">
+                                    {{ homePage.sec2TextLeft }}
+                                </p>
                             </div>
-                            <div class="col-md-6">
-                                <p>{{ sec2TextRight }}</p>
+                            <div class="col-md-4 offset-md-2">
+                                <p class="sec-two">
+                                    {{ homePage.sec2TextRight }}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -313,26 +317,28 @@
                     <div class="container">
                         <div class="row mb-5">
                             <div class="col-sm-12 text-center">
-                                <h2 class="serif">{{ sec3Title }}</h2>
+                                <h2 class="serif">{{ homePage.sec3Title }}</h2>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-2 offset-md-3 text-center">
-                                <p>{{ sec3CardLeftTitle }}</p>
+                                <p class="sans">{{ homePage.sec3CardLeftTitle }}</p>
+                                <br>
                                 <p class="icons">
-                                    <i [ngClass]="sec3CardLeftImageUrl"></i>
+                                    <i [ngClass]="homePage.sec3CardLeftImageUrl"></i>
                                 </p>
                             </div>
                             <div class="col-md-2 text-center">
-                                <p>{{ sec3CardMiddleTitle }}</p>
+                                <p class="sans">{{ homePage.sec3CardMiddleTitle }}</p>
                                 <p class="icons">
-                                    <i [ngClass]="sec3CardMiddleImageUrl"></i>
+                                    <i [ngClass]="homePage.sec3CardMiddleImageUrl"></i>
                                 </p>
                             </div>
                             <div class="col-md-2 text-center">
-                                <p>{{ sec3CardRightTitle }}</p>
+                                <p class="sans">{{ homePage.sec3CardRightTitle }}</p>
+                                <br>
                                 <p class="icons">
-                                    <i [ngClass]="sec3CardRightImageUrl"></i>
+                                    <i [ngClass]="homePage.sec3CardRightImageUrl"></i>
                                 </p>
                             </div>
                         </div>
@@ -340,10 +346,10 @@
                         <div class="row text-center mt-5">
                             <div class="col-md-6 offset-md-3">
                                 <h5 class="section-three-subtitle">
-                                    {{ sec3Subtitle }}
+                                    {{ homePage.sec3Subtitle }}
                                 </h5>
-                                <p class="section-three-text mt-3">
-                                    <span [innerHTML]="sec3Text"></span>
+                                <p class="section-three-text mt-3 sans">
+                                    <span [innerHTML]="homePage.sec3Text"></span>
                                 </p>
                             </div>
                         </div>
@@ -355,17 +361,43 @@
                                         <img class="category"
                                              [src]="category1.homepageImageUrl"
                                              [alt]="category1.name"/>
-                                        <figcaption class="caption-text">{{ category1.name }}</figcaption>
+                                        <figcaption class="caption-text">
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <div class="icon">
+                                                        <i [ngClass]="category1.imageUrl"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    <div class="cat-name">
+                                                        {{ category1.name }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </figcaption>
                                     </figure>
                                 </a>
                             </div>
                             <div class="col-md-6" *ngIf="category2">
                                 <a [routerLink]="['/categories/', category2.slug]">
-                                    <figure class="caption">
+                                    <figure class="caption-right">
                                         <img class="category"
                                              [src]="category2.homepageImageUrl"
                                              [alt]="category2.name"/>
-                                        <figcaption class="caption-text">{{ category2.name }}</figcaption>
+                                        <figcaption class="caption-text">
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <div class="icon">
+                                                        <i [ngClass]="category2.imageUrl"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    <div class="cat-name-right">
+                                                        {{ category2.name }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </figcaption>
                                     </figure>
                                 </a>
                             </div>
@@ -377,18 +409,19 @@
                 <div class="row section-four" *ngIf="homePage">
                     <div class="container text-center">
                         <div class="col-md-6 offset-md-3">
-                            <p class="bottom-icon">
-                                <i [ngClass]="sec4ImageUrl"></i>
+                            <p class="bottom-icon sans">
+                                <i [ngClass]="homePage.sec4ImageUrl"></i>
                             </p>
-                            <p class="section-four-text-top">
-                                {{ sec4Title }}
+                            <p class="section-four-text-top sans">
+                                {{ homePage.sec4Title }}
                             </p>
                             <p class="section-four-text-bottom serif">
-                                {{ sec4Text }}
+                                {{ homePage.sec4Text }}
                             </p>
                         </div>
                     </div>
                 </div>
+                
 
             </div>
         </div>
