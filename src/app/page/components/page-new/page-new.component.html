@@ -455,7 +455,11 @@
 
                             <div class="form-group">
                                 <label>Banner Image URL
-                                    <small>(Top banner image)</small>
+                                    <small>(Top banner image) should be <b>1920px width / 350px height</b></small>
+                                    <img [src]="bannerPhotoURL"
+                                         *ngIf="bannerPhotoURL"
+                                         style="max-height:30px; margin-left:1rem;"
+                                         class="img-thumbnail">
                                 </label>
                                 <input type="text"
                                        class="form-control"
@@ -470,7 +474,12 @@
 
                             <div class="form-group">
                                 <label>Image URL
-                                    <small>(Image on the page)</small>
+                                    <small>(Image on category page) should be <b>300px width / 450px height</b>
+                                    </small>
+                                    <img [src]="photoURL"
+                                         *ngIf="photoURL"
+                                         style="max-width:50px; margin-left:1rem;"
+                                         class="img-thumbnail">
                                 </label>
                                 <input type="text"
                                        class="form-control"
