@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { CKEditorModule } from 'ng2-ckeditor';
+import { ImageModule } from '../image/image.module';
 import { SharedModule } from '../shared/shared.module';
 import { CallToActionDetailComponent } from './components/call-to-action/call-to-action-detail/call-to-action-detail.component';
 import { CallToActionEditComponent } from './components/call-to-action/call-to-action-edit/call-to-action-edit.component';
@@ -32,6 +33,7 @@ import { TextSectionService } from './services/text-section.service';
         MatTooltipModule,
         ContentSectionRoutingModule,
         SharedModule,
+        ImageModule,
     ],
     declarations: [
         CallToActionComponent,

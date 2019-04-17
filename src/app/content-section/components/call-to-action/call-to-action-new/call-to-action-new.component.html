@@ -73,12 +73,22 @@
                                         <!--<b>{{ body.length }}</b> characters-->
                                     <!--</p>-->
                                 </div>
+                                
+                                <div class="form-group">
+                                    <app-image-uploader-item></app-image-uploader-item>
+                                </div>
 
                                 <div class="form-group">
-                                    <label class="helv">Image URL</label>
+                                    <label class="helv">Image URL <br>
+                                        <small><b>992px width / 558px height</b></small>
+                                        <img [src]="imageUrl" *ngIf="imageUrl"
+                                             class="img-thumbnail"
+                                             style="max-width:100px;">
+                                    </label>
                                     <input type="url"
                                            class="form-control"
                                            [class.invalid]="!f.imageUrl.valid && f.imageUrl.touched"
+                                           [(ngModel)]="imageUrl"
                                            formControlName="imageUrl">
                                 </div>
 
