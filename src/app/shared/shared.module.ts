@@ -12,9 +12,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { CKEditorModule } from 'ng2-ckeditor';
-import { BsDatepickerModule, PopoverModule, ProgressbarModule, TabsModule, TimepickerModule } from 'ngx-bootstrap';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { PopoverModule, ProgressbarModule, TabsModule, TimepickerModule } from 'ngx-bootstrap';
 import { AuthService } from '../auth/services/auth.service';
 import { UserService } from '../user/services/user.service';
 import { BottomSheetComponent } from './components/bottom-sheet/bottom-sheet.component';
@@ -45,10 +47,11 @@ import { SharedRoutingModule } from './shared-routing.module';
     imports: [
         CommonModule,
         SharedRoutingModule,
-        BsDatepickerModule.forRoot(),
         FlashMessagesModule.forRoot(),
         PopoverModule.forRoot(),
         ProgressbarModule.forRoot(),
+        BrowserAnimationsModule,
+        BsDatepickerModule.forRoot(),
         MatSidenavModule,
         MatButtonModule,
         MatMenuModule,
@@ -78,7 +81,6 @@ import { SharedRoutingModule } from './shared-routing.module';
         MatButtonModule,
         MatMenuModule,
         ProgressbarModule,
-        BsDatepickerModule,
         PopoverModule,
         TabsModule,
         TimepickerModule,
@@ -95,6 +97,8 @@ import { SharedRoutingModule } from './shared-routing.module';
         SafePipe,
         TrustUrlPipe,
         MatSnackBarModule,
+        BrowserAnimationsModule,
+        BsDatepickerModule,
     ],
     providers: [
         AuthService,
@@ -102,7 +106,7 @@ import { SharedRoutingModule } from './shared-routing.module';
         HelperService,
     ],
     entryComponents: [
-        BottomSheetComponent,
+        // BottomSheetComponent,
     ]
 })
 export class SharedModule {}

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CKEditorModule } from 'ng2-ckeditor';
-import { BsDatepickerModule, ModalModule } from 'ngx-bootstrap';
+import { ModalModule } from 'ngx-bootstrap';
 import { SharedModule } from '../shared/shared.module';
 import { HomepageEditComponent } from './components/homepage-edit/homepage-edit.component';
 import { HomepageComponent } from './components/homepage.component';
@@ -22,7 +22,6 @@ import { HomepageService } from './services/homepage.service';
         FormsModule,
         ReactiveFormsModule,
         CKEditorModule,
-        BsDatepickerModule.forRoot(),
         SharedModule,
         ModalModule.forRoot()
     ],

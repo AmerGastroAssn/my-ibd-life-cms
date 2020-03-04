@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'ddw-admin-press-release',
+  selector: 'app-admin-press-release',
   templateUrl: './press-release.component.html',
   styleUrls: ['./press-release.component.css']
 })

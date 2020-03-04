@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'ddw-text-section',
+  selector: 'app-text-section',
   templateUrl: './text-section.component.html',
   styleUrls: ['./text-section.component.css']
 })

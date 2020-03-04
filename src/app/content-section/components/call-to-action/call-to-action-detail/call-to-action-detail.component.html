@@ -2,23 +2,33 @@
 <div class="row mt-5">
     <div class="container text-right">
         <div class="btn-group">
-            <a [routerLink]="['/call-to-action']" class="btn btn-default">
+            <a [routerLink]="['/call-to-action']" class="btn btn-default text-info">
                 <i class="fa fa-arrow-alt-circle-left"></i>&nbsp;All CTA
             </a>
             <a [routerLink]="['/call-to-action/', id, 'edit']" class="btn btn-default">
                 <i class="fa fa-pencil"></i>&nbsp;Edit CTA
             </a>
-            <a [routerLink]="['/call-to-action/new']" class="btn btn-default">
+            <a [routerLink]="['/call-to-action/new']" class="btn btn-default text-plum">
                 <i class="fa fa-plus"></i>&nbsp;New CTA
             </a>
 
             <!-- * TODO Update Links * -->
-            <a class="btn btn-default"
+            <a class="btn btn-default text-success"
                *ngIf="cta"
                matTooltip="Send For Review"
-               href="mailto: ?subject=For review on MyIBD LIfe: {{cta.name}}&body=Please review this Call To Action from DDW.org: https://ddw.org/call-to-action/{{cta.id}}">
+               href="mailto: ?subject=For review on MyIBD LIfe: {{cta.name}}&body=Please review this Call To Action from MyIBD Life CMS: https://my-ibd-life-dev-cms.firebaseapp.com/call-to-action/{{cta.id}}">
                 <i class="fa fa-envelope"></i>&nbsp;Send For Review
             </a>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <p class="alert alert-dark text-center">
+                <i class="fa fa-info-circle"></i> Note: This Preview does not contain the exact styling (fonts, colors, sizes, etc) as the actual site. <br>Rather, this is for content accuracy.
+            </p>
         </div>
     </div>
 </div>
@@ -82,7 +92,7 @@
                             <!-- * TODO Update Links * -->
                             <a class="btn btn-success"
                                matTooltip="Send For Review"
-                               href="mailto: ?subject=For review on DDW: {{cta.name}}&body=Please review this Call To Action from DDW.org: https://ddw.org/call-to-action/{{cta.id}}">
+                               href="mailto: ?subject=For review on MyIBD Life: {{cta.name}}&body=Please review this Call To Action for myibdlife.gastro.org: https://my-ibd-life-dev-cms.firebaseapp.com/call-to-action/{{cta.id}}">
                                 <i class="fa fa-envelope"></i>&nbsp;Send For Review
                             </a>
                         </div>

@@ -23,7 +23,7 @@ img.user-image {
 }
 
 /* Navbar Button */
-button.btn-open[_ngcontent-c2] {
+button.btn-open[mat-raised-button] {
     font-family: var(--cms-font) !important;
     color: #a3a4a6;
     border: 1px solid var(--matt-blue);

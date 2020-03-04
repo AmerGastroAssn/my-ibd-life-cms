@@ -36,10 +36,10 @@ export class BottomSheetComponent implements OnInit {
         event.preventDefault();
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         // Get auth data, then get firestore user document || null
         this.user$ = this.afAuth.authState.pipe(
-            switchMap(user => {
+            switchMap((user): Observable<User | null> => {
                 if (user) {
                     return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
                 } else {
@@ -47,7 +47,7 @@ export class BottomSheetComponent implements OnInit {
                 }
             }));
         // Unwraps the observable to extract the data.
-        this.user$.subscribe((currentUserInfo) => {
+        this.user$.subscribe((currentUserInfo: User): void | Observable<null> => {
             if (currentUserInfo && this.afAuth.auth.currentUser) {
                 this.user = currentUserInfo;
                 this.isAdmin = currentUserInfo.admin === true;

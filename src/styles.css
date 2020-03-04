@@ -105,7 +105,6 @@
 }
 
 body {
-    font-family: var(--cms-font);
     background-color: #fff;
     font-size: 14px;
 }
@@ -124,6 +123,10 @@ h1, h2, h3 {
 
 p {
     font-size: 14px;
+}
+
+.text-plum {
+    color: var(--plum) !important;
 }
 
 .helv {
@@ -220,6 +223,7 @@ select[value="value"] {
     -moz-border-radius: 0;
     border-radius: 0;
 }
+
 /* Application wide Styles */
 
 /* removes blue halo */
@@ -289,7 +293,7 @@ input.invalid {
 }
 
 /* Cards (Universal) */
-ddw-admin-cards.col-md-4 {
+mil-admin-cards.col-md-4 {
     padding: 0;
 }
 
@@ -526,7 +530,7 @@ blockquote:after {
     color: var(--yellow);
 }
 
-table.ddw1 tbody > tr:first-child td {
+table.mil1 tbody > tr:first-child td {
     background: var(--blue) none repeat scroll 0 0;
     font-size: 14px;
     font-weight: normal;
@@ -534,7 +538,7 @@ table.ddw1 tbody > tr:first-child td {
     white-space: nowrap;
 }
 
-table.ddw1 td {
+table.mil1 td {
     border: 1px solid #eee !important;
     padding: 10px !important;
 }
@@ -789,5 +793,11 @@ ol.breadcrumb {
 
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}

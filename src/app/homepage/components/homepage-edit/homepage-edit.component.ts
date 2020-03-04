@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { Observable } from 'rxjs';
 import { of } from 'rxjs/internal/observable/of';
 import { AuthService } from '../../../auth/services/auth.service';
 import { Category } from '../../../category/models/Category';
@@ -40,7 +41,7 @@ export class HomepageEditComponent implements OnInit {
     sec4ImageUrl: string;
     sec4Title: string;
     sec4Text: string;
-    updatedAt: number;
+    updatedAt: Date | number;
     favicon: string;
     sectionName: string;
     category1: Category;
@@ -64,10 +65,12 @@ export class HomepageEditComponent implements OnInit {
         this.favicon = 'fa fa-home';
         this.sectionName = 'Home Page';
         this.author = this.authService.getProfile();
+    }
 
+    ngOnInit(): void {
 
         // Home Form:
-        this.homepageService.getHomepage().subscribe((homepage: Homepage) => {
+        this.homepageService.getHomepage().subscribe((homepage: Homepage): void => {
             if (homepage) {
                 this.homePage = homepage;
                 // Form:
@@ -92,7 +95,7 @@ export class HomepageEditComponent implements OnInit {
                     sec4ImageUrl: [this.homePage.sec4ImageUrl || ''],
                     sec4Text: [this.homePage.sec4Text || ''],
                     sec4Title: [this.homePage.sec4Title || ''],
-                    updatedAt: [this.homePage.updatedAt || ''],
+                    updatedAt: Date.now(),
                 });
 
                 this.id = this.homePageForm.value.id;
@@ -119,10 +122,8 @@ export class HomepageEditComponent implements OnInit {
 
             }
         });
-    }
 
-    ngOnInit() {
-        this.catService.getTwoCategories().subscribe((cat: Category[]) => {
+        this.catService.getTwoCategories().subscribe((cat: Category[]): any | Observable<null> => {
             if (cat) {
                 this.category1 = cat[0];
                 this.category2 = cat[1];
@@ -134,10 +135,9 @@ export class HomepageEditComponent implements OnInit {
     }
 
 
-    onHomePageSubmit(homePageFormData: Homepage) {
+    onHomePageSubmit(homePageFormData: Homepage): void {
         if (this.homePageForm.valid) {
             this.homepageService.updateHome(homePageFormData);
-            this.homePageForm.reset();
         } else {
             this.sbAlert.open('Home Page Form NOT valid', 'Dismiss', {
                 duration: 3000,

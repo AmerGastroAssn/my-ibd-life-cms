@@ -1,7 +1,9 @@
-.text-section > p {
-    font-family: var(--serif) !important;
-    line-height: 1.5rem;
-}
+/*
+#text-section-body > h1, #text-section-body > h2, #text-section-body > h3, #text-section-body > h4, #text-section-body > p, #text-section-body > ul {*/
+/*    font-family: var(--serif) !important;*/
+/*    line-height: 1.5rem;*/
+/*}
+*/
 
 nav.navbar.fixed-bottom {
     z-index: 1000;

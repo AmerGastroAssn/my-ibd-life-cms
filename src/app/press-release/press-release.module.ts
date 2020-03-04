@@ -5,7 +5,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { RouterModule } from '@angular/router';
 import { CKEditorModule } from 'ng2-ckeditor';
-import { BsDatepickerModule, ProgressbarModule } from 'ngx-bootstrap';
+import { ProgressbarModule } from 'ngx-bootstrap';
 import { SharedModule } from '../shared/shared.module';
 import { PressReleaseDetailsComponent } from './components/press-release-details/press-release-details.component';
 import { PressReleaseEditComponent } from './components/press-release-edit/press-release-edit.component';
@@ -31,7 +31,6 @@ import { PressReleaseService } from './services/press-release.service';
         ReactiveFormsModule,
         PressReleaseRoutingModule,
         RouterModule,
-        BsDatepickerModule,
         MatProgressBarModule,
         ProgressbarModule,
         MatSlideToggleModule,

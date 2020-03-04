@@ -45,7 +45,7 @@ export class NavbarComponent implements OnInit {
         }
 
         // Checks authentication of user and get's ID.
-        this.authService.getAuth().subscribe((auth) => {
+        this.authService.getAuth().subscribe((auth): any => {
             if (auth) {
                 this.isLoggedIn = true;
                 this.loggedInUser = auth.email;
@@ -57,11 +57,8 @@ export class NavbarComponent implements OnInit {
         });
     }
 
-    openBottomSheet(): void {
-        this.bottomSheet.open(BottomSheetComponent);
-    }
 
-    ngOnInit() {
+    ngOnInit(): void {
         // Settings:
         // this.allowSignup = this.settingsService.getAdminSettings().allowSignup;
         // this.allowSettings = this.settingsService.getAdminSettings().allowSettings;
@@ -77,7 +74,7 @@ export class NavbarComponent implements OnInit {
             }));
 
         // Sets users login date.
-        this.user$.take(1).subscribe((userInfo) => {
+        this.user$.take(1).subscribe((userInfo): void => {
             if (userInfo) {
                 this.authService.setUserToOnline(userInfo);
             }
@@ -85,7 +82,7 @@ export class NavbarComponent implements OnInit {
 
 
         // Sets user to admin and logs user in local storage.
-        this.user$.subscribe((currentUserInfo: User) => {
+        this.user$.subscribe((currentUserInfo: User): any => {
             if (currentUserInfo && this.afAuth.auth.currentUser) {
                 this.user = currentUserInfo;
                 this.authService.setUserInLocalStorage(currentUserInfo);
@@ -98,8 +95,11 @@ export class NavbarComponent implements OnInit {
 
     }
 
+    private openBottomSheet(): void {
+        this.bottomSheet.open(BottomSheetComponent);
+    }
 
-    onLogout() {
+    private onLogout(): void {
         this.authService.logout();
     }
 

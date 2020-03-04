@@ -8,7 +8,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { RouterModule } from '@angular/router';
 import { CKEditorModule } from 'ng2-ckeditor';
-import { BsDatepickerModule, PopoverModule, ProgressbarModule } from 'ngx-bootstrap';
+import { PopoverModule, ProgressbarModule } from 'ngx-bootstrap';
 import { ImageModule } from '../image/image.module';
 import { SharedModule } from '../shared/shared.module';
 import { PageAttendeePlanningListComponent } from './components/page-attendee-planning-list/page-attendee-planning-list.component';
@@ -49,7 +49,6 @@ import { PageRoutingModule } from './page-routing.module';
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-        BsDatepickerModule,
         MatProgressBarModule,
         ProgressbarModule,
         MatSlideToggleModule,
@@ -57,6 +56,7 @@ import { PageRoutingModule } from './page-routing.module';
         MatTooltipModule,
         MatSelectModule,
         PopoverModule.forRoot(),
+
         ImageModule,
     ],
     exports: [],

@@ -50,7 +50,8 @@ export class HomepageService {
                     verticalPosition: 'bottom',
                     panelClass: ['snackbar-success']
                 });
-                console.log('Video URL updated', formData);
+                console.log('Homepage Updated:');
+                console.table(formData);
             })
             .catch((error) => {
                 this.sbAlert.open('Home Page Form NOT Saved.', 'Dismiss', {
@@ -58,7 +59,7 @@ export class HomepageService {
                     verticalPosition: 'bottom',
                     panelClass: ['snackbar-danger']
                 });
-                console.log(`ERROR~uHF: `, error);
+                console.error(`ERROR~uHF: `, error);
             });
     }
 }

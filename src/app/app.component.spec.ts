@@ -20,16 +20,16 @@ describe('AppComponent', () => {
         expect(app).toBeTruthy();
     });
 
-    it(`should have as title 'DDW CMS'`, () => {
+    it(`should have as title 'My IBD Life CMS'`, () => {
         const fixture = TestBed.createComponent(AppComponent);
         const app = fixture.debugElement.componentInstance;
-        expect(app.title).toEqual('DDW CMS');
+        expect(app.title).toEqual('My IBD Life CMS');
     });
 
     it('should render title in a h1 tag', () => {
         const fixture = TestBed.createComponent(AppComponent);
         fixture.detectChanges();
         const compiled = fixture.debugElement.nativeElement;
-        expect(compiled.querySelector('h1').textContent).toContain('DDW CMS');
+        expect(compiled.querySelector('h1').textContent).toContain('My IBD Life CMS');
     });
 });

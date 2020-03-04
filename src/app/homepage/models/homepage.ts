@@ -23,7 +23,7 @@ export class Homepage {
         public sec4ImageUrl: string,
         public sec4Title: string,
         public sec4Text: string,
-        public updatedAt: number,
+        public updatedAt: Date | number,
     ) {
     }
 }

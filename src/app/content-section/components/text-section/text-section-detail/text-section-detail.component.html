@@ -2,28 +2,38 @@
 <div class="row mt-5">
     <div class="container text-right">
         <div class="btn-group">
-            <a [routerLink]="['/text-section']" class="btn btn-default">
+            <a [routerLink]="['/text-section']" class="btn btn-default text-info">
                 <i class="fa fa-arrow-alt-circle-left"></i>&nbsp;All Text Sections
             </a>
             <a [routerLink]="['/text-section/', id, 'edit']" class="btn btn-default">
                 <i class="fa fa-pencil"></i>&nbsp;Edit Text Section
             </a>
-            <a [routerLink]="['/text-section/new']" class="btn btn-default">
+            <a [routerLink]="['/text-section/new']" class="btn btn-default text-plum">
                 <i class="fa fa-plus"></i>&nbsp;New Text Section
             </a>
             <!-- * TODO Update Links * -->
-            <a class="btn btn-default"
+            <a class="btn btn-default text-success"
                *ngIf="textSection"
                matTooltip="Send For Review"
-               href="mailto: ?subject=For review on DDW: {{textSection.name}}&body=Please review this Text/Content Section from DDW.org: https://ddw.org/text-section/{{textSection.id}}">
+               href="mailto: ?subject=For review on MyIBD Life: {{textSection.name}}&body=Please review this Text/Content Section for myibdlife.gastro.org: https://my-ibd-life-dev-cms.firebaseapp.com/text-section/{{textSection.id}}">
                 <i class="fa fa-envelope"></i>&nbsp;Send For Review
             </a>
         </div>
     </div>
 </div>
-<div class="row mt-5">
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <p class="alert alert-dark text-center">
+               <i class="fa fa-info-circle"></i> Note: This Preview does not contain the exact styling (fonts, colors, sizes, etc) as the actual site. <br>Rather, this is for content accuracy.
+            </p>
+        </div>
+    </div>
+</div>
+<div class="row mt-5 mb-5">
     <div class="container">
-        <div [innerHTML]="body" class="text-section"></div>
+        <div [innerHTML]="body" class="text-section" id="text-section-body"></div>
     </div>
 </div>
 
@@ -72,7 +82,7 @@
                             <!-- * TODO Update Links * -->
                             <a class="btn btn-success"
                                matTooltip="Send For Review"
-                               href="mailto: ?subject=For review on DDW: {{textSection.name}}&body=Please review this Text/Content Section from DDW.org: https://ddw.org/text-section/{{textSection.id}}">
+                               href="mailto: ?subject=For review on MyIBD Life: {{textSection.name}}&body=Please review this Text/Content Section for myibdlife.gastro.org: https://my-ibd-life-dev-cms.firebaseapp.com/text-section/{{textSection.id}}">
                                 <i class="fa fa-envelope"></i>&nbsp;Send For Review
                             </a>
                         </div>
