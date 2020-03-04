@@ -232,8 +232,7 @@ button:focus {
 }
 
 .full-width {
-    width: 100%;
-    border-radius: 0;
+    /*width: 35%;*/
 }
 
 a.back-pages {
@@ -356,62 +355,13 @@ h2.card-sec-title {
 .btn-warning,
 .btn-success,
 .btn-danger {
-    border-radius: 0;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
+    /*border-radius: 0;*/
+    /*-webkit-border-radius: 0;*/
+    /*-moz-border-radius: 0;*/
 }
 
 /* Featured Blog Posts */
 
-a.btn.btn-warning.btn-lg {
-    background-color: var(--orange);
-    color: #fff;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-    font-weight: bold;
-    text-decoration: none;
-    padding: 0.5em 2em;
-    font-size: 18px;
-}
-
-a.btn.btn-warning.btn-lg:hover {
-    background-color: var(--yellow);
-    color: var(--blue);
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-    font-weight: normal;
-    text-decoration: none;
-    padding: 0.5em 2em;
-    font-size: 18px;
-}
-
-.btn.btn-clear {
-    background: transparent;
-    border: 2px solid #fff;
-    color: #fff;
-    font-size: 18px;
-    padding: .6em 2em;
-    margin: 1.5em;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-    text-decoration: none;
-}
-
-.btn.btn-clear:hover {
-    background-color: var(--orange);
-    border: 2px solid #fff;
-    color: #fff;
-    font-size: 18px;
-    padding: .6em 2em;
-    margin: 1.5em;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-    text-decoration: none;
-}
 
 #AdSpace {
     margin: 2em 0 0 0;
@@ -686,32 +636,6 @@ a.app.apple:hover {
     width: 100%;
 }
 
-a.btn.btn-warning.btn-lg {
-    background-color: var(--orange);
-    color: #fff;
-    border-radius: 0;
-    font-weight: normal;
-    text-decoration: none;
-    padding: .5em 2em;
-    font-size: 18px;
-}
-
-.cta-right > blockquote {
-    font-family: var(--serif);
-    font-size: 18px;
-    line-height: 1.5;
-    font-weight: normal !important;
-}
-
-h2.card-sec-title::after {
-    content: "";
-    display: block;
-    height: 2px;
-    background: var(--yellow);
-    width: 65px;
-    margin: 15px auto 0;
-    font-weight: 700 !important;
-}
 
 .col-quote blockquote {
     background-color: transparent;
