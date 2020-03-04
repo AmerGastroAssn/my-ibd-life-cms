@@ -35,7 +35,7 @@
     "ng2-ckeditor": "^1.2.2",
     "ng2-scroll-to": "^1.0.7",
     "ngx-bootstrap": "^3.2.0",
-    "npm": "^6.7.0",
+    "npm": "^6.13.4",
     "perfect-scrollbar": "^1.4.0",
     "popper.js": "^1.14.7",
     "rxjs": "~6.4.0",
