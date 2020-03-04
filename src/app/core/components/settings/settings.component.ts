@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { CountdownService } from '../../../homepage/services/countdown.service';
 import { HomepageService } from '../../../homepage/services/homepage.service';

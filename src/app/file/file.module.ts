@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatSelectModule, MatTooltipModule } from '@angular/material';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 import { ProgressbarModule } from 'ngx-bootstrap';
 import { SharedModule } from '../shared/shared.module';
 import { FileListComponent } from './components/file-list/file-list.component';

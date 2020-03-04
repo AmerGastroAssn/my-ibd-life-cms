@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { of } from 'rxjs/internal/observable/of';
 import { AuthService } from '../../../auth/services/auth.service';

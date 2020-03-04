@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ngCopy } from 'angular-6-clipboard';
 import { Observable, Subject } from 'rxjs';
 import { ImageService } from '../../services/image.service';
