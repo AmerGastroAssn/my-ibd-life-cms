@@ -1,0 +1,62 @@
+{
+    "masterPicture": "src/assets/outputDir/favicon.png",
+    "iconsPath": "/",
+    "design": {
+        "ios": {
+            "pictureAspect": "backgroundAndMargin",
+            "backgroundColor": "#fcfcfc",
+            "margin": "21%",
+            "assets": {
+                "ios6AndPriorIcons": false,
+                "ios7AndLaterIcons": false,
+                "precomposedIcons": false,
+                "declareOnlyDefaultIcon": true
+            }
+        },
+        "desktopBrowser": {
+            "design": "raw"
+        },
+        "windows": {
+            "pictureAspect": "noChange",
+            "backgroundColor": "#ffffff",
+            "onConflict": "override",
+            "assets": {
+                "windows80Ie10Tile": false,
+                "windows10Ie11EdgeTiles": {
+                    "small": false,
+                    "medium": true,
+                    "big": false,
+                    "rectangle": false
+                }
+            }
+        },
+        "androidChrome": {
+            "pictureAspect": "backgroundAndMargin",
+            "margin": "21%",
+            "backgroundColor": "#fdfcfd",
+            "themeColor": "#fdfcfd",
+            "manifest": {
+                "name": "MyIBDLife ~ DolphinCMS",
+                "display": "standalone",
+                "orientation": "notSet",
+                "onConflict": "override",
+                "declared": true
+            },
+            "assets": {
+                "legacyIcon": false,
+                "lowResolutionIcons": false
+            }
+        },
+        "safariPinnedTab": {
+            "pictureAspect": "silhouette",
+            "themeColor": "#3f7087"
+        }
+    },
+    "settings": {
+        "scalingAlgorithm": "Mitchell",
+        "errorOnImageTooSmall": false,
+        "readmeFile": false,
+        "htmlCodeFile": false,
+        "usePathAsIs": false
+    }
+}
