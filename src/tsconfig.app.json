@@ -1,11 +1,15 @@
 {
-  "extends": "../tsconfig.json",
-  "compilerOptions": {
-    "outDir": "../out-tsc/app",
-    "types": []
-  },
-  "exclude": [
-    "test.ts",
-    "**/*.spec.ts"
-  ]
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "../out-tsc/app",
+        "types": []
+    },
+    "exclude": [
+        "test.ts",
+        "**/*.spec.ts",
+        "../../my-ibd-life-cms/src/environments/ *.ts",
+        "../../my-ibd-life-cms/src/app/shared/guards/redirect.guard.ts",
+        "../../my-ibd-life-cms/src/app/shared/guards/register.guard.ts",
+        "../../my-ibd-life-cms/src/environments/environment.prod.ts"
+    ]
 }
