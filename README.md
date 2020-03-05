@@ -1,11 +1,19 @@
 ![MyIBDLife](https://firebasestorage.googleapis.com/v0/b/my-ibd-life-dev.appspot.com/o/images%2F2019%2F1551821388572_my_ibd_life_logo_500.png?alt=media&token=7fe237dc-fe29-42fc-8031-210e0db40b52)
-# CMS
 
-Custom built CMS
+# MyIBD Life ~ DolphinCMS
 
-Built with Angular 7, Firebase (AngularFire 4), Bootstrap 4, ngx-bootstrap and Angular Material Design.
+<div style="float:left;">
+<img src="https://firebasestorage.googleapis.com/v0/b/my-ibd-life-dev.appspot.com/o/images%2F2020%2F1583362664573_dolphin-3d_260x260.png?alt=media&token=7931f5a2-0f12-4daa-8455-b8c212cd0fb5" alt="DolphinCMS Logo" style="width:100px; float:left;"/>
+<p>Customized version of DolphinCMS for the "MyIBD Life" headless website.</p>
+<p>Dolphin is Built with Angular 9, Firebase (AngularFire 5), Bootstrap 4+, ngx-bootstrap and Angular Material Design.</p>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
-**To Use:**
+---
+
+### To use:
 
 Open up your terminal and clone the project:
 
@@ -35,20 +43,19 @@ Install dependencies:
 
     npm install
 
-Create environment files:
+---
 
-`/src/environments/environment.prod.ts`
-
-and
-
-`/src/environments/environment.ts`
-
-By running:
+#### Add environment files:
+From the root of the project to create :
 
 
     mkdir src/environments && touch src/environments/environment.prod.ts && touch src/environments/environment.ts
 
+*FYI: The above command creates files in:*
 
+`/src/environments/environment.prod.ts`  and  `/src/environments/environment.ts`
+
+---
 Add your firebase web-app variables to those files:
 
 It should be something like this (with your own values):
