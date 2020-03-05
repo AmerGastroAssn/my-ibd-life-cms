@@ -46,12 +46,12 @@ Install dependencies:
 ---
 
 #### Add environment files:
-From the root of the project to create :
+From the root of the project run:
 
 
     mkdir src/environments && touch src/environments/environment.prod.ts && touch src/environments/environment.ts
 
-*FYI: The above command creates files in:*
+*The above command creates files in:*
 
 `/src/environments/environment.prod.ts`  and  `/src/environments/environment.ts`
 
