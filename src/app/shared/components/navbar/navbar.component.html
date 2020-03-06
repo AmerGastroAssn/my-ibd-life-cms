@@ -12,7 +12,7 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <span class="nav-item nav-link current-date" [routerLink]="['pages']">
-                <i class="fa fa-calendar-alt"></i>&nbsp;<span class="helv">{{ currentDate | date:'fullDate' }}</span>
+                <i class="fad fa-calendar-alt"></i>&nbsp;<span class="helv">{{ currentDate | date:'fullDate' }}</span>
             </span>
             <!--<a class="nav-item nav-link" [routerLink]="['users']"><i class="fa fa-user"></i>&nbsp;Users</a>-->
             <!--<a class="nav-item nav-link" [routerLink]="['/']"><i class="fa fa-globe"></i>&nbsp;Live Site</a>-->
@@ -26,7 +26,7 @@
                         class="nav-link btn-open"
                         (click)="openBottomSheet()">
                     <span class="btn-text">
-                    <i class="fa fa-plus-hexagon"></i>&nbsp;<span class="helv">Quick Add</span>
+                    <i class="fad fa-plus-hexagon"></i>&nbsp;<span class="helv">Quick Add</span>
                 </span>
                 </button>
             </li>
@@ -41,26 +41,26 @@
             <li class="nav-item" *ngIf="isLoggedIn && allowSettings && isAdmin">
                 <a class="nav-link"
                    [routerLink]="['/settings']">
-                    <i class="fa fa-wrench"></i>&nbsp;<span class="helv">Settings</span>
+                    <i class="fad fa-wrench"></i>&nbsp;<span class="helv">Settings</span>
                 </a>
             </li>
             <li class="nav-item" *ngIf="!isLoggedIn && allowSignup && isAdmin">
                 <a class="nav-link"
                    [routerLink]="['/auth/signup']">
-                    <i class="fa fa-user-plus"></i>&nbsp;<span class="helv">Create Account</span>
+                    <i class="fad fa-user-plus"></i>&nbsp;<span class="helv">Create Account</span>
                 </a>
             </li>
             <li class="nav-item" *ngIf="!isLoggedIn">
                 <a class="nav-link"
                    [routerLink]="['/auth/login']">
-                    <i class="fa fa-sign-in-alt"></i>&nbsp;<span class="helv">log In</span>
+                    <i class="fad fa-sign-in-alt"></i>&nbsp;<span class="helv">log In</span>
                 </a>
             </li>
 
             <li class="nav-item" *ngIf="isLoggedIn">
                 <a class="nav-link"
                    style="cursor:pointer;"
-                   (click)="onLogout()"><i class="fa fa-sign-out-alt"></i>&nbsp;<span class="helv">Logout</span>
+                   (click)="onLogout()"><i class="fad fa-sign-out-alt"></i>&nbsp;<span class="helv">Logout</span>
                 </a>
             </li>
         </ul>

@@ -76,7 +76,7 @@ export class UserService {
         return this.user;
     }
 
-    updateUser(updatedUser, id: string): void {
+    updateUser(updatedUser: User, id: string): void {
         this.userDoc = this.afs.doc<User>(`users/${id}`);
         this.userDoc.update(updatedUser)
             .then((user) => {

@@ -88,7 +88,7 @@
                                 <label>Author</label>
                                 <input type="text"
                                        class="form-control"
-                                       disabled
+                                       [placeholder]="this.authorInfo"
                                        [class.invalid]="!f.author.valid && f.author.touched"
                                        formControlName="author">
                                 <p class="help-block alert alert-warning text-center mt-1"

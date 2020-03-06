@@ -48,7 +48,7 @@ export class SettingsService {
      get settings from Firestore and save in local storage to use */
     getAdminSettings(): Settings {
         if (localStorage.getItem('settings') && this.user$) {
-            const local = localStorage.getItem('settings');
+            const local: string = localStorage.getItem('settings');
             return this.localSettings = JSON.parse(local);
         } else {
             this.getSettings()
@@ -56,14 +56,14 @@ export class SettingsService {
                     this.saveLocalSettings(settings);
                 });
 
-            const local = localStorage.getItem('settings');
+            const local: string = localStorage.getItem('settings');
             return this.localSettings = JSON.parse(local);
 
 
         }
     }
 
-    saveLocalSettings(settings) {
+    saveLocalSettings(settings: Settings): void {
         localStorage.setItem('settings', JSON.stringify(settings));
         this.settingsAdded.emit(settings);
     }
@@ -73,7 +73,7 @@ export class SettingsService {
         this.settingsDoc = this.afs.doc<Settings>(`settings/${this.settings$key}`);
         this.settings$ = this.settingsDoc.snapshotChanges().map((action) => {
             if (action.payload.exists === false) {
-                return null;
+                return of(null);
             } else {
                 const data = action.payload.data() as Settings;
                 data.id = action.payload.id;

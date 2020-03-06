@@ -17,8 +17,12 @@
             <div class="form-group" *ngIf="user">
                 <div class="card image-uploader">
                     <div class="card-body">
-                        <p class="card-title">
-                            File Uploader
+                        <h4 class="card-title">
+                            Image Uploader
+                        </h4>
+                        <p class="text-light">
+                            <i class="fa fa-info-circle text-dark"></i>&nbsp;Make sure your images are named correctly so that you can easily search for them in the
+                            <a [routerLink]="['/images']" title="Image Gallery"><i class="fa fa-images"></i> image gallery</a>.
                         </p>
                         <div class="row">
                             <div class="col-sm-6">

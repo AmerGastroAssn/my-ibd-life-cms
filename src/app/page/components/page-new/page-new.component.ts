@@ -80,6 +80,7 @@ export class PageNewComponent implements OnInit, OnDestroy {
     presPages$: Observable<Page[]>;
     invalidTitle: EventEmitter<boolean> = new EventEmitter();
     titleNotValid: boolean;
+    authorInfo: string | null;
 
     CkeditorConfig = {
         allowedContent: true,
@@ -130,7 +131,16 @@ export class PageNewComponent implements OnInit, OnDestroy {
         return this.newPageForm.controls;
     }
 
+    private createUserDisplayInfo(): string {
+        if (this.user) {
+            return `${this.user.displayName} (${this.user.email})`;
+        } else {
+            return null;
+        }
+    }
+
     ngOnInit() {
+        this.authorInfo = this.createUserDisplayInfo();
         // Gets Page Categories for Grandchild page selection.
         // this.registerPages$ = this.pageService.getAllRegisterPages();
         // this.newsPages$ = this.pageService.getAllNewsPages();
@@ -151,10 +161,9 @@ export class PageNewComponent implements OnInit, OnDestroy {
 
         // Form:
         this.newPageForm = this.fb.group({
-
             title: ['', Validators.required],
             body: [''],
-            author: ['' || this.author],
+            author: [{ value: this.user.email, disabled: true }],
             date: ['' || this.currentDate, Validators.required],
             photoURL: [''],
             bannerPhotoURL: ['' || 'https://s3.amazonaws.com/DDW/ddw-org/images/banners/interior-bg.jpg'],
@@ -211,11 +220,11 @@ export class PageNewComponent implements OnInit, OnDestroy {
         this.showWidgetSnippet = this.newPageForm.value.showWidgetSnippet;
     }
 
-    ngOnDestroy() {
+    ngOnDestroy(): void {
 
     }
 
-    onAddNewPage(formData) {
+    private onAddNewPage(formData: Page): void | Promise<boolean | void> {
         if (!this.newPageForm.valid) {
             this.sbAlert.open('Missing at least one input, page was NOT created.', 'Dismiss', {
                 duration: 3000,
@@ -232,11 +241,11 @@ export class PageNewComponent implements OnInit, OnDestroy {
                         panelClass: ['snackbar-success']
                     });
                 })
-                .catch((error) => console.log(error));
+                .catch((error: string): void => console.error(error));
         }
     }
 
-    isExtURLToggle() {
+    private isExtURLToggle(): void {
         this.isExtURL = !this.isExtURL;
     }
 

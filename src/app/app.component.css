@@ -88,12 +88,12 @@ button[mat-fab] {
     z-index: 3000;
 }
 
-i.fa-arrow-alt-circle-left,
-i.fa-arrow-alt-circle-right {
+i.fab.fa-arrow-alt-to-left,
+i.fab.fa-arrow-alt-to-right {
     color: #9d9fa1;
     /*padding-bottom: 8px;*/
     /*padding-left: 3px;*/
-    font-size: 2.3em;
+    font-size: 50px;
     /*padding: 0 0 4em 0.2em;*/
     /*margin: 3em 0 0 0;*/
     /*text-shadow: 2px 2px 3px rgba(0,0,0,0.4);*/
