@@ -1,6 +1,6 @@
 {
   "name": "my-ibd-life-cms",
-  "version": "0.9.01",
+  "version": "0.9.02",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
