@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { User } from '../../user/modals/user';
 import { Settings } from '../models/setting';
 
@@ -69,24 +69,26 @@ export class SettingsService {
     }
 
 
-    getSettings(): Observable<Settings> {
+    getSettings(): null | Observable<Settings> {
         this.settingsDoc = this.afs.doc<Settings>(`settings/${this.settings$key}`);
-        this.settings$ = this.settingsDoc.snapshotChanges().map((action) => {
-            if (action.payload.exists === false) {
-                return of(null);
-            } else {
-                const data = action.payload.data() as Settings;
-                data.id = action.payload.id;
-                // console.log('data.key', data);
-                return data;
-            }
-        });
+        this.settings$ = this.settingsDoc.snapshotChanges().pipe(
+            map((action) => {
+                if (action.payload.exists === false) {
+                    return null;
+                } else {
+                    const data = action.payload.data() as Settings;
+                    data.id = action.payload.id;
+                    // console.log('data.key', data);
+                    return data;
+                }
+            })
+        );
         return this.settings$;
 
     }
 
 
-    updateSettings(settings): void {
+    updateSettings(settings: Settings): void {
         this.settingsDoc = this.afs.doc<Settings>(`settings/${this.settings$key}`);
 
         this.settingsDoc.update(settings)
@@ -99,7 +101,7 @@ export class SettingsService {
                 });
                 console.log('Settings updated', settings);
             })
-            .catch((error) => {
+            .catch((error: string) => {
                 this.sbAlert.open('Settings NOT Saved.', 'Dismiss', {
                     duration: 3000,
                     verticalPosition: 'bottom',

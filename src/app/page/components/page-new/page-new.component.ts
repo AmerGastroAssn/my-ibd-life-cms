@@ -224,7 +224,7 @@ export class PageNewComponent implements OnInit, OnDestroy {
 
     }
 
-    private onAddNewPage(formData: Page): void | Promise<boolean | void> {
+    onAddNewPage(formData: Page): void | Promise<boolean | void> {
         if (!this.newPageForm.valid) {
             this.sbAlert.open('Missing at least one input, page was NOT created.', 'Dismiss', {
                 duration: 3000,
@@ -245,7 +245,7 @@ export class PageNewComponent implements OnInit, OnDestroy {
         }
     }
 
-    private isExtURLToggle(): void {
+    isExtURLToggle(): void {
         this.isExtURL = !this.isExtURL;
     }
 
