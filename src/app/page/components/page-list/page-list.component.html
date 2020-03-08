@@ -86,7 +86,7 @@
                         <th scope="col" style="vertical-align: top;">Banner Image</th>
                         <th scope="col" style="vertical-align: top;">Body Image</th>
                         <th scope="col" style="vertical-align: top;">Title</th>
-                        <th scope="col" style="vertical-align: top;">Category/Sort #</th>
+                        <th scope="col" style="vertical-align: top;">Category</th>
                         <th scope="col" style="vertical-align: top;">Published</th>
                         <th scope="col" style="vertical-align: top;">Publish Date</th>
                         <th scope="col" style="vertical-align: top;">Updated</th>
@@ -114,8 +114,8 @@
                             </a>
                         </td>
                         <td scope="col">
-                            <a [routerLink]="['/categories']" class="btn btn-default">
-                                {{ page.category }} <span class="badge">{{ page.sortOrder }}</span>
+                            <a [routerLink]="['/categories/', page.category, 'edit']" class="btn btn-default">
+                                <i [class]="categoryIcon(page.category)"></i> {{ page.category }}
                             </a>
                         </td>
                         <td scope="col" style="text-align:center;">

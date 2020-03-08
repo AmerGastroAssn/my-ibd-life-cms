@@ -60,11 +60,11 @@ export class PageListComponent implements OnInit {
         this.page$ = this.pageService.getPages();
         this.user = this.authService.getProfile();
         this.pageService.getAllPages()
-            .subscribe((allImages) => this.pageList = allImages);
+            .subscribe((allPages: Page[]) => this.pageList = allPages);
         Observable.combineLatest(this.startObs, this.endObs)
                   .subscribe((value) => {
                       this.pageService.getSearchedPages(value[0], value[1])
-                          .subscribe((pages) => {
+                          .subscribe((pages: Page[]) => {
                               this.pageList = pages;
                           });
                   });
@@ -74,14 +74,14 @@ export class PageListComponent implements OnInit {
         // Get id from url
         this.id = this.route.snapshot.params['id'];
         // Get each user's details
-        this.pageService.getPage(this.id).subscribe((page) => {
+        this.pageService.getPage(this.id).subscribe((page: Page) => {
             if (page !== null) {
                 this.page = page;
             }
         });
     }
 
-    toggleListCardView() {
+    toggleListCardView(): void {
         this.showListToggle = !this.showListToggle;
     }
 
@@ -92,7 +92,17 @@ export class PageListComponent implements OnInit {
             this.endAt.next(`${query}\uf8ff`);
         } else {
             this.pageService.getAllPages()
-                .subscribe((allImages) => this.pageList = allImages);
+                .subscribe((allPages) => this.pageList = allPages);
+        }
+    }
+
+    categoryIcon(pageCat: string): string | null {
+        if (pageCat === 'ibd-insurance') {
+            return 'fal fa-shield';
+        } else if (pageCat === 'ibd-relationships') {
+            return 'fal fa-users';
+        } else {
+            return null;
         }
     }
 

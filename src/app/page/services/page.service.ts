@@ -178,7 +178,7 @@ export class PageService {
             };
             pageRef.set(data, { merge: true })
                    .then(() => this.router.navigate([`/pages`]))
-                   .catch((error) => console.log(`ERROR~aP: `, error));
+                   .catch((error: string) => console.log(`ERROR~aP: `, error));
         } else {
             const timestampToNum = formData.date.getTime();
             const data: Page = {
@@ -213,7 +213,7 @@ export class PageService {
             };
             pageRef.set(data, { merge: true })
                    .then(() => this.router.navigate([`/pages`]))
-                   .catch((error) => console.log(`ERROR~aP: `, error));
+                   .catch((error: string) => console.log(`ERROR~aP: `, error));
         }
     }
 
@@ -221,7 +221,7 @@ export class PageService {
         this.pageDoc = this.afs.doc<Page>(`pages/${id}`);
         this.pageDoc.update(updatedPage)
             .then((page) => this.router.navigate([`/pages/${id}`]))
-            .catch((error) => console.log(`ERROR~uP: `, error));
+            .catch((error: string) => console.log(`ERROR~uP: `, error));
     }
 
     deletePage(id: string): void {
@@ -229,16 +229,15 @@ export class PageService {
         if (confirm(`Are you sure you want to delete this page? This is irreversible.`)) {
             this.pageDoc.delete()
                 .then((page) => this.router.navigate([`/pages`]))
-                .catch((error) => console.log(`ERROR~dP: `, error));
+                .catch((error: string) => console.log(`ERROR~dP: `, error));
         }
     }
 
-    getSearchedPages(start, end) {
-        return this.afs.collection('pages',
+    getSearchedPages(start, end): Observable<Page[]> {
+        return this.afs.collection<Page>('pages',
             (ref) => ref.orderBy('url')
                         .startAt(start).endAt(end)
-        )
-                   .valueChanges();
+        ).valueChanges();
     }
 
     getAllRegisterPages(): Observable<Page[]> {
