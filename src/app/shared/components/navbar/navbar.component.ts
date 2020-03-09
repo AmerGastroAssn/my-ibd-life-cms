@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import * as firebase from 'firebase';
 import { Observable, of } from 'rxjs';
 import 'rxjs/add/operator/take';
 import { switchMap } from 'rxjs/operators';
@@ -45,7 +46,7 @@ export class NavbarComponent implements OnInit {
         }
 
         // Checks authentication of user and get's ID.
-        this.authService.getAuth().subscribe((auth): any => {
+        this.authService.getAuth().subscribe((auth: firebase.User): firebase.User | Observable<null> => {
             if (auth) {
                 this.isLoggedIn = true;
                 this.loggedInUser = auth.email;
@@ -65,7 +66,7 @@ export class NavbarComponent implements OnInit {
 
         // Get auth data, then get firestore user document || null
         this.user$ = this.afAuth.authState.pipe(
-            switchMap(user => {
+            switchMap((user): Observable<User> | Observable<null> => {
                 if (user) {
                     return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
                 } else {
@@ -74,7 +75,7 @@ export class NavbarComponent implements OnInit {
             }));
 
         // Sets users login date.
-        this.user$.take(1).subscribe((userInfo): void => {
+        this.user$.take(1).subscribe((userInfo: User): void => {
             if (userInfo) {
                 this.authService.setUserToOnline(userInfo);
             }
@@ -82,7 +83,7 @@ export class NavbarComponent implements OnInit {
 
 
         // Sets user to admin and logs user in local storage.
-        this.user$.subscribe((currentUserInfo: User): any => {
+        this.user$.subscribe((currentUserInfo: User): any | Observable<null> => {
             if (currentUserInfo && this.afAuth.auth.currentUser) {
                 this.user = currentUserInfo;
                 this.authService.setUserInLocalStorage(currentUserInfo);

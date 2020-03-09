@@ -58,9 +58,9 @@ export class CallToActionEditComponent implements OnInit {
 
 
     ngOnInit() {
-        this.ctaService.getCta(this.id).subscribe((cta) => {
-            this.cta = cta;
-            if (this.cta !== null) {
+        this.ctaService.getCta(this.id).subscribe((cta: CallToAction): void => {
+            if (cta !== null) {
+                this.cta = cta;
                 this.editCTAForm = this.fb.group({
                     body: [this.cta.body || ''],
                     buttonUrl: [this.cta.buttonUrl || ''],

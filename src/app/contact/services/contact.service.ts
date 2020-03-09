@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Contact } from '../models/contact';
 
 @Injectable({
@@ -11,8 +12,7 @@ import { Contact } from '../models/contact';
 export class ContactService {
     contactCollection: AngularFirestoreCollection<Contact>;
     contactDoc: AngularFirestoreDocument<Contact>;
-    contact: Observable<Contact>;
-    contacts$: Observable<Contact[]>;
+    contact$: Observable<Contact>;
 
     constructor(
         private afs: AngularFirestore,
@@ -21,20 +21,21 @@ export class ContactService {
     ) {
     }
 
-    getAllContacts(sortValue): Observable<Contact[]> {
+    getAllContacts(sortValue: string): Observable<Contact[]> {
         // Ref, and order by title
         this.contactCollection = this.afs.collection(`contacts`,
             ref => ref.orderBy(sortValue, 'asc')
         );
         // Gets array of pressReleases along with their uid.
-        return this.contactCollection.snapshotChanges()
-                   .map((changes) => {
-                       return changes.map((a) => {
-                           const data = a.payload.doc.data() as Contact;
-                           data.$key = a.payload.doc.id;
-                           return data;
-                       });
-                   });
+        return this.contactCollection.snapshotChanges().pipe(
+            map((changes) => {
+                return changes.map((a) => {
+                    const data = a.payload.doc.data() as Contact;
+                    data.$key = a.payload.doc.id;
+                    return data;
+                });
+            })
+        );
     }
 
     getAllUnviewedContacts(): Observable<Contact[]> {
@@ -42,29 +43,31 @@ export class ContactService {
             ref => ref.where('viewed', '==', false)
         );
         // Gets array of pressReleases along with their uid.
-        return this.contactCollection.snapshotChanges()
-                   .map((changes) => {
-                       return changes.map((a) => {
-                           const data = a.payload.doc.data() as Contact;
-                           data.uid = a.payload.doc.id;
-                           return data;
-                       });
-                   });
+        return this.contactCollection.snapshotChanges().pipe(
+            map((changes) => {
+                return changes.map((a) => {
+                    const data = a.payload.doc.data() as Contact;
+                    data.uid = a.payload.doc.id;
+                    return data;
+                });
+            })
+        )
     }
 
-    getContact(id: string): Observable<Contact> {
+    getContact(id: string): null | Observable<Contact> {
         this.contactDoc = this.afs.doc<Contact>(`contacts/${id}`);
-        this.contact = this.contactDoc.snapshotChanges().map((action) => {
-            if (action.payload.exists === false) {
-                return null;
-            } else {
-                const data = action.payload.data() as Contact;
-                data.uid = action.payload.id;
-                return data;
-            }
-        });
-
-        return this.contact;
+        this.contact$ = this.contactDoc.snapshotChanges().pipe(
+            map((action) => {
+                if (action.payload.exists === false) {
+                    return null;
+                } else {
+                    const data = action.payload.data() as Contact;
+                    data.uid = action.payload.id;
+                    return data;
+                }
+            })
+        );
+        return this.contact$;
     }
 
 
@@ -112,7 +115,7 @@ export class ContactService {
         }
     }
 
-    setViewedContact(id) {
+    setViewedContact(id: string): void {
         this.afs.doc(`contacts/${id}`).set({
             viewed: true
         }, { merge: true })
@@ -133,7 +136,7 @@ export class ContactService {
             });
     }
 
-    setUnviewedContact(id) {
+    setUnviewedContact(id: string): void {
         this.afs.doc(`contacts/${id}`).set({
             viewed: false
         }, { merge: true })

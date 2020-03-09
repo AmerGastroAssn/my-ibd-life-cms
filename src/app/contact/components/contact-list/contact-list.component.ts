@@ -53,14 +53,6 @@ export class ContactListComponent implements OnInit {
 
     ngOnInit() {
         this.sortBy(this.selectedContactFilter);
-        // // Get id from url
-        this.id = this.route.snapshot.params['id'];
-        // Get each contact's details
-        this.contactService.getContact(this.id).subscribe((contactInfo: Contact) => {
-            if (contactInfo !== null) {
-                this.contact = contactInfo;
-            }
-        });
     }
 
     onDeleteContact(id) {

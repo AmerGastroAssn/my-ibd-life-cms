@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { AuthService } from '../../auth/services/auth.service';
 import { User } from '../../user/modals/user';
 import { CallToAction } from '../models/call-to-action';
@@ -28,7 +29,7 @@ export class CallToActionService {
         this.currentDate = Date.now();
     }
 
-    stringToSlug = (str) => {
+    stringToSlug = (str: string): string => {
         str = str.replace(/^\s+|\s+$/g, ''); // trim
         str = str.toLowerCase();
 
@@ -72,17 +73,17 @@ export class CallToActionService {
 
     getCta(id: string): Observable<CallToAction> {
         this.ctaDoc = this.afs.doc<CallToAction>(`callToActions/${id}`);
-        this.cta$ = this.ctaDoc.snapshotChanges().map((action) => {
-            if (action.payload.exists === false) {
-                return null;
-            } else {
-                const data = action.payload.data() as CallToAction;
-                data.id = action.payload.id;
-                // console.log('data in getCta()', data);
-                return data;
-            }
-        });
-
+        this.cta$ = this.ctaDoc.snapshotChanges().pipe(
+            map((action) => {
+                if (action.payload.exists === false) {
+                    return null;
+                } else {
+                    const data = action.payload.data() as CallToAction;
+                    data.id = action.payload.id;
+                    return data;
+                }
+            })
+        );
         return this.cta$;
     }
 
@@ -117,8 +118,6 @@ export class CallToActionService {
             value: nameToUrl,
             videoUrl: formData.videoUrl,
         };
-
-        console.log('data', data);
         return ctaRef.set(data, { merge: true })
                      .then(() => {
                          this.router.navigate(['/call-to-action']);
@@ -127,9 +126,8 @@ export class CallToActionService {
                              verticalPosition: 'bottom',
                              panelClass: ['snackbar-success']
                          });
-                         console.log('Call To Action created', data);
                      })
-                     .catch((error) => console.log(`ERROR~sCTA: `, error));
+                     .catch((error) => console.error(`ERROR~sCTA: `, error));
     }
 
     updateCTA(formData): Promise<void> {
@@ -153,8 +151,6 @@ export class CallToActionService {
             value: nameToUrl,
             videoUrl: formData.videoUrl,
         };
-
-        console.log('data', data);
         return ctaRef.set(data)
                      .then(() => {
                          this.router.navigate(['/call-to-action']);
@@ -163,8 +159,7 @@ export class CallToActionService {
                              verticalPosition: 'bottom',
                              panelClass: ['snackbar-success']
                          });
-                         console.log('Call To Action updated', data);
                      })
-                     .catch((error) => console.log(`ERROR~uCTA: `, error));
+                     .catch((error) => console.error(`ERROR~uCTA: `, error));
     }
 }

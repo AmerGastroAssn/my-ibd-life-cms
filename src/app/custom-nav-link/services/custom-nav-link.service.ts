@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CustomLink } from '../models/custom-link';
 
@@ -20,12 +20,12 @@ export class CustomNavLinkService {
         this.id = 'YdkVIUkeAxWpR6te6bEW';
     }
 
-    getCustomLinks(): Observable<CustomLink> {
+    getCustomLinks(): Observable<null> | Observable<CustomLink> {
         this.customLinkDoc = this.afs.doc<CustomLink>(`customLinks/${this.id}`);
-        this.customLink$ = this.customLinkDoc.snapshotChanges().pipe(
+        this.customLinkDoc.snapshotChanges().pipe(
             map((action) => {
                 if (action.payload.exists === false) {
-                    return null;
+                    return of(null);
                 } else {
                     const data = action.payload.data() as CustomLink;
                     data.id = action.payload.id;

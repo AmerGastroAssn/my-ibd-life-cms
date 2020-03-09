@@ -57,21 +57,23 @@ export class CallToActionListComponent implements OnInit {
     ngOnInit() {
         this.cta$ = this.ctaService.getAllCtas();
         this.ctaService.getAllCtas()
-            .subscribe((ctas) => this.ctaList = ctas);
+            .subscribe((ctas: CallToAction[]): CallToAction[] => this.ctaList = ctas);
         Observable.combineLatest(this.startObs, this.endObs)
                   .subscribe((value) => {
                       this.ctaService.getSearchedCtas(value[0], value[1])
-                          .subscribe((pages) => {
-                              this.ctaList = pages;
+                          .subscribe((ctas: CallToAction[]) => {
+                              this.ctaList = ctas;
                           });
                   });
 
 
         this.id = this.route.snapshot.params['id'];
         // Get each user's details
-        this.ctaService.getCta(this.id).subscribe((cta) => {
+        this.ctaService.getCta(this.id).subscribe((cta: CallToAction): void | null => {
             if (cta !== null) {
                 this.cta = cta;
+            } else {
+                return null;
             }
         });
     }

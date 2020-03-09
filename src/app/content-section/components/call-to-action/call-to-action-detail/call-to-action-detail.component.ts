@@ -19,26 +19,27 @@ export class CallToActionDetailComponent implements OnInit {
 
 
     constructor(
-      private ctaService: CallToActionService,
-      private router: Router,
-      private route: ActivatedRoute,
-      private sanitizer: DomSanitizer
+        private ctaService: CallToActionService,
+        private router: Router,
+        private route: ActivatedRoute,
+        private sanitizer: DomSanitizer
     ) {
         this.id = this.route.snapshot.params['id'];
         this.logo = 'https://firebasestorage.googleapis.com/v0/b/my-ibd-life-dev.appspot.com/o/images%2F2019%2F1551821167531_my_ibd_life_logo_grey_250.png?alt=media&token=14b5d8ae-2a1a-4794-a479-f0d66103f8b1';
     }
 
     ngOnInit() {
-        this.ctaService.getCta(this.id).subscribe((cta) => {
-            this.cta = cta;
-            if (cta.imageUrl) {
-                this.imageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(cta.imageUrl);
-            }
-            if (cta.videoUrl) {
-                this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(cta.videoUrl);
-            }
-            if (cta.body) {
-                this.body = this.sanitizer.bypassSecurityTrustHtml(cta.body);
+        this.ctaService.getCta(this.id).subscribe((cta: CallToAction): void => {
+            if (cta) {
+                if (cta.imageUrl) {
+                    this.imageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(cta.imageUrl);
+                }
+                if (cta.videoUrl) {
+                    this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(cta.videoUrl);
+                }
+                if (cta.body) {
+                    this.body = this.sanitizer.bypassSecurityTrustHtml(cta.body);
+                }
             }
         });
     }

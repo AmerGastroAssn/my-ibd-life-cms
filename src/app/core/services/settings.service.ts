@@ -32,21 +32,18 @@ export class SettingsService {
         this.settings$key = 'j2u1SKOP7DOvvXY8Vrpc';
         // Checks authentication of user and get's ID.
         this.user$ = this.afAuth.authState.pipe(
-            switchMap(user => {
+            switchMap((user): Observable<User> | Observable<null> => {
                 if (user) {
                     return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
                 } else {
                     return of(null);
                 }
             }));
-        // if (localStorage.getItem('settings') !== null) {
-        //     this.localSettings = JSON.parse(localStorage.getItem('settings'));
-        // }
     }
 
     /* If settings not in local storage, then
      get settings from Firestore and save in local storage to use */
-    getAdminSettings(): Settings {
+    getAdminSettings(): Settings | object {
         if (localStorage.getItem('settings') && this.user$) {
             const local: string = localStorage.getItem('settings');
             return this.localSettings = JSON.parse(local);
@@ -58,8 +55,6 @@ export class SettingsService {
 
             const local: string = localStorage.getItem('settings');
             return this.localSettings = JSON.parse(local);
-
-
         }
     }
 
@@ -99,7 +94,6 @@ export class SettingsService {
                     verticalPosition: 'bottom',
                     panelClass: ['snackbar-success']
                 });
-                console.log('Settings updated', settings);
             })
             .catch((error: string) => {
                 this.sbAlert.open('Settings NOT Saved.', 'Dismiss', {

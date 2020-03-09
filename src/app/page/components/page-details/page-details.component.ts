@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CallToAction } from '../../../content-section/models/call-to-action';
 import { TextSection } from '../../../content-section/models/text-section';
@@ -33,13 +33,13 @@ export class PageDetailsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.pageService.getPage(this.url).subscribe((page: Page) => {
+        this.pageService.getPage(this.url).subscribe((page: Page): void => {
             if (page) {
                 this.page = page;
                 this.isIBDRelationships = page.category === 'ibd-relationships';
                 if (page.contentSectionTop) {
                     this.tsService.getTextSection(page.contentSectionTop)
-                        .subscribe((ts: TextSection) => {
+                        .subscribe((ts: TextSection): void => {
                             if (ts) {
                                 this.textSectionTop = ts;
                             }
@@ -47,7 +47,7 @@ export class PageDetailsComponent implements OnInit {
                 }
                 if (page.contentSectionBottom) {
                     this.tsService.getTextSection(page.contentSectionBottom)
-                        .subscribe((ts: TextSection) => {
+                        .subscribe((ts: TextSection): void => {
                             if (ts) {
                                 this.textSectionBottom = ts;
                             }
@@ -55,7 +55,7 @@ export class PageDetailsComponent implements OnInit {
                 }
                 if (page.callToAction) {
                     this.ctaService.getCta(page.callToAction)
-                        .subscribe((cta: CallToAction) => {
+                        .subscribe((cta: CallToAction): void => {
                             if (cta) {
                                 this.cta = cta;
                             }
