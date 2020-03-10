@@ -78,7 +78,7 @@ export class SignupComponent implements OnInit {
         this.uid = this.signupForm.value.uid;
     }
 
-    onSignup(formData: User) {
+    onSignup(formData: User): void {
         if (this.signupForm.valid) {
             this.authService.emailSignup(formData)
                 .then(() => {

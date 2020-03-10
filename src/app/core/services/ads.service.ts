@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Ads } from '../models/ad';
 
 @Injectable({
@@ -12,7 +13,7 @@ import { Ads } from '../models/ad';
 export class AdsService {
     adsCollection: AngularFirestoreCollection<Ads[]>;
     adsDoc: AngularFirestoreDocument<Ads>;
-    ads: Observable<Ads>;
+    ads$: Observable<Ads>;
     id: string;
 
     constructor(
@@ -26,23 +27,25 @@ export class AdsService {
 
     getAd(): Observable<Ads> {
         this.adsDoc = this.afs.doc<Ads>(`ads/${this.id}`);
-        this.ads = this.adsDoc.snapshotChanges().map((action) => {
-            if (action.payload.exists === false) {
-                return null;
-            } else {
-                const data = action.payload.data() as Ads;
-                data.id = action.payload.id;
-                return data;
-            }
-        });
+        this.ads$ = this.adsDoc.snapshotChanges().pipe(
+            map((action) => {
+                if (action.payload.exists === false) {
+                    return null;
+                } else {
+                    const data = action.payload.data() as Ads;
+                    data.id = action.payload.id;
+                    return data;
+                }
+            })
+        );
 
-        return this.ads;
+        return this.ads$;
     }
 
     updateAds(updatedAds: Ads): void {
         this.adsDoc = this.afs.doc<Ads>(`ads/${this.id}`);
 
-        this.adsDoc.update(updatedAds)
+        this.adsDoc.set(updatedAds, { merge: true })
             .then(() => {
                 this.sbAlert.open('Ads Saved!', 'Dismiss', {
                     duration: 3000,

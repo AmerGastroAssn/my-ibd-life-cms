@@ -7,7 +7,7 @@
             class="menu-icon"
             routerLinkActive="active"
             [routerLink]="['/auth/login']">
-        <i class="fa fa-sign-in-alt"></i>
+        <i class="fad fa-sign-in-alt"></i>
         <br>
         <small class="text-theme-gray">Login</small>
     </button>
@@ -17,7 +17,7 @@
             routerLinkActive="active"
             *ngIf="allowSignup && !isLoggedIn"
             [routerLink]="['/auth/signup']">
-        <i class="fa fa-address-card"></i>
+        <i class="fad fa-address-card"></i>
         <br>
         <small class="text-theme-gray">Signup</small>
     </button>
@@ -28,7 +28,7 @@
             *ngIf="!isLoggedIn"
             target="_blank"
             [routerLink]="['/']">
-        <i class="fa fa-laptop"></i>&nbsp;
+        <i class="fad fa-laptop"></i>&nbsp;
         <br>
         <small class="text-theme-gray">Live Site</small>
     </button>
@@ -41,7 +41,7 @@
                 routerLinkActive="active"
                 *ngIf="user$"
                 [routerLink]="['/pages']">
-            <i class="fa fa-copy fa-lg"></i>
+            <i class="fad fa-copy fa-lg"></i>
             <br>
             <small class="footernav-txt">Pages</small>
         </button>
@@ -52,7 +52,7 @@
                 *ngIf="user$"
                 [routerLinkActiveOptions]="{exact:true}"
                 [routerLink]="['/pages/new']">
-            <i class="fa fa-file-plus fa-lg"></i>
+            <i class="fad fa-file-plus fa-lg"></i>
             <br>
             <small class="footernav-txt">New Page</small>
         </button>
@@ -62,7 +62,7 @@
                 routerLinkActive="active"
                 *ngIf="user$"
                 [routerLink]="['/users']">
-            <i class="fa fa-users fa-lg"></i>
+            <i class="fad fa-users fa-lg"></i>
             <br>
             <small class="footernav-txt">Users</small>
         </button>
@@ -71,7 +71,7 @@
                 [matMenuTriggerFor]="appMenu"
                 class="menu-icon"
                 *ngIf="user$">
-                <i class="fa fa-ellipsis-h fa-lg"></i>
+                <i class="fad fa-ellipsis-h fa-lg"></i>
                 <br>
                 <small class="footernav-txt">More</small>
         </button>
@@ -99,18 +99,18 @@
                     routerLinkActive="active"
                     *ngIf="isLoggedIn && allowSettings && isAdmin"
                     [routerLink]="['/meta']">
-                <i class="fa fa-chart-line"></i>&nbsp;
+                <i class="fad fa-chart-line"></i>&nbsp;
                 <small>Meta</small>
             </button>
 
-            <button mat-menu-item
-                    class="menu-icon"
-                    routerLinkActive="active"
-                    *ngIf="isLoggedIn && isAdmin"
-                    [routerLink]="['/ads']">
-                <i class="fa fa-money-bill-wave"></i>&nbsp;
-                <small>Advertising</small>
-            </button>
+<!--            <button mat-menu-item-->
+<!--                    class="menu-icon"-->
+<!--                    routerLinkActive="active"-->
+<!--                    *ngIf="isLoggedIn && isAdmin"-->
+<!--                    [routerLink]="['/ads']">-->
+<!--                <i class="fa fa-money-bill-wave"></i>&nbsp;-->
+<!--                <small>Advertising</small>-->
+<!--            </button>-->
 
             <button mat-menu-item
                     class="menu-icon"
@@ -126,7 +126,7 @@
                     routerLinkActive="active"
                     *ngIf="isLoggedIn"
                     [routerLink]="['/text-section']">
-                <i class="fa fa-align-justify"></i>&nbsp;
+                <i class="fad fa-align-justify"></i>&nbsp;
                 <small>Text Sections</small>
             </button>
 
@@ -136,7 +136,7 @@
                     routerLinkActive="active"
                     *ngIf="isLoggedIn"
                     [routerLink]="['/call-to-action']">
-                <i class="fa fa-text-width"></i>&nbsp;
+                <i class="fad fa-text-width"></i>&nbsp;
                 <small>Call To Actions</small>
             </button>
 
@@ -145,8 +145,8 @@
                     routerLinkActive="active"
                     *ngIf="isLoggedIn"
                     [routerLink]="['/cards']">
-                <i class="fa fa-passport"></i>&nbsp;
-                <small>Cards</small>
+                <i class="fad fa-tags"></i>&nbsp;
+                <small>Rebate Cards</small>
             </button>
 
 
@@ -155,7 +155,7 @@
                     routerLinkActive="active"
                     *ngIf="isLoggedIn"
                     [routerLink]="['/images']">
-                <i class="fa fa-images"></i>&nbsp;
+                <i class="fad fa-images"></i>&nbsp;
                 <small>Images</small>
             </button>
 
@@ -166,27 +166,27 @@
                     routerLinkActive="active"
                     *ngIf="isLoggedIn"
                     [routerLink]="['/images/uploader']">
-                <i class="fa fa-cloud-upload-alt"></i>&nbsp;
+                <i class="fad fa-cloud-upload-alt"></i>&nbsp;
                 <small>Image Uploader</small>
             </button>
 
-            <button mat-menu-item
-                    class="menu-icon"
-                    routerLinkActive="active"
-                    *ngIf="isLoggedIn"
-                    [routerLink]="['/blog-posts']">
-                <i class="fa fa-passport"></i>&nbsp;
-                <small>Featured Posts</small>
-            </button>
+<!--            <button mat-menu-item-->
+<!--                    class="menu-icon"-->
+<!--                    routerLinkActive="active"-->
+<!--                    *ngIf="isLoggedIn"-->
+<!--                    [routerLink]="['/blog-posts']">-->
+<!--                <i class="fa fa-passport"></i>&nbsp;-->
+<!--                <small>Featured Posts</small>-->
+<!--            </button>-->
 
-            <button mat-menu-item
-                    class="menu-icon"
-                    routerLinkActive="active"
-                    *ngIf="isLoggedIn"
-                    [routerLink]="['/press-releases']">
-                <i class="fa fa-bullhorn"></i>&nbsp;
-                <small>Press Releases</small>
-            </button>
+<!--            <button mat-menu-item-->
+<!--                    class="menu-icon"-->
+<!--                    routerLinkActive="active"-->
+<!--                    *ngIf="isLoggedIn"-->
+<!--                    [routerLink]="['/press-releases']">-->
+<!--                <i class="fa fa-bullhorn"></i>&nbsp;-->
+<!--                <small>Press Releases</small>-->
+<!--            </button>-->
 
 
             <button mat-menu-item
@@ -194,18 +194,18 @@
                     routerLinkActive="active"
                     *ngIf="isLoggedIn"
                     [routerLink]="['/contacts']">
-                <i class="fa fa-address-book"></i>&nbsp;
+                <i class="fad fa-address-book"></i>&nbsp;
                 <small>Contacts</small>
             </button>
 
-            <button mat-menu-item
-                    class="menu-icon"
-                    routerLinkActive="active"
-                    *ngIf="isLoggedIn"
-                    [routerLink]="['/calendar']">
-                <i class="fa fa-calendar-alt"></i>&nbsp;
-                <small>Calendars</small>
-            </button>
+<!--            <button mat-menu-item-->
+<!--                    class="menu-icon"-->
+<!--                    routerLinkActive="active"-->
+<!--                    *ngIf="isLoggedIn"-->
+<!--                    [routerLink]="['/calendar']">-->
+<!--                <i class="fa fa-calendar-alt"></i>&nbsp;-->
+<!--                <small>Calendars</small>-->
+<!--            </button>-->
 
             <div class="divider"></div>
 
@@ -216,7 +216,7 @@
                     *ngIf="isLoggedIn"
                     target="_blank"
                     [routerLink]="['/']">
-                <i class="fa fa-laptop"></i>&nbsp;
+                <i class="fad fa-laptop"></i>&nbsp;
                 <small>Live Site</small>
             </button>
 
@@ -225,7 +225,7 @@
                     routerLinkActive="active"
                     *ngIf="isLoggedIn;"
                     (click)="onLogout()">
-                <i class="fa fa-sign-out-alt"></i>
+                <i class="fad fa-sign-out-alt"></i>
                 <small>Logout</small>
             </button>
             <!-- * Spacer * -->

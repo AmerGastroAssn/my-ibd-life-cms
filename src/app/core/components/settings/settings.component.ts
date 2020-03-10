@@ -14,7 +14,7 @@ import { SettingsService } from '../../services/settings.service';
 })
 export class SettingsComponent implements OnInit {
     favicon = 'fa fa-wrench';
-    sectionName = 'CMS Settings';
+    sectionName = `CMS Settings`;
     settingsForm: FormGroup;
     settings: Settings;
     allowSignup: boolean;
@@ -22,6 +22,7 @@ export class SettingsComponent implements OnInit {
     disableAdmin: boolean;
     id: string;
     settingsAllowed: boolean; // Allow settings to be edited/viewed.
+    dolphinCMSImage: string;
 
 
     constructor(
@@ -34,6 +35,7 @@ export class SettingsComponent implements OnInit {
     ) {
         // Settings
         this.settingsAllowed = this.settingsService.getAdminSettings().allowSettings;
+        this.dolphinCMSImage = 'https://firebasestorage.googleapis.com/v0/b/my-ibd-life-dev.appspot.com/o/images%2F2020%2F1583362664573_dolphin-3d_260x260.png?alt=media&token=7931f5a2-0f12-4daa-8455-b8c212cd0fb5';
 
         // Settings Form
         this.settingsService.getSettings().subscribe((settingsData) => {

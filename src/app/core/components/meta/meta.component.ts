@@ -12,7 +12,7 @@ import { MetaService } from '../../services/meta.service';
 export class MetaComponent implements OnInit {
     metaForm: FormGroup;
     meta: Meta;
-    $key: string;
+    id: string;
     metaDesc: string;
     metaAuthor: string;
     metaKeywords: string;
@@ -34,12 +34,12 @@ export class MetaComponent implements OnInit {
 
     ngOnInit() {
         // Get Meta
-        this.metaService.getMeta().subscribe((meta) => {
+        this.metaService.getMeta().subscribe((meta: Meta): void => {
             if (meta) {
                 this.meta = meta;
                 // Form:
                 this.metaForm = this.fb.group({
-                    $key: [this.metaService.$key],
+                    id: [this.metaService.id],
                     metaDesc: [this.meta.metaDesc],
                     metaAuthor: [this.meta.metaAuthor],
                     metaKeywords: [this.meta.metaKeywords],
@@ -49,7 +49,7 @@ export class MetaComponent implements OnInit {
                     widgetSnippet: [this.meta.widgetSnippet],
                 });
 
-                this.$key = this.metaForm.value.$key;
+                this.id = this.metaForm.value.id;
                 this.metaDesc = this.metaForm.value.metaDesc;
                 this.metaAuthor = this.metaForm.value.metaAuthor;
                 this.metaKeywords = this.metaForm.value.metaKeywords;
@@ -62,7 +62,7 @@ export class MetaComponent implements OnInit {
     }
 
 
-    onMetaSubmit(metaData) {
+    onMetaSubmit(metaData): void {
         if (this.metaForm.valid) {
             this.metaService.updateMeta(metaData);
             this.metaForm.reset();

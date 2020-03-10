@@ -43,7 +43,7 @@ export class SettingsService {
 
     /* If settings not in local storage, then
      get settings from Firestore and save in local storage to use */
-    getAdminSettings(): Settings | object {
+    getAdminSettings(): Settings {
         if (localStorage.getItem('settings') && this.user$) {
             const local: string = localStorage.getItem('settings');
             return this.localSettings = JSON.parse(local);

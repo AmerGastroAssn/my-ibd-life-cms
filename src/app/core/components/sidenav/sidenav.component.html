@@ -323,12 +323,12 @@
     <!--</a>-->
     <!--</li>-->
 
-    <!--<li class="sidenav-item" *ngIf="isLoggedIn && isAdmin">-->
-        <!--<a [routerLink]="['/meta']" class="sidenav-link">-->
-            <!--<i class="sidenav-icon ion ion-md-quote"></i>-->
-            <!--<div><i class="fal fa-chart-line"></i>&nbsp;<span class="helv">Meta</span></div>-->
-        <!--</a>-->
-    <!--</li>-->
+    <li class="sidenav-item" *ngIf="isLoggedIn && isAdmin">
+        <a [routerLink]="['/meta']" class="sidenav-link">
+            <i class="sidenav-icon ion ion-md-quote"></i>
+            <div><i class="fal fa-chart-line"></i>&nbsp;<span class="helv">Meta</span></div>
+        </a>
+    </li>
 
     <li class="sidenav-item" *ngIf="isLoggedIn && isAdmin">
         <a [routerLink]="['/ads']" class="sidenav-link">

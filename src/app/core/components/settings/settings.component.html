@@ -1,13 +1,22 @@
 <!-- * SETTINGS * -->
 <app-logo-watermark [favicon]="favicon" [sectionName]="sectionName"></app-logo-watermark>
 
+
 <div class="row mt-3">
     <div class="container">
         <div class="card">
             <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="text-center">
+                            <img [src]="dolphinCMSImage" alt="dolphinCMS logo" style="max-width:50px;">
+                            <h5 class="text-light font-italic">DolphinCMS</h5>
+                        </div>
+                    </div>
+                </div>
                 <h5>Application Settings</h5>
                 <div class="row">
-                    <div class="col">
+                    <div class="col-md-6">
                         <ng-template #settingsLoading>
                             <div class="text-center text-dark p-5">
                                 <i class="far fa-spinner fa-pulse"></i>
@@ -77,56 +86,56 @@
 
                         </form>
                     </div>
-                    <!--<div class="col-md-6">-->
-                        <!--<div class="text-right m-2">-->
-                            <!--<a [routerLink]="['/dashboard']"-->
-                               <!--class="btn btn-outline-dark borderless">-->
-                                <!--<i class="fa fa-chart-pie"></i>&nbsp;Google Analytics Dashboard-->
-                            <!--</a>-->
-                        <!--</div>-->
-                        <!--<div class="text-right m-2">-->
-                            <!--<a [routerLink]="['/meta']"-->
-                               <!--class="btn btn-outline-dark borderless">-->
-                                <!--<i class="fa fa-chart-line"></i>&nbsp;Edit Meta/Scripts-->
-                            <!--</a>-->
-                        <!--</div>-->
-                        <!--<div class="text-right m-2">-->
-                            <!--<a [routerLink]="['/ads']"-->
-                               <!--class="btn btn-outline-dark borderless">-->
-                                <!--<i class="fa fa-money-bill-wave"></i>&nbsp;Edit Advertising Scripts-->
-                            <!--</a>-->
-                        <!--</div>-->
-                        <!--<div class="text-right m-2">-->
-                            <!--<a [routerLink]="['/custom-nav-links']"-->
-                               <!--class="btn btn-outline-dark borderless">-->
-                                <!--<i class="fa fa-link"></i>&nbsp;Edit Navbar Links-->
-                            <!--</a>-->
-                        <!--</div>-->
-                        <!--<div class="text-right m-2">-->
-                            <!--<a [routerLink]="['/cards']"-->
-                               <!--class="btn btn-outline-dark borderless">-->
-                                <!--<i class="fa fa-passport"></i>&nbsp;Edit Cards-->
-                            <!--</a>-->
-                        <!--</div>-->
-                        <!--<div class="text-right m-2">-->
-                            <!--<a [routerLink]="['/calendar']"-->
-                               <!--class="btn btn-outline-dark borderless">-->
-                                <!--<i class="fa fa-calendar"></i>&nbsp;Edit Category-->
-                            <!--</a>-->
-                        <!--</div>-->
-                        <!--<div class="text-right m-2">-->
-                            <!--<a [routerLink]="['/privacy-policy']"-->
-                               <!--class="btn btn-outline-dark borderless">-->
-                                <!--<i class="fa fa-file-signature"></i>&nbsp;Edit Privacy Policy-->
-                            <!--</a>-->
-                        <!--</div>-->
-                        <!--<div class="text-right m-2">-->
-                            <!--<a [routerLink]="['/modal']"-->
-                               <!--class="btn btn-outline-dark borderless">-->
-                                <!--<i class="fa fa-window-alt"></i>&nbsp;Edit Homepage Modal-->
-                            <!--</a>-->
-                        <!--</div>-->
-                    <!--</div>-->
+                    <div class="col-md-6">
+<!--                        <div class="text-right m-2">-->
+<!--                            <a [routerLink]="['/dashboard']"-->
+<!--                               class="btn btn-outline-dark borderless">-->
+<!--                                <i class="fa fa-chart-pie"></i>&nbsp;Google Analytics Dashboard-->
+<!--                            </a>-->
+<!--                        </div>-->
+                        <div class="text-right m-2">
+                            <a [routerLink]="['/meta']"
+                               class="btn btn-outline-dark borderless">
+                                <i class="fa fa-chart-line"></i>&nbsp;Edit Meta/Scripts
+                            </a>
+                        </div>
+                        <div class="text-right m-2">
+                            <a [routerLink]="['/ads']"
+                               class="btn btn-outline-dark borderless">
+                                <i class="fa fa-money-bill-wave"></i>&nbsp;Edit Advertising Scripts
+                            </a>
+                        </div>
+<!--                        <div class="text-right m-2">-->
+<!--                            <a [routerLink]="['/custom-nav-links']"-->
+<!--                               class="btn btn-outline-dark borderless">-->
+<!--                                <i class="fa fa-link"></i>&nbsp;Edit Navbar Links-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                        <div class="text-right m-2">-->
+<!--                            <a [routerLink]="['/cards']"-->
+<!--                               class="btn btn-outline-dark borderless">-->
+<!--                                <i class="fa fa-passport"></i>&nbsp;Edit Cards-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                        <div class="text-right m-2">-->
+<!--                            <a [routerLink]="['/calendar']"-->
+<!--                               class="btn btn-outline-dark borderless">-->
+<!--                                <i class="fa fa-calendar"></i>&nbsp;Edit Category-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                        <div class="text-right m-2">-->
+<!--                            <a [routerLink]="['/privacy-policy']"-->
+<!--                               class="btn btn-outline-dark borderless">-->
+<!--                                <i class="fa fa-file-signature"></i>&nbsp;Edit Privacy Policy-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                        <div class="text-right m-2">-->
+<!--                            <a [routerLink]="['/modal']"-->
+<!--                               class="btn btn-outline-dark borderless">-->
+<!--                                <i class="fa fa-window-alt"></i>&nbsp;Edit Homepage Modal-->
+<!--                            </a>-->
+<!--                        </div>-->
+                    </div>
                 </div>
             </div>
         </div>

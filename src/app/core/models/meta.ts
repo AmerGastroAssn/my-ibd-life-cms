@@ -1,6 +1,6 @@
 export class Meta {
     constructor(
-        public $key: string,
+        public id: string,
         public metaDesc: string,
         public metaAuthor: string,
         public metaKeywords: string,

@@ -7,12 +7,10 @@ import { CardModule } from './card/card.module';
 import { ContactModule } from './contact/contact.module';
 import { ContentSectionModule } from './content-section/content-section.module';
 import { CoreModule } from './core/core.module';
-import { CustomNavLinkModule } from './custom-nav-link/custom-nav-link.module';
 import { FileModule } from './file/file.module';
 import { HomepageModule } from './homepage/homepage.module';
 import { ImageModule } from './image/image.module';
 import { PageModule } from './page/page.module';
-import { PressReleaseModule } from './press-release/press-release.module';
 import { SharedModule } from './shared/shared.module';
 import { UserModule } from './user/user.module';
 
@@ -39,8 +37,6 @@ const routes: Routes = [
         PageModule,
         HomepageModule,
         BlogPostModule,
-        CustomNavLinkModule,
-        PressReleaseModule,
         ContactModule,
         SharedModule,
     ],

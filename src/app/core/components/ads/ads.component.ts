@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { FlashMessagesService } from 'angular2-flash-messages';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Ads } from '../../models/ad';
 import { AdsService } from '../../services/ads.service';
 
@@ -23,22 +23,22 @@ export class AdsComponent implements OnInit {
     constructor(
         private adsService: AdsService,
         private fb: FormBuilder,
-        private flashMessage: FlashMessagesService,
+        public sbAlert: MatSnackBar,
     ) {
 
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         // Get Ads
         this.adsService.getAd().subscribe((ads: Ads) => {
             if (ads !== null) {
                 this.ads = ads;
                 // Form:
                 this.adsForm = this.fb.group({
-                    id: [this.adsService.id],
-                    headerbar: [this.headerbar],
-                    skyscraper: [this.skyscraper],
-                    footerbar: [this.footerbar],
+                    id: [this.ads.id],
+                    headerbar: [this.ads.headerbar],
+                    skyscraper: [this.ads.skyscraper],
+                    footerbar: [this.ads.footerbar],
                 });
 
                 this.id = this.adsForm.value.id;
@@ -50,8 +50,17 @@ export class AdsComponent implements OnInit {
     }
 
 
-    onAdsSubmit(adsData: Ads) {
-        this.adsService.updateAds(adsData);
-        this.adsForm.reset();
+    onAdsSubmit(adsData: Ads): void {
+        if (adsData) {
+            this.adsService.updateAds(adsData);
+            this.adsForm.reset();
+        } else {
+            this.sbAlert.open('Error: No Ad data was available in the form', 'Dismiss', {
+                duration: 3000,
+                verticalPosition: 'bottom',
+                panelClass: ['snackbar-danger']
+            });
+            console.error('agaERROR onAdsSubmit(): No Ad data was available in the form');
+        }
     }
 }
